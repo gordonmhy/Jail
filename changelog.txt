@@ -1,5 +1,8 @@
 Changelog of Jail
 
+Pre-alpha0.6
+- Fixed license text incorrect plugin name..
+
 Pre-alpha0.5
 - Fixed infinite time jailing pops errors on console screen
 - Fixed players infinite time still receive time penalty
