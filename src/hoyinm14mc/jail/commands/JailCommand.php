@@ -1,20 +1,20 @@
 <?php
 /*
- * This file is a part of UltimateParticles.
+ * This file is a part of Jail.
  * Copyright (C) 2016 hoyinm14mc
  *
- * UltimateParticles is free software: you can redistribute it and/or modify
+ * Jail is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * UltimateParticles is distributed in the hope that it will be useful,
+ * Jail is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with UltimateParticles. If not, see <http://www.gnu.org/licenses/>.
+ * along with Jail. If not, see <http://www.gnu.org/licenses/>.
  */
 
 namespace hoyinm14mc\jail\commands;
@@ -38,32 +38,32 @@ class JailCommand extends BaseCommand
                     return true;
                 }
                 $target = $this->getPlugin()->getServer()->getPlayer($args[0]);
-                if($target === null){
+                if ($target === null) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cPlayer does not exist"));
                     return true;
                 }
                 $jail = $args[1];
                 $minutes = $args[2];
-                if(isset($args[3]) !== false){
+                if (isset($args[3]) !== false) {
                     $reason = $this->getReason($args);
                 }
-                if($this->getPlugin()->jailExists($jail) !== true){
+                if ($this->getPlugin()->jailExists($jail) !== true) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cJail doesn't exist!"));
                     return true;
                 }
-                if($minutes != "-i" && (is_numeric($minutes) !== true || $minutes > 6000)){
+                if ($minutes != "-i" && (is_numeric($minutes) !== true || $minutes > 6000)) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cInvalid time!"));
                     return true;
                 }
-                if($this->getPlugin()->isJailed($target->getName()) !== false){
+                if ($this->getPlugin()->isJailed($target->getName()) !== false) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cTarget is already jailed!"));
                     return true;
                 }
-                if($this->getPlugin()->jail($target, $jail, ($minutes == "-i" ? -1 : $minutes), (isset($args[3]) ? $reason : "no reason")) !== false){
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou jailed ".$target->getName()." for ".($minutes == "-i" ? "intinite time" : ($minutes > 1 ? $minutes." minutes" : $minutes." minute"))."!"));
+                if ($this->getPlugin()->jail($target, $jail, ($minutes == "-i" ? -1 : $minutes), (isset($args[3]) ? $reason : "no reason")) !== false) {
+                    $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou jailed " . $target->getName() . " for " . ($minutes == "-i" ? "intinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "!"));
                 }
                 return true;
-            break;
+                break;
         }
     }
 

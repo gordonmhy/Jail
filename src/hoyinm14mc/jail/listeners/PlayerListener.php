@@ -1,20 +1,20 @@
 <?php
 /*
- * This file is a part of UltimateParticles.
+ * This file is a part of Jail.
  * Copyright (C) 2016 hoyinm14mc
  *
- * UltimateParticles is free software: you can redistribute it and/or modify
+ * Jail is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * UltimateParticles is distributed in the hope that it will be useful,
+ * Jail is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with UltimateParticles. If not, see <http://www.gnu.org/licenses/>.
+ * along with Jail. If not, see <http://www.gnu.org/licenses/>.
  */
 
 namespace hoyinm14mc\jail\listeners;
@@ -42,7 +42,7 @@ class PlayerListener extends BaseListener
     {
         $t = $this->getPlugin()->data->getAll();
         $j = $this->getPlugin()->data1->getAll();
-        if ($this->getPlugin()->isJailed($event->getPlayer()->getName()) && $t[$event->getPlayer()->getName()]["seconds"] < 0){
+        if ($this->getPlugin()->isJailed($event->getPlayer()->getName()) && $t[$event->getPlayer()->getName()]["seconds"] < 0) {
             $this->getPlugin()->unjail($event->getPlayer()->getName());
         }
         if ($this->getPlugin()->isJailed($event->getPlayer()->getName()) && $this->getPlugin()->jailExists($t[$event->getPlayer()->getName()]["jail"]) !== true) {
@@ -89,7 +89,9 @@ class PlayerListener extends BaseListener
             } else if (array_key_exists($event->getPlayer()->getName(), $this->getPlugin()->c1_tmp) !== false && array_key_exists($event->getPlayer()->getName(), $this->getPlugin()->c2_tmp) !== true && array_key_exists($event->getPlayer()->getName(), $this->getPlugin()->pos_tmp) !== false) {
                 $this->getPlugin()->c2_tmp[$event->getPlayer()->getName()] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
                 //Done
-                $this->getPlugin()->setJail($this->getPlugin()->jailName_tmp[$event->getPlayer()->getName()], $this->getPlugin()->pos_tmp[$event->getPlayer()->getName()], $this->getPlugin()->c1_tmp[$event->getPlayer()->getName()], $this->getPlugin()->c2_tmp[$event->getPlayer()->getName()], /*TODO*/false, /*TODO*/false);
+                $this->getPlugin()->setJail($this->getPlugin()->jailName_tmp[$event->getPlayer()->getName()], $this->getPlugin()->pos_tmp[$event->getPlayer()->getName()], $this->getPlugin()->c1_tmp[$event->getPlayer()->getName()], $this->getPlugin()->c2_tmp[$event->getPlayer()->getName()], /*TODO*/
+                    false, /*TODO*/
+                    false);
                 unset($this->getPlugin()->jailName_tmp[$event->getPlayer()->getName()]);
                 unset($this->getPlugin()->pos_tmp[$event->getPlayer()->getName()]);
                 unset($this->getPlugin()->c1_tmp[$event->getPlayer()->getName()]);
@@ -126,7 +128,7 @@ class PlayerListener extends BaseListener
             unset($this->getPlugin()->selection_mode[array_search($event->getPlayer()->getName(), $this->getPlugin()->selection_mode)]);
         }
     }
-    
+
     /*public function onPlayerHungerChange(PlayerHungerChangeEvent $event){
         if($this->getPlugin()->isJailed($event->getPlayer()->getName()) !== false && $this->getPlugin()->getConfig()->get("disable-hunger") !== false){
             $event->setCancelled(true);
