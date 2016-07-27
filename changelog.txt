@@ -1,0 +1,34 @@
+Changelog of Jail
+
+Pre-alpha0.5
+- Fixed infinite time jailing pops errors on console screen
+- Fixed players infinite time still receive time penalty
+
+Pre-alpha0.4
+- Fixed auto timer unjailing not taking effect (CRITICAL)
+
+Pre-alpha0.3
+- Fixed error code appearing when new players join
+- Fixed some missing PHP Docs of API
+- Fixed gamemode issue while offline unjailed players join
+- Added the ability to jail players forever until /unjail command
+- Added penalty system, apply to prisoners if they try to destroy the jail
+
+Pre-alpha0.2
+- Fixed jailExists() detection error when player joins
+- Fixed some displays not shown clearly
+- Added switchjail command
+- Added offline-time-counting option in configuration
+- Fixed some gamemode issues
+- Removed interaction restrictor
+- Fixed bug of normal players able to modify jail area
+
+Pre-alpha0.1
+- Multiworld support
+- Timer support
+- Basic jailing system with reasons
+- Multiple jails support
+- Configuration support (Restrictions of prisoners)
+- Jail area protection
+- Beautiful animated screen of prisoner, showing timer and info
+- Setting up jail using only a command and steps following

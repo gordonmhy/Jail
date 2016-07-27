@@ -1,0 +1,23 @@
+####### Configuration file of Jail #######
+
+### Restrictions of prisoners ###
+allow-chat: true
+allow-command: false
+allow-block-break: false
+allow-block-place: false
+#If false, restricts player's VECTOR3 movement, not whole POSITION
+allow-movement: true
+allow-attack: false
+disable-damage: true
+
+### Settings ###
+#Count when the prisoner is offline?
+offline-time-counting: true
+#Enable additional penalty when players try to destroy the jail?
+enable-penalty: true
+#How much time to be added to that player as penalty? (minutes)
+penalty-time: 10
+
+### Config updater ###
+#Do not modify this, otherwise plugin may not work properly
+v: Pre-alpha0.5

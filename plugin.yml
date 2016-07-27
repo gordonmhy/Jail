@@ -1,0 +1,72 @@
+name: Jail
+main: hoyinm14mc\jail\Jail
+api: 2.0.0
+version: Pre-alpha0.5
+author: hoyinm14mc
+description: An advanced jail plugin for PocketMine servers
+load: POSTWORLD
+
+commands:
+  deljail:
+    description: Deletes a jail
+    permission: jail.command.deljail
+    usage: /deljail <jail>
+  setjail:
+    description: Sets a jail
+    permission: jail.command.setjail
+    usage: /setjail <jail>
+    aliases: ["jailset"]
+  jails:
+    description: Get a list of available jails
+    permission: jail.command.jails
+    usage: /jails
+    aliases: ["jaillist"]
+  jail:
+    description: Jails a player
+    permission: jail.command.jail
+    usage: /jail <player> <jail> <minutes|-i> <reason..>
+  unjail:
+    description: Unjails an online/offline player
+    permission: jail.command.unjail
+    usage: /unjail <player>
+  jailed:
+    description: Check the list of jailed players
+    permission: jail.command.jailed
+    usage: /jailed
+    aliases: ["prisoners"]
+  switchjail:
+    description: Switch a prisoner to another jail
+    permission: jail.command.switchjail
+    usage: /switchjail <player> <jail>
+    aliases: ["transferjail", "jailswitch"]
+  tpjail:
+    description: Teleport a player to a jail location
+    permission: jail.command.tpjail
+    usage: /tpjail <jail>
+    aliases: ["jailtp"]
+    
+permission:
+  jail.command.setjail:
+    default: op
+    description: Allows admins to set jails
+  jail.command.deljail:
+    default: op
+    description: Allows admins to delete a jail
+  jail.command.jails:
+    default: op
+    description: Allows admins to get a list of available jails
+  jail.command.jail:
+    default: op
+    description: Allows admins to jail players into jails
+  jail.command.unjail:
+    default: op
+    description: Allows admins to unjail online/offline players
+  jail.command.jailed:
+    default: op
+    description: Allows admins to check the list of jailed players
+  jail.command.switchjail:
+    default: op
+    description: Allows admins to switch a prisoner's jail
+  jail.command.jailtp:
+    default: true
+    description: Allows players to visit a jail
