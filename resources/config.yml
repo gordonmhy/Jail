@@ -17,6 +17,8 @@ offline-time-counting: true
 enable-penalty: true
 #How much time to be added to that player as penalty? (minutes)
 penalty-time: 10
+#How much money per second a player has to pay to bail?
+bail-per-second: 100
 
 ### Config updater ###
 #Do not modify this, otherwise plugin may not work properly
