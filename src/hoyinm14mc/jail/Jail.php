@@ -89,9 +89,9 @@ class Jail extends PluginBase
         $this->data = new Config($this->getDataFolder() . "players.yml", Config::YAML, array());
         $this->data1 = new Config($this->getDataFolder() . "jails.yml", Config::YAML, array());
         $ecoPlugs = [
-            "GoldStd",
+            /*"GoldStd",
             "MassiveEconomy",
-            "PocketMoney",
+            "PocketMoney",*/
             "EconomyAPI"
         ];
         foreach ($ecoPlugs as $ecoPlug) {

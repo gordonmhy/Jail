@@ -38,7 +38,7 @@ class Economyapi extends BaseEconomy
             return false;
         }
         $this->getPlugin()->getEco()->getInstance()->reduceMoney($player, ($t[$player->getName()]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1));
-        $this->getPlugin()->unjail($player);
+        $this->getPlugin()->unjail($player->getName());
         $player->sendMessage($this->getPlugin()->colorMessage("&aYou have been unjailed successfully!"));
         $player->sendMessage("Bank : -$" . ($t[$player->getName()]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1) . " | $" . $this->getPlugin()->getEco()->getInstance()->myMoney($player) . " remaining in your account");
         return true;

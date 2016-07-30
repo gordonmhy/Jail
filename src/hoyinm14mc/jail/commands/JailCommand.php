@@ -51,6 +51,10 @@ class JailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cJail doesn't exist!"));
                     return true;
                 }
+                if ($this->getPlugin()->getConfig()->get("op-can-be-jailed") !== true) {
+                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou can't jail that player!"));
+                    return true;
+                }
                 if ($minutes != "-i" && (is_numeric($minutes) !== true || $minutes > 6000)) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cInvalid time!"));
                     return true;

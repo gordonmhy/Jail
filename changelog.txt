@@ -1,7 +1,8 @@
 Changelog of Jail
 
 Pre-alpha0.6
-- Fixed license text incorrect plugin name..
+- Fixed license text incorrect plugin name
+- Added op being jailed prevention (Can be deactivated in config)
 
 Pre-alpha0.5
 - Fixed infinite time jailing pops errors on console screen
