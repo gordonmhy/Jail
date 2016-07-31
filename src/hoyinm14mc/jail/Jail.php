@@ -33,6 +33,7 @@ use hoyinm14mc\jail\listeners\PlayerListener;
 use hoyinm14mc\jail\listeners\EntityListener;
 use hoyinm14mc\jail\tasks\JailTimingTask;
 use hoyinm14mc\jail\tasks\TimeBroadcastTask;
+use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -119,6 +120,9 @@ class Jail extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents(new BlockListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new EntityListener($this), $this);
         $this->getLogger()->info($this->colorMessage("&aLoaded Successfully!"));
+        $this->getLogger()->info($this->colorMessage("&eFetching latest version from repository..."));
+        $this->getLogger()->info($this->colorMessage("&eResult will appear when server query is started."));
+        $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker($this));
     }
 
     /**

@@ -1,5 +1,8 @@
 Changelog of Jail
 
+Pre-alpha0.7
+- Added basic version update fetcher
+
 Pre-alpha0.6
 - Fixed license text incorrect plugin name
 - Added op being jailed prevention (Can be deactivated in config)
