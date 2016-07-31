@@ -3,6 +3,7 @@ Changelog of Jail
 Pre-alpha0.6
 - Fixed license text incorrect plugin name
 - Added op being jailed prevention (Can be deactivated in config)
+- Added basic bail feature, currently only supports EconomyS (/bail)
 
 Pre-alpha0.5
 - Fixed infinite time jailing pops errors on console screen

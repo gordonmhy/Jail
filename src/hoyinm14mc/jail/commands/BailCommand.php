@@ -20,8 +20,10 @@
 namespace hoyinm14mc\jail\commands;
 
 use hoyinm14mc\jail\base\BaseCommand;
+use hoyinm14mc\jail\economy\Economyapi;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\Player;
 
 class BailCommand extends BaseCommand
 {
@@ -33,6 +35,24 @@ class BailCommand extends BaseCommand
                 if ($issuer->hasPermission("jail.command.bail") !== true) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
                     return true;
+                }
+                if ($issuer instanceof Player !== true) {
+                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cCommand only works in-game!"));
+                    return true;
+                }
+                if ($this->getPlugin()->isJailed($issuer->getName()) !== true) {
+                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou are not jailed!"));
+                    return true;
+                }
+                if ($this->getPlugin()->getEco() === null) {
+                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cBail feature is disabled!"));
+                    return true;
+                }
+                switch ($this->getPlugin()->getEco()->getName()) {
+                    case "EconomyAPI":
+                        $eco = new Economyapi($this->getPlugin());
+                        $eco->bail($issuer);
+                        return true;
                 }
                 break;
         }

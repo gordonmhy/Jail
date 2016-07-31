@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail;
 
+use hoyinm14mc\jail\commands\BailCommand;
 use hoyinm14mc\jail\commands\DeljailCommand;
 use hoyinm14mc\jail\commands\JailCommand;
 use hoyinm14mc\jail\commands\JailedCommand;
@@ -111,6 +112,7 @@ class Jail extends PluginBase
         $this->getCommand("jailed")->setExecutor(new JailedCommand($this));
         $this->getCommand("switchjail")->setExecutor(new SwitchjailCommand($this));
         $this->getCommand("tpjail")->setExecutor(new TpjailCommand($this));
+        $this->getCommand("bail")->setExecutor(new BailCommand($this));
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new JailTimingTask($this), 20);
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new TimeBroadcastTask($this), 3);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerListener($this), $this);

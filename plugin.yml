@@ -44,6 +44,10 @@ commands:
     permission: jail.command.tpjail
     usage: /tpjail <jail>
     aliases: ["jailtp"]
+  bail:
+    description: Bails from a jail
+    permission: jail.command.bail
+    usage: /bail
     
 permission:
   jail.command.setjail:
@@ -70,3 +74,6 @@ permission:
   jail.command.jailtp:
     default: true
     description: Allows players to visit a jail
+  jail.command.bail:
+    default: true
+    description: Allows jailed players to bail
