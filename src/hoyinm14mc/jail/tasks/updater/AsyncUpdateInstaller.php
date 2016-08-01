@@ -34,10 +34,6 @@ class AsyncUpdateInstaller extends AsyncTask
      */
     private $ver;
     /**
-     * @var bool
-     */
-    private $error;
-    /**
      * @var string
      */
     private $file_pl;
@@ -83,10 +79,8 @@ class AsyncUpdateInstaller extends AsyncTask
     public function onCompletion(Server $server)
     {
         $plugin = $server->getPluginManager()->getPlugin("Jail");
-        if ($this->error !== true) {
-            $plugin->getLogger()->info($plugin->colorMessage("&aSuccessfully updated version to &d" . $this->ver . "&a!"));
-            $plugin->getLogger()->info($plugin->colorMessage("&aRestart server to take effect!"));
-        }
+        $plugin->getLogger()->info($plugin->colorMessage("&aSuccessfully updated version to &d" . $this->ver . "&a!"));
+        $plugin->getLogger()->info($plugin->colorMessage("&aRestart server to take effect!"));
     }
 
 }

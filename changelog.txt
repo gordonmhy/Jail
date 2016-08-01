@@ -2,6 +2,7 @@ Changelog of Jail
 
 Alpha0.1.1
 - Added some missing PHPDoc
+- Removed unused code
 
 Alpha0.1
 - Hugely improved and enhanced auto update checker/installer (config)
