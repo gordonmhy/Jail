@@ -94,9 +94,7 @@ class Jail extends PluginBase
         $this->data = new Config($this->getDataFolder() . "players.yml", Config::YAML, array());
         $this->data1 = new Config($this->getDataFolder() . "jails.yml", Config::YAML, array());
         $ecoPlugs = [
-            /*"GoldStd",
-            "MassiveEconomy",
-            "PocketMoney",*/
+            "PocketMoney",
             "EconomyAPI"
         ];
         foreach ($ecoPlugs as $ecoPlug) {
@@ -125,7 +123,7 @@ class Jail extends PluginBase
         $this->getLogger()->info($this->colorMessage("&aLoaded Successfully!"));
         if ($this->getConfig()->get("scheduled-update-checker") !== false) {
             $this->getLogger()->info($this->colorMessage("&aInitialized scheduled update checker"));
-            $this->getServer()->getScheduler()->scheduleRepeatingTask(new AutoUpdateChecker($this), (int)$this->getConfig()->get("scheduled-update-checker-interval"));
+            $this->getServer()->getScheduler()->scheduleRepeatingTask(new AutoUpdateChecker($this), 60 * 20 * (int)$this->getConfig()->get("scheduled-update-checker-interval"));
         } else if ($this->getConfig()->get("updater-start-fetch") !== false) {
             $this->getLogger()->info($this->colorMessage("&eFetching latest version from repository..."));
             $this->getLogger()->info($this->colorMessage("&eResult will appear when server query is started."));

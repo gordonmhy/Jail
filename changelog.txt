@@ -1,5 +1,10 @@
 Changelog of Jail
 
+Pre-alpha0.8
+- Hugely improved and enhanced auto update checker/installer (config)
+- Implemented bail support for PocketMoney
+- Added an option to disable bail
+
 Pre-alpha0.7
 - Added basic version update fetcher
 
