@@ -77,6 +77,7 @@ class Jail extends PluginBase
 
     public function onEnable()
     {
+        $this->getLogger()->info("Loading configurations...");
         if (is_dir($this->getDataFolder()) !== true) {
             mkdir($this->getDataFolder());
         }
