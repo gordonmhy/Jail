@@ -44,8 +44,13 @@ class AsyncUpdateChecker extends AsyncTask
     {
         $plugin = $server->getPluginManager()->getPlugin("Jail");
         if ($this->getResult()["ver"] != strtolower($plugin->getDescription()->getVersion())) {
+            $updater = new Updater();
+            $updater->setUpdateAwaiting(true);
+            $plugin->update->set("url", $this->getResult()["url"]);
+            $plugin->update->set("ver", $this->getResult()["ver"]);
+            $plugin->update->save();
             $plugin->getLogger()->info($plugin->colorMessage("&bYour version is not the latest one! Latest version: &f" . $this->getResult()["ver"]));
-            $plugin->getLogger()->info($plugin->colorMessage("&6You can download it here: &f" . $this->getResult()["url"]));
+            $plugin->getLogger()->info($plugin->colorMessage("&cDo you want to download and install it now? (Y/n)"));
         } else {
             $plugin->getLogger()->info($plugin->colorMessage("&6No update found!"));
         }

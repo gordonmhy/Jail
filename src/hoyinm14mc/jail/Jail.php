@@ -31,9 +31,11 @@ use hoyinm14mc\jail\commands\UnjailCommand;
 use hoyinm14mc\jail\listeners\BlockListener;
 use hoyinm14mc\jail\listeners\PlayerListener;
 use hoyinm14mc\jail\listeners\EntityListener;
+use hoyinm14mc\jail\listeners\ServerListener;
 use hoyinm14mc\jail\tasks\JailTimingTask;
 use hoyinm14mc\jail\tasks\TimeBroadcastTask;
 use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
+use MongoDB\Driver\Command;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -90,6 +92,10 @@ class Jail extends PluginBase
         $this->reloadConfig();
         $this->data = new Config($this->getDataFolder() . "players.yml", Config::YAML, array());
         $this->data1 = new Config($this->getDataFolder() . "jails.yml", Config::YAML, array());
+        $this->update = new Config($this->getDataFolder() . "update.yml", Config::YAML, array(
+            "ver" => null,
+            "url" => null
+        ));
         $ecoPlugs = [
             /*"GoldStd",
             "MassiveEconomy",
@@ -119,6 +125,7 @@ class Jail extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents(new PlayerListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new BlockListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new EntityListener($this), $this);
+        $this->getServer()->getPluginManager()->registerEvents(new ServerListener($this), $this);
         $this->getLogger()->info($this->colorMessage("&aLoaded Successfully!"));
         $this->getLogger()->info($this->colorMessage("&eFetching latest version from repository..."));
         $this->getLogger()->info($this->colorMessage("&eResult will appear when server query is started."));
