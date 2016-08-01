@@ -37,8 +37,17 @@ class AsyncUpdateInstaller extends AsyncTask
      * @var bool
      */
     private $error;
+    /**
+     * @var string
+     */
     private $file_pl;
+    /**
+     * @var string
+     */
     private $file_new_pl;
+    /**
+     * @var string
+     */
     private $path;
 
     public function __construct(string $url, string $ver, string $file_pl, string $file_new_pl, string $path)

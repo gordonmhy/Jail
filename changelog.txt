@@ -1,5 +1,8 @@
 Changelog of Jail
 
+Alpha0.1.1
+- Added some missing PHPDoc
+
 Alpha0.1
 - Hugely improved and enhanced auto update checker/installer (config)
 - Implemented bail support for PocketMoney

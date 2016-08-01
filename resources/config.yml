@@ -34,4 +34,4 @@ scheduled-update-checker-interval: 45
 
 ### Config version ###
 #Do not modify this, otherwise plugin may not work properly
-v: Alpha0.1
+v: Alpha0.1.1
