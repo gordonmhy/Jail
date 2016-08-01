@@ -21,9 +21,15 @@ penalty-time: 10
 bail-per-second: 100
 #OPs can't be jailed?
 op-can-be-jailed: true
-#Enable frequent scheduled auto update checker? (TODO)
-scheduled-update-checker: false
+#Enable Server-start latest version tracker?
+updater-start-fetch: true
+#Enable auto latest version installation?
+updater-auto-install: true
+#Enable frequent scheduled auto update checker?
+scheduled-update-checker: true
+#Minutes between each check? (Ignore if scheduled-update-checker=false)
+scheduled-update-checker-interval: 45
 
 ### Config updater ###
 #Do not modify this, otherwise plugin may not work properly
-v: Pre-alpha0.7
+v: Pre-alpha0.8.0

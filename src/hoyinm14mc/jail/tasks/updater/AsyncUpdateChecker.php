@@ -44,13 +44,21 @@ class AsyncUpdateChecker extends AsyncTask
     {
         $plugin = $server->getPluginManager()->getPlugin("Jail");
         if ($this->getResult()["ver"] != strtolower($plugin->getDescription()->getVersion())) {
-            $updater = new Updater();
-            $updater->setUpdateAwaiting(true);
-            $plugin->update->set("url", $this->getResult()["url"]);
-            $plugin->update->set("ver", $this->getResult()["ver"]);
-            $plugin->update->save();
             $plugin->getLogger()->info($plugin->colorMessage("&bYour version is not the latest one! Latest version: &f" . $this->getResult()["ver"]));
-            $plugin->getLogger()->info($plugin->colorMessage("&cDo you want to download and install it now? (Y/n)"));
+            $file_pl = "Jail_v" . $plugin->getDescription()->getVersion() . ".phar";
+            $file_new_pl = "Jail_v" . $this->getResult()["ver"] . ".phar";
+            $path = $plugin->getServer()->getPluginPath() . $file_pl;
+            if ($plugin->getConfig()->get("updater-auto-install") !== false) {
+                $plugin->getLogger()->info($plugin->colorMessage("&eInstalling new version..."));
+                if (file_exists($path) !== false) {
+                    $plugin->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateInstaller($this->getResult()["url"], $this->getResult()["ver"], $file_pl, $file_new_pl, $path));
+                } else {
+                    $plugin->getLogger()->info($plugin->colorMessage("&4An error occured upon installation of latest version!"));
+                    $plugin->getLogger()->info($plugin->colorMessage("&4You can still manually download and install it: &f" . $this->getResult()["url"]));
+                }
+            } else {
+                $plugin->getLogger()->info($plugin->colorMessage("^6Download link: &f" . $this->getResult()["url"]));
+            }
         } else {
             $plugin->getLogger()->info($plugin->colorMessage("&6No update found!"));
         }

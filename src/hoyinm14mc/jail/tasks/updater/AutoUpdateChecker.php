@@ -19,29 +19,15 @@
 
 namespace hoyinm14mc\jail\tasks\updater;
 
-class Updater
+use hoyinm14mc\jail\base\BaseTask;
+
+class AutoUpdateChecker extends BaseTask
 {
 
-    private $update_awaiting = false;
-
-    public function __construct()
+    public function onRun($currentTick)
     {
-    }
-
-    /**
-     * @return bool
-     */
-    public function isUpdateAwaiting(): bool
-    {
-        return $this->update_awaiting;
-    }
-
-    /**
-     * @param bool $value
-     */
-    public function setUpdateAwaiting(bool $value = false)
-    {
-        $this->update_awaiting = $value;
+        $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&eFetching latest version from repository..."));
+        $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
     }
 
 }
