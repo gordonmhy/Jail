@@ -49,6 +49,10 @@ class BailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cBail feature is disabled!"));
                     return true;
                 }
+                if ($this->getPlugin()->isJailTimeInfinity($issuer->getName()) !== false) {
+                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou can't use bail as you are jailed infinitely"));
+                    return true;
+                }
                 switch ($this->getPlugin()->getEco()->getName()) {
                     case "EconomyAPI":
                         $eco = new Economyapi($this->getPlugin());
@@ -57,6 +61,7 @@ class BailCommand extends BaseCommand
                     case "PocketMoney":
                         $eco = new Pocketmoney($this->getPlugin());
                         $eco->bail($issuer);
+                        return true;
                 }
                 break;
         }

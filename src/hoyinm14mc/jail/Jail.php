@@ -122,7 +122,7 @@ class Jail extends PluginBase
         $this->getServer()->getPluginManager()->registerEvents(new EntityListener($this), $this);
         $this->getLogger()->info($this->colorMessage("&aLoaded Successfully!"));
         if ($this->getConfig()->get("scheduled-update-checker") !== false) {
-            $this->getLogger()->info($this->colorMessage("&aInitialized scheduled update checker"));
+            $this->getLogger()->info($this->colorMessage("&eInitialized scheduled update checker"));
             $this->getServer()->getScheduler()->scheduleRepeatingTask(new AutoUpdateChecker($this), 60 * 20 * (int)$this->getConfig()->get("scheduled-update-checker-interval"));
         } else if ($this->getConfig()->get("updater-start-fetch") !== false) {
             $this->getLogger()->info($this->colorMessage("&eFetching latest version from repository..."));
@@ -134,7 +134,7 @@ class Jail extends PluginBase
     /**
      * @return object
      */
-    public function getEco(): object
+    public function getEco()
     {
         return $this->eco;
     }

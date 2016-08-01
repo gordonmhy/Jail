@@ -64,7 +64,7 @@ class JailCommand extends BaseCommand
                     return true;
                 }
                 if ($this->getPlugin()->jail($target, $jail, ($minutes == "-i" ? -1 : $minutes), (isset($args[3]) ? $reason : "no reason")) !== false) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou jailed " . $target->getName() . " for " . ($minutes == "-i" ? "intinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "!"));
+                    $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou jailed " . $target->getName() . " for " . ($minutes == "-i" ? "infinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "!"));
                 }
                 return true;
                 break;

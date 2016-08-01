@@ -38,6 +38,7 @@ class TimeBroadcastTask extends BaseTask
                 } else {
                     $this->dots = "";
                 }
+                $bail_dis = "&2Bail: &d" . ($this->getPlugin()->getEco() !== null && $this->getPlugin()->getConfig()->get("allow-bail") ? ($this->getPlugin()->isJailTimeInfinity($player->getName()) !== false ? "not allowed" : "$" . ($t[$player->getName()]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")))) : "disabled ^o^");
                 if (isset($t[$name]["seconds"])) {
                     $time = $t[$name]["seconds"];
                     $seconds = $time;
@@ -52,9 +53,9 @@ class TimeBroadcastTask extends BaseTask
                         $minutes = $minutes - 60;
                     }
                     $time_dis = "&e" . ($hours < 10 ? "0" . $hours : $hours) . "&b:&e" . ($minutes < 10 ? "0" . $minutes : $minutes) . "&b:&e" . ($seconds < 10 ? "0" . $seconds : $seconds);
-                    $player->sendTip($this->getPlugin()->colorMessage("&3You have been jailed!\n&6Time left: " . $time_dis . "\n&l&c" . $this->dots));
+                    $player->sendTip($this->getPlugin()->colorMessage("&3You have been jailed!\n&6Time left: " . $time_dis . "\n" . $bail_dis . "&r\n&l&c" . $this->dots));
                 } else {
-                    $player->sendTip($this->getPlugin()->colorMessage("&3You have been jailed!\n&6Time left: &einfinite\n&l&c" . $this->dots));
+                    $player->sendTip($this->getPlugin()->colorMessage("&3You have been jailed!\n&6Time left: &einfinite\n" . $bail_dis . "&r\n&l&c" . $this->dots));
                 }
             }
         }

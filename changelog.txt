@@ -1,9 +1,12 @@
 Changelog of Jail
 
-Pre-alpha0.8
+Alpha0.1
 - Hugely improved and enhanced auto update checker/installer (config)
 - Implemented bail support for PocketMoney
 - Added an option to disable bail
+- Fixed some typos
+- Implemented bail money requirement on prisoner's GUI
+- Fixed server crash when player is jailed infinitely
 
 Pre-alpha0.7
 - Added basic version update fetcher
