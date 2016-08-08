@@ -128,7 +128,13 @@ class Jail extends PluginBase
         } else if ($this->getConfig()->get("updater-start-fetch") !== false) {
             $this->getLogger()->info($this->colorMessage("&eFetching latest version from repository..."));
             $this->getLogger()->info($this->colorMessage("&eResult will appear when server query is started."));
-            $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
+            if(is_dir($this->getServer()->getDataPath()."tmp")){
+                $this->getLogger()->info($this->colorMessage("&4Error: Mobile device not supported!"));
+            }else if(fopen("http://www.google.com:80/","r") !== true){
+                $this->getLogger()->info($this->colorMessage("&4Error: No internet connectivity!"));
+            }else{
+                $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
+            }
         }
     }
 
