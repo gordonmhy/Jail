@@ -189,7 +189,7 @@ class Jail extends PluginBase
      */
     public function isSelectionMode(Player $player): bool
     {
-        return in_array($player->getName(), $this->selection_mode);
+        return in_array(strtolower($player->getName()), $this->selection_mode);
     }
 
     /**
@@ -203,7 +203,7 @@ class Jail extends PluginBase
         if ($this->jailExists($jail) !== true) {
             return false;
         }
-        return (bool)(min($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) <= $pos->x) && (max($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) >= $pos->x) && (min($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) <= $pos->y) && (max($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) >= $pos->y) && (min($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) <= $pos->z) && (max($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) >= $pos->z) && ($j[$jail]["pos"]["level"] == $pos->getLevel()->getName());
+        return (bool)(min($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) <= $pos->x) && (max($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) >= $pos->x) && (min($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) <= $pos->y) && (max($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) >= $pos->y) && (min($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) <= $pos->z) && (max($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) >= $pos->z) && ($j[$jail]["pos"]["level"] == strtolower($pos->getLevel()->getName()));
     }
 
     /**
@@ -212,7 +212,7 @@ class Jail extends PluginBase
      */
     public function hasAreaSelected(Player $player): bool
     {
-        return (bool)array_key_exists($player->getName(), $this->c1_tmp) && array_key_exists($player->getName(), $this->c2_tmp);
+        return (bool)array_key_exists(strtolower($player->getName()), $this->c1_tmp) && array_key_exists(strtolower($player->getName()), $this->c2_tmp);
     }
 
     /**
@@ -244,22 +244,22 @@ class Jail extends PluginBase
         if ($this->jailExists($jail_name) !== true) {
             return false;
         }
-        if ($this->isJailed($player->getName()) !== false) {
+        if ($this->isJailed(strtolower($player->getName())) !== false) {
             return false;
         }
-        $t[$player->getName()]["jailed"] = true;
-        $t[$player->getName()]["jail"] = $jail_name;
+        $t[strtolower($player->getName())]["jailed"] = true;
+        $t[strtolower($player->getName())]["jail"] = $jail_name;
         if ($minutes != -1) {
-            $t[$player->getName()]["seconds"] = $minutes * 60;
+            $t[strtolower($player->getName())]["seconds"] = $minutes * 60;
         }
-        $t[$player->getName()]["reason"] = $reason;
-        $t[$player->getName()]["gamemode"] = $player->getGamemode();
+        $t[strtolower($player->getName())]["reason"] = $reason;
+        $t[strtolower($player->getName())]["gamemode"] = $player->getGamemode();
         $this->data->setAll($t);
         $this->data->save();
         $player->setGamemode(($this->getConfig()->get("enable-penalty") !== true ? 2 : 0));
         $player->sendMessage($this->colorMessage("&eYou have been jailed for " . ($minutes != -1 ? $minutes : "infinite") . " minutes!\n&eReason: " . $reason));
         $player->teleport(new Position($j[$jail_name]["pos"]["x"], $j[$jail_name]["pos"]["y"], $j[$jail_name]["pos"]["z"], $this->getServer()->getLevelByName($j[$jail_name]["pos"]["level"])));
-        $this->getLogger()->info($this->colorMessage("&6Jailed player " . $player->getName() . " for " . ($minutes == -1 ? "infinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "\nReason: " . $reason));
+        $this->getLogger()->info($this->colorMessage("&6Jailed player " . strtolower($player->getName()) . " for " . ($minutes == -1 ? "infinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "\nReason: " . $reason));
         return true;
     }
 
@@ -343,15 +343,15 @@ class Jail extends PluginBase
         $j[$jail_name]["pos"]["x"] = $pos->x;
         $j[$jail_name]["pos"]["y"] = $pos->y;
         $j[$jail_name]["pos"]["z"] = $pos->z;
-        $j[$jail_name]["pos"]["level"] = $pos->getLevel()->getName();
+        $j[$jail_name]["pos"]["level"] = strtolower($pos->getLevel()->getName());
         $j[$jail_name]["c1"]["x"] = $c1->x;
         $j[$jail_name]["c1"]["y"] = $c1->y;
         $j[$jail_name]["c1"]["z"] = $c1->z;
-        $j[$jail_name]["c1"]["level"] = $c1->getLevel()->getName();
+        $j[$jail_name]["c1"]["level"] = strtolower($c1->getLevel()->getName());
         $j[$jail_name]["c2"]["x"] = $c2->x;
         $j[$jail_name]["c2"]["y"] = $c2->y;
         $j[$jail_name]["c2"]["z"] = $c2->z;
-        $j[$jail_name]["c2"]["level"] = $c2->getLevel()->getName();
+        $j[$jail_name]["c2"]["level"] = strtolower($c2->getLevel()->getName());
         $j[$jail_name]["allow-bail"] = $bail;
         $j[$jail_name]["allow-escape-area"] = $escape;
         $this->data1->setAll($j);
@@ -402,10 +402,10 @@ class Jail extends PluginBase
     {
         $t = $this->data->getAll();
         $j = $this->data1->getAll();
-        if ($this->isJailed($player->getName()) !== true) {
+        if ($this->isJailed(strtolower($player->getName())) !== true) {
             return false;
         }
-        $player->teleport(new Position($j[$t[$player->getName()]["jail"]]["pos"]["x"], $j[$t[$player->getName()]["jail"]]["pos"]["y"], $j[$t[$player->getName()]["jail"]]["pos"]["z"], $this->getServer()->getLevelByName($j[$t[$player->getName()]["jail"]]["pos"]["level"])));
+        $player->teleport(new Position($j[$t[strtolower($player->getName())]["jail"]]["pos"]["x"], $j[$t[strtolower($player->getName())]["jail"]]["pos"]["y"], $j[$t[strtolower($player->getName())]["jail"]]["pos"]["z"], $this->getServer()->getLevelByName($j[$t[strtolower($player->getName())]["jail"]]["pos"]["level"])));
         return true;
     }
 

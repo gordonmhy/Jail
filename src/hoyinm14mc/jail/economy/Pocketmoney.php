@@ -27,20 +27,20 @@ class Pocketmoney extends BaseEconomy
 
     public function bail(Player $player): bool
     {
-        if ($this->getPlugin()->isJailed($player->getName()) !== true) {
+        if ($this->getPlugin()->isJailed(strtolower($player->getName())) !== true) {
             $player->sendMessage($this->getPlugin()->colorMessage("&cYou are not jailed!"));
             return false;
         }
         $t = $this->getPlugin()->data->getAll();
-        $money = $this->getPlugin()->getEco()->getMoney($player->getName());
-        if ($money < ($t[$player->getName()]["seconds"] * $this->getPlugin()->getConfig()->get("bail-per-second") + 1)) {
-            $player->sendMessage($this->getPlugin()->colorMessage("&cYou don't have enough money to bail!\n&cYou need " . ($t[$player->getName()]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1)));
+        $money = $this->getPlugin()->getEco()->getMoney(strtolower($player->getName()));
+        if ($money < ($t[strtolower($player->getName())]["seconds"] * $this->getPlugin()->getConfig()->get("bail-per-second") + 1)) {
+            $player->sendMessage($this->getPlugin()->colorMessage("&cYou don't have enough money to bail!\n&cYou need " . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1)));
             return false;
         }
-        $this->getPlugin()->getEco()->setMoney($player->getName(), $money - ($t[$player->getName()]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1));
-        $this->getPlugin()->unjail($player->getName());
+        $this->getPlugin()->getEco()->setMoney(strtolower($player->getName()), $money - ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1));
+        $this->getPlugin()->unjail(strtolower($player->getName()));
         $player->sendMessage($this->getPlugin()->colorMessage("&aYou have been unjailed successfully!"));
-        $player->sendMessage("Bank : -" . ($t[$player->getName()]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1) . "PM | " . $money . "PM remaining");
+        $player->sendMessage("Bank : -" . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1) . "PM | " . $money . "PM remaining");
     }
 
 }
