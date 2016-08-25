@@ -203,7 +203,7 @@ class Jail extends PluginBase
         if ($this->jailExists($jail) !== true) {
             return false;
         }
-        return (bool)(min($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) <= $pos->x) && (max($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) >= $pos->x) && (min($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) <= $pos->y) && (max($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) >= $pos->y) && (min($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) <= $pos->z) && (max($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) >= $pos->z) && ($j[$jail]["pos"]["level"] == strtolower($pos->getLevel()->getName()));
+        return (bool)(min($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) <= $pos->x) && (max($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) >= $pos->x) && (min($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) <= $pos->y) && (max($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) >= $pos->y) && (min($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) <= $pos->z) && (max($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) >= $pos->z) && ($j[$jail]["pos"]["level"] == $pos->getLevel()->getName());
     }
 
     /**
@@ -343,15 +343,15 @@ class Jail extends PluginBase
         $j[$jail_name]["pos"]["x"] = $pos->x;
         $j[$jail_name]["pos"]["y"] = $pos->y;
         $j[$jail_name]["pos"]["z"] = $pos->z;
-        $j[$jail_name]["pos"]["level"] = strtolower($pos->getLevel()->getName());
+        $j[$jail_name]["pos"]["level"] = $pos->getLevel()->getName();
         $j[$jail_name]["c1"]["x"] = $c1->x;
         $j[$jail_name]["c1"]["y"] = $c1->y;
         $j[$jail_name]["c1"]["z"] = $c1->z;
-        $j[$jail_name]["c1"]["level"] = strtolower($c1->getLevel()->getName());
+        $j[$jail_name]["c1"]["level"] = $c1->getLevel()->getName();
         $j[$jail_name]["c2"]["x"] = $c2->x;
         $j[$jail_name]["c2"]["y"] = $c2->y;
         $j[$jail_name]["c2"]["z"] = $c2->z;
-        $j[$jail_name]["c2"]["level"] = strtolower($c2->getLevel()->getName());
+        $j[$jail_name]["c2"]["level"] = $c2->getLevel()->getName();
         $j[$jail_name]["allow-bail"] = $bail;
         $j[$jail_name]["allow-escape-area"] = $escape;
         $this->data1->setAll($j);

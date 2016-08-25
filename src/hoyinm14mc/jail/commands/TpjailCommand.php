@@ -29,7 +29,7 @@ class TpjailCommand extends BaseCommand
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
     {
-        switch (strtolower($cmd->getName())) {
+        switch ($cmd->getName()) {
             case "tpjail":
                 if (isset($args[0]) !== true) {
                     return false;

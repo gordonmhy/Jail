@@ -28,7 +28,7 @@ class UnjailCommand extends BaseCommand
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
     {
-        switch (strtolower($cmd->getName())) {
+        switch ($cmd->getName()) {
             case "unjail":
                 if (isset($args[0]) !== true) {
                     return false;

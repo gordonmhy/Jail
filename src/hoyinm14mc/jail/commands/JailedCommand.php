@@ -28,7 +28,7 @@ class JailedCommand extends BaseCommand
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
     {
-        switch (strtolower($cmd->getName())) {
+        switch ($cmd->getName()) {
             case "jailed":
                 if ($issuer->hasPermission("jail.command.jailed") !== true) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));

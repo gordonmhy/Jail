@@ -31,7 +31,7 @@ class BailCommand extends BaseCommand
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
     {
-        switch (strtolower($cmd->getName())) {
+        switch ($cmd->getName()) {
             case "bail":
                 if ($issuer->hasPermission("jail.command.bail") !== true) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
@@ -41,7 +41,7 @@ class BailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cCommand only works in-game!"));
                     return true;
                 }
-                if ($this->getPlugin()->isJailed(strtolower($issuer->getName())) !== true) {
+                if ($this->getPlugin()->isJailed($issuer->getName()) !== true) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou are not jailed!"));
                     return true;
                 }
@@ -49,7 +49,7 @@ class BailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cBail feature is disabled!"));
                     return true;
                 }
-                if ($this->getPlugin()->isJailTimeInfinity(strtolower($issuer->getName())) !== false) {
+                if ($this->getPlugin()->isJailTimeInfinity($issuer->getName()) !== false) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou can't use bail as you are jailed infinitely"));
                     return true;
                 }
