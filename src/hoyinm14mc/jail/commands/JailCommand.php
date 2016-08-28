@@ -28,7 +28,7 @@ class JailCommand extends BaseCommand
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
     {
-        switch ($cmd->getName()) {
+        switch (strtolower($cmd->getName())) {
             case "jail":
                 if (count($args) < 3) {
                     return false;
@@ -59,12 +59,12 @@ class JailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cInvalid time!"));
                     return true;
                 }
-                if ($this->getPlugin()->isJailed($target->getName()) !== false) {
+                if ($this->getPlugin()->isJailed(strtolower($target->getName())) !== false) {
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cTarget is already jailed!"));
                     return true;
                 }
                 if ($this->getPlugin()->jail($target, $jail, ($minutes == "-i" ? -1 : $minutes), (isset($args[3]) ? $reason : "no reason")) !== false) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou jailed " . $target->getName() . " for " . ($minutes == "-i" ? "infinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "!"));
+                    $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou jailed " . strtolower($target->getName()) . " for " . ($minutes == "-i" ? "infinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "!"));
                 }
                 return true;
                 break;
