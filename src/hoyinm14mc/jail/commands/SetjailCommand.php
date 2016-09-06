@@ -29,7 +29,7 @@ class SetjailCommand extends BaseCommand
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
     {
-        switch ($cmd->getName()) {
+        switch (strtolower($cmd->getName())) {
             case "setjail":
                 if (isset($args[0]) !== true) {
                     return false;
@@ -46,8 +46,8 @@ class SetjailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou must be in creative mode to use this command!"));
                     return true;
                 }
-                $this->getPlugin()->selection_mode[] = $issuer->getName();
-                $this->getPlugin()->jailName_tmp[$issuer->getName()] = $args[0];
+                $this->getPlugin()->selection_mode[] = strtolower($issuer->getName());
+                $this->getPlugin()->jailName_tmp[strtolower($issuer->getName())] = $args[0];
                 $issuer->sendMessage($this->getPlugin()->colorMessage("&bInitialized jail &a" . $args[0] . " &bcreation procedure."));
                 $issuer->sendMessage($this->getPlugin()->colorMessage("&ePlease tap the position where the prisoner will be teleported while they are jailed into this jail."));
                 $issuer->sendMessage($this->getPlugin()->colorMessage("&7Re-join server to deactivate jail creation mode."));

@@ -29,7 +29,7 @@ class SwitchjailCommand extends BaseCommand
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
     {
-        switch ($cmd->getName()) {
+        switch (strtolower($cmd->getName())) {
             case "switchjail":
                 if (isset($args[1]) !== true) {
                     return false;

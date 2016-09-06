@@ -30,13 +30,13 @@ class EntityListener extends BaseListener
     public function onEntityDamage(EntityDamageEvent $event)
     {
         if ($event->getCause() instanceof EntityDamageByEntityEvent !== true) {
-            if ($event->getEntity() instanceof Player && $this->getPlugin()->isJailed($event->getEntity()->getName()) !== false) {
+            if ($event->getEntity() instanceof Player && $this->getPlugin()->isJailed(strtolower($event->getEntity()->getName())) !== false) {
                 if ($this->getPlugin()->getConfig()->get("disable-damage") !== false) {
                     $event->setCancelled(true);
                 }
             }
         } else {
-            if ($event->getDamager() instanceof Player && $this->getPlugin()->isJailed($event->getDamager()->getName()) !== false) {
+            if ($event->getDamager() instanceof Player && $this->getPlugin()->isJailed(strtolower($event->getDamager()->getName())) !== false) {
                 if ($this->getPlugin()->getConfig()->get("allow-attack") !== false) {
                     $event->getDamager()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
                     $event->setCancelled(true);
