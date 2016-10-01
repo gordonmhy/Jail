@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\commands;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseCommand;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -34,12 +35,12 @@ class UnjailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer->hasPermission("jail.command.unjail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
                     return true;
                 }
                 $name = $args[0];
                 if ($this->getPlugin()->isJailed($name) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cPlayer is not jailed!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("player-not-jailed"));
                     return true;
                 }
                 if ($this->getPlugin()->unjail($name) !== false) {

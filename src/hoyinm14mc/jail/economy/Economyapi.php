@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\economy;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseEconomy;
 use pocketmine\Player;
 
@@ -28,7 +29,7 @@ class Economyapi extends BaseEconomy
     public function bail(Player $player): bool
     {
         if ($this->getPlugin()->isJailed(strtolower($player->getName())) !== true) {
-            $player->sendMessage($this->getPlugin()->colorMessage("&cYou are not jailed!"));
+            $player->sendMessage($this->getPlugin()->getMessage("you-not-jailed"));
             return false;
         }
         $t = $this->getPlugin()->data->getAll();
@@ -39,7 +40,7 @@ class Economyapi extends BaseEconomy
         }
         $this->getPlugin()->getEco()->getInstance()->reduceMoney($player, ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1));
         $this->getPlugin()->unjail(strtolower($player->getName()));
-        $player->sendMessage($this->getPlugin()->colorMessage("&aYou have been unjailed successfully!"));
+        $player->sendMessage($this->getPlugin()->getMessage("economy-unjailed-success"));
         $player->sendMessage("Bank : -$" . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1) . " | $" . $this->getPlugin()->getEco()->getInstance()->myMoney($player) . " remaining in your account");
         return true;
     }

@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\listeners;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseListener;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
@@ -35,11 +36,11 @@ class BlockListener extends BaseListener
         foreach ($j as $jail => $value) {
             if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->isOp() !== true) {
                 $event->setCancelled(true);
-                $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&b[&eJail&b] &4This area is restricted."));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener-block-is-restricted"));
             }
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-break") !== true) {
-            $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener-not-allowed-do-this"));
             $event->setCancelled(true);
             if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
                 $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));
@@ -56,12 +57,12 @@ class BlockListener extends BaseListener
         foreach ($j as $jail => $value) {
             if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->isOp() !== true) {
                 $event->setCancelled(true);
-                $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&b[&eJail&b] &4This area is restricted."));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener-block-is-restricted"));
 
             }
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-place") !== true) {
-            $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener-not-allowed-do-this"));
             $event->setCancelled(true);
             if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
                 $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));

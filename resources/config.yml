@@ -10,6 +10,8 @@ allow-movement: true
 allow-attack: false
 disable-damage: true
 
+default-lang: en
+
 ### Settings ###
 #Count when the prisoner is offline?
 offline-time-counting: true

@@ -1,0 +1,36 @@
+{
+    "language": "en",
+	
+    "no-permission": "&cYou don't have permission for this!",
+	"only-works-in-game": "&cCommand only works in-game!",
+	"jail-not-exist": "&cJail doesn't exist!",
+    "player-not-exist": "&cPlayer does not exist!",
+	"player-not-jailed": "&cPlayer is not jailed!",
+	"you-not-jailed": "&cYou are not jailed!",
+	
+	"jail-you-not-jail-that-player": "&cYou can't jail that player!",
+	"jail-invalid-time": "&cInvalid time!",
+	"jail-already-jailed": "&cTarget is already jailed!",
+	
+	"bail-feature-disabled": "&cBail feature is disabled!",
+	"bail-not-use": "&cYou can't use bail as you are jailed infinitely",
+	
+    "deljail-success": "&eJail deleted successfully!",
+	
+    "setjail-must-creative-mode": "&cYou must be in creative mode to use this command!",
+    "setjail-initializ-2": "&ePlease tap the position where the prisoner will be teleported while they are jailed into this jail.",
+    "setjail-initializ-3": "&7Re-join server to deactivate jail creation mode.",
+	
+	"switchjail-been-switched": "&dYou have been switched to another jail.",
+	"tpjail-you-tp-to-that": "&aYou teleported to that jail!",
+	
+	"listener-not-allowed-do-this": "&cYou are not allowed to do this while being jailed!",
+	"listener-block-is-restricted": "&b[&eJail&b] &4This area is restricted.",
+	"listener-player-command-cancelled": "&cCommand execution cancelled!",
+	"listener-player-tap-on-1-corner": "&eNow tap on the 1st corner of the jail area.",
+	"listener-player-tap-on-2-corner": "&eNow tap on the 2nd corner of the jail area.",
+	"listener-player-set-success": "&aJail set successfully!",
+	"listener-player-not-allowed-leave": "\n&2You are not allowed to leave the jail!",
+	
+	"economy-unjailed-success": "&aYou have been unjailed successfully!"
+}

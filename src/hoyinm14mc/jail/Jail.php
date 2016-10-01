@@ -41,6 +41,7 @@ use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use pocketmine\utils\TextFormat;
 
 class Jail extends PluginBase
 {
@@ -74,7 +75,31 @@ class Jail extends PluginBase
      * @var null|object
      */
     private $eco = null;
-
+    
+    private $langList = [
+		"def" => "Default",
+		"en" => "English",
+		"zh" => "繁體中文",
+	];
+	private $lang = [];
+    
+    public function getCommandMessage(string $command, $lang = false) : array{
+		if($lang === false){
+			$lang = $this->getConfig()->get("default-lang");
+		}
+		$command = strtolower($command);
+			return $this->lang[$lang]["commands"][$command];
+	}
+	
+	public function getMessage(string $key, array $params = [], string $player = "console", $lang = false) : string{
+		if($lang === false){
+			$lang = $this->getConfig()->get("default-lang");
+		}
+		return $this->colorMessage($this->lang[$lang][$key], $params);
+		
+		return "Language matching key \"$key\" does not exist.";
+	}
+	
     public function onEnable()
     {
         $this->getLogger()->info("Loading configurations...");
@@ -94,6 +119,7 @@ class Jail extends PluginBase
         $this->reloadConfig();
         $this->data = new Config($this->getDataFolder() . "players.yml", Config::YAML, array());
         $this->data1 = new Config($this->getDataFolder() . "jails.yml", Config::YAML, array());
+        $this->initializeLanguage();
         $ecoPlugs = [
             "PocketMoney",
             "EconomyAPI"
@@ -137,6 +163,16 @@ class Jail extends PluginBase
             }
         }
     }
+    
+    private function initializeLanguage(){
+		foreach($this->getResources() as $resource){
+			if($resource->isFile() and substr(($filename = $resource->getFilename()), 0, 5) === "lang_"){
+				$this->lang[substr($filename, 5, -5)] = json_decode(file_get_contents($resource->getPathname()), true);
+			}
+		}
+		$lang = $this->getConfig()->get("default-lang");
+		$this->lang["def"] = (new Config($this->getDataFolder()."messages.yml", Config::YAML, $this->lang[$lang]))->getAll();
+	}
 
     /**
      * @return object
@@ -150,10 +186,17 @@ class Jail extends PluginBase
      * @param string $message
      * @return string
      */
-    public function colorMessage(string $message): string
-    {
-        return str_replace("&", "§", $message);
-    }
+    public function colorMessage($message){
+		$colors = [
+			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "k", "l", "m", "n", "o", "r"
+		];
+		foreach($colors as $code){
+			$search[] = "&".$code;
+			$replace[] = TextFormat::ESCAPE.$code;
+		}
+
+		return str_replace($search, $replace, $message);
+	}
 
     /**
      * Creates a profile for the player when they first join the server

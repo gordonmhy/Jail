@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\listeners;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseListener;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -38,7 +39,7 @@ class EntityListener extends BaseListener
         } else {
             if ($event->getDamager() instanceof Player && $this->getPlugin()->isJailed(strtolower($event->getDamager()->getName())) !== false) {
                 if ($this->getPlugin()->getConfig()->get("allow-attack") !== false) {
-                    $event->getDamager()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
+                    $event->getDamager()->sendMessage($this->getPlugin()->getMessage("listener-not-allowed-do-this"));
                     $event->setCancelled(true);
                 }
             }
