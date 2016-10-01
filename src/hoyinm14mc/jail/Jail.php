@@ -344,7 +344,7 @@ class Jail extends PluginBase
             //Currently default spawn. Soon maybe implement EssentialsPE support
             $player->setGamemode($gm);
             $player->teleport($this->getServer()->getDefaultLevel()->getSpawnLocation());
-            $player->sendMessage($this->colorMessage("&6You have been unjailed!"));
+            $player->sendMessage($this->getMessage("you-unjailed-success"));
         }
         $this->getLogger()->info($this->colorMessage("&6Unjailed player " . $player_name));
         return true;

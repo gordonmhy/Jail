@@ -32,5 +32,5 @@
 	"listener-player-set-success": "&a監獄設定成功!",
 	"listener-player-not-allowed-leave": "\n&2您不被允許離開監獄!",
 	
-	"economy-unjailed-success": "&a您成功出獄!"
+	"you-unjailed-success": "&a您成功出獄!"
 }
