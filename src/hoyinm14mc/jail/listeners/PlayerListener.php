@@ -56,15 +56,16 @@ class PlayerListener extends BaseListener
         $cfg = $this->getPlugin()->getConfig();
         $msg = $event->getMessage();
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false) {
-            if ($cfg->get("allow-chat") !== false && $cfg->get("allow-command") !== true) {
-                if ($msg{0} == "/") {
+            if ($cfg->get("allow-chat") == false && $cfg->get("allow-command") == true) {
+                if ($msg{0} !== "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
                     $event->setCancelled(true);
                 }
-            } else if ($cfg->get("allow-chat") !== false && $cfg->get("allow-command") !== false) {
+            } else if ($cfg->get("allow-chat") == false && $cfg->get("allow-command") == false) {
+				$event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
                 $event->setCancelled(true);
-            } else if ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== false) {
-                if ($msg{0} != "/") {
+            } else if ($cfg->get("allow-chat") == true && $cfg->get("allow-command") == false) {
+                if ($msg{0} = "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cCommand execution cancelled!"));
                     $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
                     $event->setCancelled(true);
