@@ -29,8 +29,6 @@ class AutoUpdateChecker extends BaseTask
         $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&eFetching latest version from repository..."));
         if(is_dir($this->getPlugin()->getServer()->getDataPath()."tmp")){
             $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&4Error: Mobile device not supported!"));
-        }else if(fopen("http://www.google.com:80/","r") !== true){
-            $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&4Error: No internet connectivity!"));
         }else{
             $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
         }
