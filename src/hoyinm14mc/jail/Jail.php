@@ -81,24 +81,22 @@ class Jail extends PluginBase
 		"en" => "English",
 		"zh" => "繁體中文",
 	];
-	private $lang = [];
+    private $lang = [];
     
     public function getCommandMessage(string $command, $lang = false) : array{
 		if($lang === false){
 			$lang = $this->getConfig()->get("default-lang");
 		}
 		$command = strtolower($command);
-			return $this->lang[$lang]["commands"][$command];
+		return $this->lang[$lang]["commands"][$command];
 	}
 	
-	public function getMessage(string $key, array $params = [], string $player = "console", $lang = false) : string{
-		if($lang === false){
-			$lang = $this->getConfig()->get("default-lang");
-		}
-		return $this->colorMessage($this->lang[$lang][$key], $params);
-		
-		return "Language matching key \"$key\" does not exist.";
+    public function getMessage($key, $lang = false) : string{
+	if($lang !== true){
+		$lang = $this->getConfig()->get("default-lang");
 	}
+	return (string) (isset($this->lang[$lang][$key]) !== true ? $key : $this->colorMessage($this->lang[$lang][$key]));
+    }
 	
     public function onEnable()
     {
@@ -184,7 +182,7 @@ class Jail extends PluginBase
      * @param string $message
      * @return string
      */
-    public function colorMessage($message){
+    public function colorMessage(string $message): string{
 		$colors = [
 			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "k", "l", "m", "n", "o", "r"
 		];
@@ -193,7 +191,7 @@ class Jail extends PluginBase
 			$replace[] = TextFormat::ESCAPE.$code;
 		}
 
-		return str_replace($search, $replace, $message);
+		return (string) str_replace($search, $replace, $message);
 	}
 
     /**
