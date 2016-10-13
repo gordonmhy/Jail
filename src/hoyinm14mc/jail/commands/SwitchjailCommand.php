@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\commands;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
@@ -35,17 +36,17 @@ class SwitchjailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer->hasPermission("jail.command.switchjail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
                     return true;
                 }
                 $name = $args[0];
                 if ($this->getPlugin()->isJailed($name) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cPlayer with that name isn't jailed!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("player-not-jailed"));
                     return true;
                 }
                 $jail = $args[1];
                 if ($this->getPlugin()->jailExists($jail) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cTarget jail doesn't exist!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("jail-not-exist"));
                     return true;
                 }
                 $t = $this->getPlugin()->data->getAll();
@@ -55,7 +56,7 @@ class SwitchjailCommand extends BaseCommand
                 $player = $this->getPlugin()->getServer()->getPlayer($name);
                 if ($player !== null) {
                     $this->getPlugin()->tpJail($player);
-                    $player->sendMessage($this->getPlugin()->colorMessage("&dYou have been switched to another jail."));
+                    $player->sendMessage($this->getPlugin()->getMessage("switchjail-been-switched"));
                 }
                 $issuer->sendMessage($this->getPlugin()->colorMessage("&dYou switched " . $name . " to another jail!"));
                 return true;

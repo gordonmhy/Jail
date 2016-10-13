@@ -1,5 +1,8 @@
 Changelog of Jail
 
+Alpha0.2
+- Added more language
+
 Alpha0.1.1
 - Added some missing PHPDoc
 - Removed unused code

@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\commands;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseCommand;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -35,7 +36,7 @@ class TpjailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer->hasPermission("jail.command.tpjail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
                     return true;
                 }
                 $jail = $args[0];
@@ -43,19 +44,19 @@ class TpjailCommand extends BaseCommand
                     $name = $args[1];
                 }
                 if ($this->getPlugin()->jailExists($jail) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cJail doesn't exist!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("jail-not-exist"));
                     return true;
                 }
                 if (isset($args[1])) {
                     $target = $this->getPlugin()->getServer()->getPlayer($name);
                 }
                 if (isset($args[1]) && $target === null) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cTarget player doesn't exist!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("player-not-exist"));
                     return true;
                 }
                 if (isset($args[1])) {
                     if ($issuer instanceof Player !== true) {
-                        $issuer->sendMessage($this->getPlugin()->colorMessage("Command only works in-game!"));
+                        $issuer->sendMessage($this->getPlugin()->getMessage("only-works-in-game"));
                         return true;
                     }
                     if ($this->getPlugin()->tpJail($target) !== false) {
@@ -65,7 +66,7 @@ class TpjailCommand extends BaseCommand
                     }
                 } else {
                     if ($this->getPlugin()->tpJail($issuer) !== false) {
-                        $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou teleported to that jail!"));
+                        $issuer->sendMessage($this->getPlugin()->getMessage("tpjail-you-tp-to-that"));
                         return true;
                     }
                 }

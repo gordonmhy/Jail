@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\commands;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
@@ -34,15 +35,15 @@ class DeljailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer->hasPermission("jail.command.deljail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
                     return true;
                 }
                 if ($this->getPlugin()->jailExists($args[0]) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cJail doesn't exist!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("jail-not-exist"));
                     return true;
                 }
                 if ($this->getPlugin()->delJail($args[0]) !== false) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&eJail deleted successfully!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("deljail-success"));
                     return true;
                 }
                 break;

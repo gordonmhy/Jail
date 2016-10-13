@@ -18,6 +18,7 @@
  */
 namespace hoyinm14mc\jail\commands;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseCommand;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
@@ -30,7 +31,7 @@ class JailsCommand extends BaseCommand
         switch (strtolower($cmd->getName())) {
             case "jails":
                 if ($issuer->hasPermission("jail.command.jails") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
                     return true;
                 }
                 $issuer->sendMessage($this->getPlugin()->colorMessage("&2List of jails: &6" . $this->getPlugin()->jailsToString()));

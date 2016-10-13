@@ -1,7 +1,7 @@
 name: Jail
 main: hoyinm14mc\jail\Jail
 api: 2.0.0
-version: Alpha0.1.1
+version: Alpha0.2
 author: hoyinm14mc
 description: An advanced jail plugin for PocketMine servers
 load: POSTWORLD

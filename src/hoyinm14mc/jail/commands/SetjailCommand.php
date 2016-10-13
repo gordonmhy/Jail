@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\commands;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseCommand;
 use pocketmine\command\CommandSender;
 use pocketmine\command\Command;
@@ -35,22 +36,22 @@ class SetjailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer instanceof Player !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cCommand only works in-game!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("only-works-in-game"));
                     return true;
                 }
                 if ($issuer->hasPermission("jail.command.setjail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
                     return true;
                 }
                 if ($issuer->getGamemode() != 1) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou must be in creative mode to use this command!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("setjail-must-creative-mode"));
                     return true;
                 }
                 $this->getPlugin()->selection_mode[] = strtolower($issuer->getName());
                 $this->getPlugin()->jailName_tmp[strtolower($issuer->getName())] = $args[0];
                 $issuer->sendMessage($this->getPlugin()->colorMessage("&bInitialized jail &a" . $args[0] . " &bcreation procedure."));
-                $issuer->sendMessage($this->getPlugin()->colorMessage("&ePlease tap the position where the prisoner will be teleported while they are jailed into this jail."));
-                $issuer->sendMessage($this->getPlugin()->colorMessage("&7Re-join server to deactivate jail creation mode."));
+                $issuer->sendMessage($this->getPlugin()->getMessage("setjail-initializ-2"));
+                $issuer->sendMessage($this->getPlugin()->getMessage("setjail-initializ-3"));
                 return true;
                 break;
         }

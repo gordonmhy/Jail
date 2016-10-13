@@ -1,0 +1,36 @@
+{
+    "language": "zh",
+	
+    "no-permission": "&c您沒有權限使用此指令!",
+	"only-works-in-game": "&c指令僅可於遊戲中執行!",
+	"jail-not-exist": "&c監獄不存在!",
+    "player-not-exist": "&c玩家不存在!",
+    "player-not-jailed": "&c該名玩家並未入獄",
+	"you-not-jailed": "&c您並沒有入獄!",
+	
+	"jail-you-not-jail-that-player": "&c您無法讓該玩家坐牢!",
+	"jail-invalid-time": "&c無效時間!",
+	"jail-already-jailed": "&c目標已成功入獄!",
+	
+	"bail-feature-disabled": "&c保釋功能遭停用!",
+	"bail-not-use": "&c您遭無限期入獄故無法使用保釋功能",
+	
+    "deljail-success": "&e監獄刪除成功!",
+	
+    "setjail-must-creative-mode": "&c您必須在創造模式下使用該指令!",
+    "setjail-initializ-2": "&e請先點擊囚犯遭入獄時被傳送到的位置",
+    "setjail-initializ-3": "&7重新進入伺服器即退出新增監獄模式",
+	
+	"switchjail-been-switched": "&d您已成功切換到另一個監獄",
+	"tpjail-you-tp-to-that": "&a您被傳送到了另一個監獄!",
+	
+	"listener-not-allowed-do-this": "&c當您入獄時不能這麼做!",
+	"listener-block-is-restricted": "&b[&e監獄&b] &4此區域遭限制",
+	"listener-player-command-cancelled": "&c執行指令遭取消!",
+	"listener-player-tap-on-1-corner": "&e現在請點擊監獄的第一個角",
+	"listener-player-tap-on-2-corner": "&e現在請點擊監獄的第二個角",
+	"listener-player-set-success": "&a監獄設定成功!",
+	"listener-player-not-allowed-leave": "\n&2您不被允許離開監獄!",
+	
+	"you-unjailed-success": "&a您成功出獄!"
+}

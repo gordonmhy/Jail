@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\commands;
 
+use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseCommand;
 use hoyinm14mc\jail\economy\Economyapi;
 use hoyinm14mc\jail\economy\Pocketmoney;
@@ -34,23 +35,23 @@ class BailCommand extends BaseCommand
         switch (strtolower($cmd->getName())) {
             case "bail":
                 if ($issuer->hasPermission("jail.command.bail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou don't have permission for this!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
                     return true;
                 }
                 if ($issuer instanceof Player !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cCommand only works in-game!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("only-works-in-game"));
                     return true;
                 }
                 if ($this->getPlugin()->isJailed(strtolower($issuer->getName())) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou are not jailed!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("bail-no-jailed"));
                     return true;
                 }
                 if ($this->getPlugin()->getEco() === null || $this->getPlugin()->getConfig()->get("allow-bail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cBail feature is disabled!"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("bail-feature-is-disabled"));
                     return true;
                 }
                 if ($this->getPlugin()->isJailTimeInfinity(strtolower($issuer->getName())) !== false) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&cYou can't use bail as you are jailed infinitely"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("bail-not-use"));
                     return true;
                 }
                 switch ($this->getPlugin()->getEco()->getName()) {
