@@ -156,8 +156,6 @@ class Jail extends PluginBase
             $this->getLogger()->info($this->colorMessage("&eResult will appear when server query is started."));
             if(is_dir($this->getServer()->getDataPath()."tmp")){
                 $this->getLogger()->info($this->colorMessage("&4Error: Mobile device not supported!"));
-            }else if(fopen("http://www.google.com:80/","r") !== true){
-                $this->getLogger()->info($this->colorMessage("&4Error: No internet connectivity!"));
             }else{
                 $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
             }
