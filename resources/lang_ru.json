@@ -1,0 +1,36 @@
+{
+    "language": "ru",
+	
+    "no-permission": "&cУ вас нет на это разрешение!",
+	"only-works-in-game": "&cКоманда доступна только в игре!",
+	"jail-not-exist": "&cТюрма не доступна",
+    "player-not-exist": "&cИгрок не доступен!",
+	"player-not-jailed": "&cИгрок неьв тюрме!",
+	"you-not-jailed": "&cВы не заключены в тюрьму!",
+	
+	"jail-you-not-jail-that-player": "&cВы не можете попасть в тюрму потомучто вы игрок!",
+	"jail-invalid-time": "&cВремя вышло!",
+	"jail-already-jailed": "&cМешень уже заключена в тюрму!",
+	
+	"bail-feature-disabled": "&cФункция "Bail" отключена!",
+	"bail-not-use": "&cВы не можете использовать Bail, как вы заключены в тюрьму на неопределенный срок",
+	
+    "deljail-success": "&eТюрма удалена успешно!",
+	
+    "setjail-must-creative-mode": "&cВы должны быть в творческом режиме чтобы использывать эту команду!",
+    "setjail-initializ-2": "&eПожалуйста, нажмите на положение, в котором заключенный будет телепортировался, пока он заключен в эту тюрьму.",
+    "setjail-initializ-3": "&7Перезайдите чтобы отключить режим создание тюрм.",
+	
+	"switchjail-been-switched": "&dВы переключены на другую тюрьму.",
+	"tpjail-you-tp-to-that": "&aВы тлепортирываны в тюрму!",
+	
+	"listener-not-allowed-do-this": "&cВы не можете сделать это, поскольку вы заключены в тюрьме!",
+	"listener-block-is-restricted": "&b[&eТюрма&b] &4Эта область ограничена.",
+	"listener-player-command-cancelled": "&cВыполнение команды отменено!",
+	"listener-player-tap-on-1-corner": "&eTеперь нажмите на 1-ом углу области тюрьмы.",
+	"listener-player-tap-on-2-corner": "&eТеперь нажмите на 2-ом углу области тюрьмы.",
+	"listener-player-set-success": "&aТюрма успешно установлена!",
+	"listener-player-not-allowed-leave": "\n&2Вам не разрешено покидать тюрьму!",
+	
+	"you-unjailed-success": "&aВы вызволены из тюрмы!"
+}
