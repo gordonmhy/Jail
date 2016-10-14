@@ -12,7 +12,7 @@
 	"jail-invalid-time": "&cВремя вышло!",
 	"jail-already-jailed": "&cМешень уже заключена в тюрму!",
 	
-	"bail-feature-disabled": "&cФункция "Bail" отключена!",
+	"bail-feature-disabled": "&cФункция 'Bail' отключена!",
 	"bail-not-use": "&cВы не можете использовать Bail, как вы заключены в тюрьму на неопределенный срок",
 	
     "deljail-success": "&eТюрма удалена успешно!",
