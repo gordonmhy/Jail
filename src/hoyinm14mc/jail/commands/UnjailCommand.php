@@ -35,16 +35,16 @@ class UnjailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer->hasPermission("jail.command.unjail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
                 $name = $args[0];
                 if ($this->getPlugin()->isJailed($name) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("player-not-jailed"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("player.not.jailed"));
                     return true;
                 }
                 if ($this->getPlugin()->unjail($name) !== false) {
-                    $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou unjailed " . $name));
+                    $issuer->sendMessage(str_replace("%prisoner%", $name, $this->getPlugin()->getMessage("unjail.sender.success")));
                 }
                 return true;
                 break;

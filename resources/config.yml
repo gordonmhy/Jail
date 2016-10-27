@@ -33,7 +33,9 @@ updater-auto-install: true
 scheduled-update-checker: true
 #Minutes between each check? (Ignore if scheduled-update-checker=false)
 scheduled-update-checker-interval: 45
+#Number of votes that a players has to be jailed after reaching it
+votes-to-jail-player: 4
 
 ### Config version ###
 #Do not modify this, otherwise plugin may not work properly
-v: Alpha0.2
+v: Alpha0.2.1

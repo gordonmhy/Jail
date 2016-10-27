@@ -36,17 +36,17 @@ class SwitchjailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer->hasPermission("jail.command.switchjail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
                 $name = $args[0];
                 if ($this->getPlugin()->isJailed($name) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("player-not-jailed"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("player.not.jailed"));
                     return true;
                 }
                 $jail = $args[1];
                 if ($this->getPlugin()->jailExists($jail) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("jail-not-exist"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("jail.not.exist"));
                     return true;
                 }
                 $t = $this->getPlugin()->data->getAll();
@@ -56,9 +56,9 @@ class SwitchjailCommand extends BaseCommand
                 $player = $this->getPlugin()->getServer()->getPlayer($name);
                 if ($player !== null) {
                     $this->getPlugin()->tpJail($player);
-                    $player->sendMessage($this->getPlugin()->getMessage("switchjail-been-switched"));
+                    $player->sendMessage($this->getPlugin()->getMessage("switchjail.been.switched"));
                 }
-                $issuer->sendMessage($this->getPlugin()->colorMessage("&dYou switched " . $name . " to another jail!"));
+                $issuer->sendMessage(str_replace("%player%", $name, $this->getPlugin()->getMessage("switchjail.sender.success")));
                 return true;
                 break;
         }

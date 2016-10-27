@@ -1,2 +1,2 @@
 # Jail
-A featured jail punishment plugin for PocketMine/Genisys server API 2.0.0
+An advanced jail punishment system for PocketMine servers

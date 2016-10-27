@@ -39,7 +39,7 @@ class EntityListener extends BaseListener
         } else {
             if ($event->getDamager() instanceof Player && $this->getPlugin()->isJailed(strtolower($event->getDamager()->getName())) !== false) {
                 if ($this->getPlugin()->getConfig()->get("allow-attack") !== false) {
-                    $event->getDamager()->sendMessage($this->getPlugin()->getMessage("listener-not-allowed-do-this"));
+                    $event->getDamager()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
                 }
             }

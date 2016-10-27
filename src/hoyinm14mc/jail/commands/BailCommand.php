@@ -35,11 +35,11 @@ class BailCommand extends BaseCommand
         switch (strtolower($cmd->getName())) {
             case "bail":
                 if ($issuer->hasPermission("jail.command.bail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
                 if ($issuer instanceof Player !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("only-works-in-game"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("only.works.in.game"));
                     return true;
                 }
                 if ($this->getPlugin()->isJailed(strtolower($issuer->getName())) !== true) {
@@ -51,7 +51,7 @@ class BailCommand extends BaseCommand
                     return true;
                 }
                 if ($this->getPlugin()->isJailTimeInfinity(strtolower($issuer->getName())) !== false) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("bail-not-use"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("bail.not.use"));
                     return true;
                 }
                 switch ($this->getPlugin()->getEco()->getName()) {

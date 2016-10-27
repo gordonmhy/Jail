@@ -59,16 +59,16 @@ class PlayerListener extends BaseListener
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false) {
             if ($cfg->get("allow-chat") == false && $cfg->get("allow-command") == true) {
                 if ($msg{0} !== "/") {
-                    $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
+                    $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
                 }
             } else if ($cfg->get("allow-chat") == false && $cfg->get("allow-command") == false) {
-				$event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
             } else if ($cfg->get("allow-chat") == true && $cfg->get("allow-command") == false) {
                 if ($msg{0} = "/") {
-                    $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cCommand execution cancelled!"));
-                    $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
+                    $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.player.command.cancelled"));
+                    $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
                 }
             }
@@ -84,22 +84,20 @@ class PlayerListener extends BaseListener
             $event->setCancelled(true);
             if (array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->c1_tmp) !== true && array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->c2_tmp) !== true && array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->pos_tmp) !== true) {
                 $this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y + 1, $event->getBlock()->z, $event->getBlock()->getLevel());
-                $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&eNow tap on the 1st corner of the jail area."));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("setjail.tap.corner.1"));
             } else if (array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->c1_tmp) !== true && array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->c2_tmp) !== true && array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->pos_tmp) !== false) {
                 $this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
-                $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&eNow tap on the 2nd corner of the jail area."));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("setjail.tap.corner.2"));
             } else if (array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->c1_tmp) !== false && array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->c2_tmp) !== true && array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->pos_tmp) !== false) {
                 $this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
-                //Done
-                $this->getPlugin()->setJail($this->getPlugin()->jailName_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())], /*TODO*/
-                    false, /*TODO*/
-                    false);
+                //Selection end
+                $this->getPlugin()->setJail($this->getPlugin()->jailName_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->jailName_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->selection_mode[array_search(strtolower($event->getPlayer()->getName()), $this->getPlugin()->selection_mode)]);
-                $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&aJail set successfully!"));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("setjail.success"));
             }
         }
     }
@@ -110,11 +108,11 @@ class PlayerListener extends BaseListener
         $j = $this->getPlugin()->data1->getAll();
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) && $this->getPlugin()->jailExists($t[strtolower($event->getPlayer()->getName())]["jail"]) && $this->getPlugin()->insideJail($t[strtolower($event->getPlayer()->getName())]["jail"], $event->getPlayer()->getPosition()) !== true) {
             $event->getPlayer()->teleport(new Position($j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["x"], $j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["y"], $j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["z"], $this->getPlugin()->getServer()->getLevelByName($j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["level"])));
-            $event->getPlayer()->sendPopup($this->getPlugin()->colorMessage("\n&2You are not allowed to leave the jail!"));
+            $event->getPlayer()->sendPopup($this->getPlugin()->getMessage("listener.player.not.allowed.leave"));
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $this->getPlugin()->getConfig()->get("allow-movement") !== true) {
             if ($event->getFrom()->x != $event->getPlayer()->x || $event->getFrom()->y != $event->getPlayer()->y || $event->getFrom()->z != $event->getPlayer()->z) {
-                $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&cYou are not allowed to do this while being jailed!"));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
             }
         }

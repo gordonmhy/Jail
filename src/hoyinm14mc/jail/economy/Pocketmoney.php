@@ -29,19 +29,19 @@ class Pocketmoney extends BaseEconomy
     public function bail(Player $player): bool
     {
         if ($this->getPlugin()->isJailed(strtolower($player->getName())) !== true) {
-            $player->sendMessage($this->getPlugin()->getMessage("you-not-jailed"));
+            $player->sendMessage($this->getPlugin()->getMessage("you.not.jailed"));
             return false;
         }
         $t = $this->getPlugin()->data->getAll();
         $money = $this->getPlugin()->getEco()->getMoney(strtolower($player->getName()));
         if ($money < ($t[strtolower($player->getName())]["seconds"] * $this->getPlugin()->getConfig()->get("bail-per-second") + 1)) {
-            $player->sendMessage($this->getPlugin()->colorMessage("&cYou don't have enough money to bail!\n&cYou need " . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1)));
+            $player->sendMessage(str_replace("&money%", ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1), $this->getMessage("bail.money.not.enough")));
             return false;
         }
         $this->getPlugin()->getEco()->setMoney(strtolower($player->getName()), $money - ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1));
         $this->getPlugin()->unjail(strtolower($player->getName()));
-        $player->sendMessage($this->getPlugin()->getMessage("you-unjailed-success"));
-        $player->sendMessage("Bank : -" . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1) . "PM | " . $money . "PM remaining");
+        $player->sendMessage($this->getPlugin()->getMessage("unjail.you.success"));
+        $player->sendMessage(str_replace("%deduction%", ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1), str_replace("%remaining%", $this->getPlugin()->getEco()->getMoney(strtolower($player->getName())), $this->getPlugin()->getMessage("bail.money.remaining"))));
     }
 
 }

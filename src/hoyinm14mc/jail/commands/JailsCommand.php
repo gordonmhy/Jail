@@ -31,10 +31,10 @@ class JailsCommand extends BaseCommand
         switch (strtolower($cmd->getName())) {
             case "jails":
                 if ($issuer->hasPermission("jail.command.jails") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
-                $issuer->sendMessage($this->getPlugin()->colorMessage("&2List of jails: &6" . $this->getPlugin()->jailsToString()));
+                $issuer->sendMessage(str_replace("%jails%", $this->getPlugin()->jailsToString(), $this->getPlugin()->getMessage("jails.listing")));
                 return true;
                 break;
         }

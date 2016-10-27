@@ -36,15 +36,15 @@ class BlockListener extends BaseListener
         foreach ($j as $jail => $value) {
             if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->isOp() !== true) {
                 $event->setCancelled(true);
-                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener-block-is-restricted"));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.block.is.restricted"));
             }
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-break") !== true) {
-            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener-not-allowed-do-this"));
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
             $event->setCancelled(true);
             if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
                 $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));
-                $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&eYou have been added " . $cfg->get("penalty-time") . " as punishment!"));
+                $event->getPlayer()->sendMessage(str_replace("%time%", $cfg->get("penalty-time"), $this->getPlugin()->getMessage("penalty.added.prisoner")));
             }
         }
     }
@@ -57,16 +57,16 @@ class BlockListener extends BaseListener
         foreach ($j as $jail => $value) {
             if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->isOp() !== true) {
                 $event->setCancelled(true);
-                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener-block-is-restricted"));
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.block.is.restricted"));
 
             }
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-place") !== true) {
-            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener-not-allowed-do-this"));
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
             $event->setCancelled(true);
             if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
                 $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));
-                $event->getPlayer()->sendMessage($this->getPlugin()->colorMessage("&eYou have been added " . $cfg->get("penalty-time") . " as punishment!"));
+                $event->getPlayer()->sendMessage(str_replace("%time%", $cfg->get("penalty-time"), $this->getPlugin()->getMessage("penalty.added.prisoner")));
             }
         }
     }

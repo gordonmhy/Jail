@@ -38,7 +38,7 @@ class TimeBroadcastTask extends BaseTask
                 } else {
                     $this->dots = "";
                 }
-                $bail_dis = "&2Bail: &d" . ($this->getPlugin()->getEco() !== null && $this->getPlugin()->getConfig()->get("allow-bail") ? ($this->getPlugin()->isJailTimeInfinity(strtolower($player->getName())) !== false ? "not allowed" : "$" . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")))) : "disabled ^o^");
+                $bail_dis = "&2" . $this->getPlugin()->getMessage("timer.broadcast.bail") . ": &d" . ($this->getPlugin()->getEco() !== null && $this->getPlugin()->getConfig()->get("allow-bail") ? ($this->getPlugin()->isJailTimeInfinity(strtolower($player->getName())) !== false ? $this->getPlugin()->getMessage("timer.broadcast.notallowed") : "$" . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")))) : $this->getPlugin()->getMessage("timer.broadcast.disabled") . " ^o^");
                 if (isset($t[$name]["seconds"])) {
                     $time = $t[$name]["seconds"];
                     $seconds = $time;
@@ -53,9 +53,9 @@ class TimeBroadcastTask extends BaseTask
                         $minutes = $minutes - 60;
                     }
                     $time_dis = "&e" . ($hours < 10 ? "0" . $hours : $hours) . "&b:&e" . ($minutes < 10 ? "0" . $minutes : $minutes) . "&b:&e" . ($seconds < 10 ? "0" . $seconds : $seconds);
-                    $player->sendTip($this->getPlugin()->colorMessage("&3You have been jailed!\n&6Time left: " . $time_dis . "\n" . $bail_dis . "&r\n&l&c" . $this->dots));
+                    $player->sendTip($this->getPlugin()->colorMessage($this->getPlugin()->getMessage("timer.broadcast.jailed") . "\n" . $this->getPlugin()->getMessage("timer.broadcast.timeleft") . ": " . $time_dis . "\n" . $bail_dis . "&r\n&l&c" . $this->dots));
                 } else {
-                    $player->sendTip($this->getPlugin()->colorMessage("&3You have been jailed!\n&6Time left: &einfinite\n" . $bail_dis . "&r\n&l&c" . $this->dots));
+                    $player->sendTip($this->getPlugin()->colorMessage($this->getPlugin()->getMessage("timer.broadcast.jailed") . "\n" . $this->getPlugin()->getMessage("timer.broadcast.timeleft") . ": &e" . $this->getPlugin()->getMessage("timer.broadcast.infinite") . "\n" . $bail_dis . "&r\n&l&c" . $this->dots));
                 }
             }
         }

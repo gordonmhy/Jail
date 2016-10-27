@@ -28,11 +28,9 @@ use hoyinm14mc\jail\commands\SetjailCommand;
 use hoyinm14mc\jail\commands\SwitchjailCommand;
 use hoyinm14mc\jail\commands\TpjailCommand;
 use hoyinm14mc\jail\commands\UnjailCommand;
-use hoyinm14mc\jail\commands\UpdaterExecutor;
 use hoyinm14mc\jail\listeners\BlockListener;
 use hoyinm14mc\jail\listeners\PlayerListener;
 use hoyinm14mc\jail\listeners\EntityListener;
-use hoyinm14mc\jail\listeners\ServerListener;
 use hoyinm14mc\jail\tasks\JailTimingTask;
 use hoyinm14mc\jail\tasks\TimeBroadcastTask;
 use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
@@ -75,31 +73,33 @@ class Jail extends PluginBase
      * @var null|object
      */
     private $eco = null;
-    
-    private $langList = [
-		"def" => "Default",
-		"en" => "English",
-		"zh" => "繁體中文",
-		"ru" => "Русский",
 
-	];
+    private $langList = [
+        "def" => "Default",
+        "en" => "English",
+        "zh" => "繁體中文",
+        "ru" => "Русский",
+
+    ];
     private $lang = [];
-    
-    public function getCommandMessage(string $command, $lang = false) : array{
-		if($lang === false){
-			$lang = $this->getConfig()->get("default-lang");
-		}
-		$command = strtolower($command);
-		return $this->lang[$lang]["commands"][$command];
-	}
-	
-    public function getMessage($key, $lang = false) : string{
-	if($lang !== true){
-		$lang = $this->getConfig()->get("default-lang");
-	}
-	return (string) (isset($this->lang[$lang][$key]) !== true ? $key : $this->colorMessage($this->lang[$lang][$key]));
+
+    public function getCommandMessage(string $command, $lang = false) : array
+    {
+        if ($lang === false) {
+            $lang = $this->getConfig()->get("default-lang");
+        }
+        $command = strtolower($command);
+        return $this->lang[$lang]["commands"][$command];
     }
-	
+
+    public function getMessage($key, $lang = false) : string
+    {
+        if ($lang !== true) {
+            $lang = $this->getConfig()->get("default-lang");
+        }
+        return (string)(isset($this->lang[$lang][$key]) !== true ? $key : $this->colorMessage($this->lang[$lang][$key]));
+    }
+
     public function onEnable()
     {
         $this->getLogger()->info("Loading configurations...");
@@ -154,23 +154,24 @@ class Jail extends PluginBase
         } else if ($this->getConfig()->get("updater-start-fetch") !== false) {
             $this->getLogger()->info($this->colorMessage("&eFetching latest version from repository..."));
             $this->getLogger()->info($this->colorMessage("&eResult will appear when server query is started."));
-            if(is_dir($this->getServer()->getDataPath()."tmp")){
+            if (is_dir($this->getServer()->getDataPath() . "tmp")) {
                 $this->getLogger()->info($this->colorMessage("&4Error: Mobile device not supported!"));
-            }else{
+            } else {
                 $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
             }
         }
     }
-    
-    private function initializeLanguage(){
-		foreach($this->getResources() as $resource){
-			if($resource->isFile() and substr(($filename = $resource->getFilename()), 0, 5) === "lang_"){
-				$this->lang[substr($filename, 5, -5)] = json_decode(file_get_contents($resource->getPathname()), true);
-			}
-		}
-		$lang = $this->getConfig()->get("default-lang");
-		$this->lang["def"] = (new Config($this->getDataFolder()."messages.yml", Config::YAML, $this->lang[$lang]))->getAll();
-	}
+
+    private function initializeLanguage()
+    {
+        foreach ($this->getResources() as $resource) {
+            if ($resource->isFile() and substr(($filename = $resource->getFilename()), 0, 5) === "lang_") {
+                $this->lang[substr($filename, 5, -5)] = json_decode(file_get_contents($resource->getPathname()), true);
+            }
+        }
+        $lang = $this->getConfig()->get("default-lang");
+        $this->lang["def"] = (new Config($this->getDataFolder() . "messages.yml", Config::YAML, $this->lang[$lang]))->getAll();
+    }
 
     /**
      * @return object
@@ -184,17 +185,18 @@ class Jail extends PluginBase
      * @param string $message
      * @return string
      */
-    public function colorMessage(string $message): string{
-		$colors = [
-			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "k", "l", "m", "n", "o", "r"
-		];
-		foreach($colors as $code){
-			$search[] = "&".$code;
-			$replace[] = TextFormat::ESCAPE.$code;
-		}
+    public function colorMessage(string $message): string
+    {
+        $colors = [
+            "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "k", "l", "m", "n", "o", "r"
+        ];
+        foreach ($colors as $code) {
+            $search[] = "&" . $code;
+            $replace[] = TextFormat::ESCAPE . $code;
+        }
 
-		return (string) str_replace($search, $replace, $message);
-	}
+        return (string)str_replace($search, $replace, $message);
+    }
 
     /**
      * Creates a profile for the player when they first join the server
@@ -209,6 +211,8 @@ class Jail extends PluginBase
         }
         $t[$player_name]["jailed"] = false;
         $t[$player_name]["gamemode"] = $this->getServer()->getDefaultGamemode();
+        $t[$player_name]["voteForJail"]["votes"] = 0;
+        $t[$player_name]["voteForJail"]["votedBy"] = []; //Players who voted for him
         $this->data->setAll($t);
         $this->data->save();
         return true;
@@ -298,7 +302,7 @@ class Jail extends PluginBase
         $this->data->setAll($t);
         $this->data->save();
         $player->setGamemode(($this->getConfig()->get("enable-penalty") !== true ? 2 : 0));
-        $player->sendMessage($this->colorMessage("&eYou have been jailed for " . ($minutes != -1 ? $minutes : "infinite") . " minutes!\n&eReason: " . $reason));
+        $player->sendMessage(str_replace("%time%", ($minutes != -1 ? $minutes : "infinite"), str_replace("%reason%", $reason, $this->getMessage("jail.success.prisoner"))));
         $player->teleport(new Position($j[$jail_name]["pos"]["x"], $j[$jail_name]["pos"]["y"], $j[$jail_name]["pos"]["z"], $this->getServer()->getLevelByName($j[$jail_name]["pos"]["level"])));
         $this->getLogger()->info($this->colorMessage("&6Jailed player " . strtolower($player->getName()) . " for " . ($minutes == -1 ? "infinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "\nReason: " . $reason));
         return true;
@@ -342,7 +346,7 @@ class Jail extends PluginBase
             //Currently default spawn. Soon maybe implement EssentialsPE support
             $player->setGamemode($gm);
             $player->teleport($this->getServer()->getDefaultLevel()->getSpawnLocation());
-            $player->sendMessage($this->getMessage("you-unjailed-success"));
+            $player->sendMessage($this->getMessage("unjail.you.success"));
         }
         $this->getLogger()->info($this->colorMessage("&6Unjailed player " . $player_name));
         return true;
@@ -378,7 +382,7 @@ class Jail extends PluginBase
      * @param bool $bail
      * @param bool $escape
      */
-    public function setJail(string $jail_name, Position $pos, Position $c1, Position $c2, bool $bail, bool $escape)
+    public function setJail(string $jail_name, Position $pos, Position $c1, Position $c2, bool $bail = false, bool $escape = false)
     {
         $j = $this->data1->getAll();
         $j[$jail_name]["pos"]["x"] = $pos->x;
@@ -465,6 +469,40 @@ class Jail extends PluginBase
         $t[$player_name]["seconds"] = $t[$player_name]["seconds"] + ($minutes * 60);
         $this->data->setAll($t);
         $this->data->save();
+        return true;
+    }
+
+    /**
+     * To let players vote players into jail
+     * @param string $player_name
+     * @param string $voter
+     * @return bool
+     */
+    public function voteForJail(string $player_name, string $voter): bool
+    {
+        $t = $this->data->getAll();
+        if ($this->playerProfileExists($player_name) !== true) {
+            return false;
+        }
+        if (in_array($voter, $t[$player_name]["VoteForJail"]["votedBy"]) !== false) {
+            return false;
+        }
+        $t[$player_name]["VoteForJail"]["votes"] = $t[$player_name]["VoteForJail"]["votes"] + 1;
+        $t[$player_name]["VoteForJail"]["votedBy"][] = $voter;
+        $this->data->setAll($t);
+        $this->data->save();
+        if ($t[$player_name]["VoteForJail"]["votes"] >= $this->getConfig()->get("votes-to-jail-player")) {
+            if ($this->getServer()->getPlayer($player_name) === null) {
+                return false;
+            }
+            $player = $this->getServer()->getPlayer($player_name);
+            $this->jail($player, array_rand(array_keys($this->data1->getAll())), 45, "Jailed automatically due to enough votes");
+            $t[$player_name]["VoteForJail"]["votes"] = 0;
+            $t[$player_name]["VoteForJail"]["votedBy"] = [];
+            $this->data->setAll($t);
+            $this->data->save();
+            $this->getServer()->broadcastMessage(str_replace("%player%", $player_name, $this->getMessage("votes.enough.jail.broadcast")));
+        }
         return true;
     }
 

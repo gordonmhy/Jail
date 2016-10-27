@@ -32,11 +32,10 @@ class JailedCommand extends BaseCommand
         switch (strtolower($cmd->getName())) {
             case "jailed":
                 if ($issuer->hasPermission("jail.command.jailed") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
-                $issuer->sendMessage($this->getPlugin()->colorMessage("&2Prisoners: &6" . $this->getPlugin()->jailedToString()));
-                return true;
+                $issuer->sendMessage(str_replace("%prisoners%", $this->getPlugin()->jailedToString(), $this->getPlugin()->getMessage("jailed.listing")));
                 break;
         }
     }

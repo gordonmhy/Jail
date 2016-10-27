@@ -36,22 +36,22 @@ class SetjailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer instanceof Player !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("only-works-in-game"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("only.works.in.game"));
                     return true;
                 }
                 if ($issuer->hasPermission("jail.command.setjail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
                 if ($issuer->getGamemode() != 1) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("setjail-must-creative-mode"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("setjail.must.creative.mode"));
                     return true;
                 }
                 $this->getPlugin()->selection_mode[] = strtolower($issuer->getName());
                 $this->getPlugin()->jailName_tmp[strtolower($issuer->getName())] = $args[0];
-                $issuer->sendMessage($this->getPlugin()->colorMessage("&bInitialized jail &a" . $args[0] . " &bcreation procedure."));
-                $issuer->sendMessage($this->getPlugin()->getMessage("setjail-initializ-2"));
-                $issuer->sendMessage($this->getPlugin()->getMessage("setjail-initializ-3"));
+                $issuer->sendMessage(str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("setjail.initialization.start")));
+                $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.2"));
+                $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.3"));
                 return true;
                 break;
         }

@@ -2,6 +2,8 @@ Changelog of Jail
 
 Alpha0.2.1
 - Added Russian #5
+- Redefined language keys
+- Added more translatable messages
 
 Alpha0.2
 - Added more languages #2

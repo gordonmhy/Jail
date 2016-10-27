@@ -36,7 +36,7 @@ class TpjailCommand extends BaseCommand
                     return false;
                 }
                 if ($issuer->hasPermission("jail.command.tpjail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("no-permission"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
                 $jail = $args[0];
@@ -44,29 +44,29 @@ class TpjailCommand extends BaseCommand
                     $name = $args[1];
                 }
                 if ($this->getPlugin()->jailExists($jail) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("jail-not-exist"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("jail.not.exist"));
                     return true;
                 }
                 if (isset($args[1])) {
                     $target = $this->getPlugin()->getServer()->getPlayer($name);
                 }
                 if (isset($args[1]) && $target === null) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("player-not-exist"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("player.not.exist"));
                     return true;
                 }
                 if (isset($args[1])) {
                     if ($issuer instanceof Player !== true) {
-                        $issuer->sendMessage($this->getPlugin()->getMessage("only-works-in-game"));
+                        $issuer->sendMessage($this->getPlugin()->getMessage("only.works.in.game"));
                         return true;
                     }
                     if ($this->getPlugin()->tpJail($target) !== false) {
-                        $issuer->sendMessage($this->getPlugin()->colorMessage("&aYou teleported &b" . $args[1] . " &ato that jail!"));
-                        $target->sendMessage($this->getPlugin()->colorMessage("&aYou have been teleported to &b" . $args[0] . " jail!"));
+                        $issuer->sendMessage(str_replace("%target%", $args[1], str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("tpjail.you.tp.target.to.jail"))));
+                        $target->sendMessage(str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("tpjail.you.being.tp.to.jail")));
                         return true;
                     }
                 } else {
                     if ($this->getPlugin()->tpJail($issuer) !== false) {
-                        $issuer->sendMessage($this->getPlugin()->getMessage("tpjail-you-tp-to-that"));
+                        $issuer->sendMessage($this->getPlugin()->getMessage("tpjail.you.tp.to.that"));
                         return true;
                     }
                 }
