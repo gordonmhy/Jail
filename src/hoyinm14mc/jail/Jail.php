@@ -80,6 +80,8 @@ class Jail extends PluginBase
 		"def" => "Default",
 		"en" => "English",
 		"zh" => "繁體中文",
+		"ru" => "Русский",
+
 	];
     private $lang = [];
     
