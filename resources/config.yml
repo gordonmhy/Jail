@@ -10,6 +10,8 @@ allow-movement: true
 allow-attack: false
 disable-damage: true
 
+### Language ###
+# Supported languages: en, zh, ru
 default-lang: en
 
 ### Settings ###
