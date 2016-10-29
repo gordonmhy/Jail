@@ -42,6 +42,7 @@
 	"votes.enough.jail.broadcast": "&e%player% has been jailed due to enough votes!",
 	"vote.sender.votedAlready": "&cYou have already voted this player!",
 	"vote.sender.votedSuccessfully": "&eYou voted the player successfully!",
+	"vote.target.voteAdded": "&eYou have been jail-voted by someone!\n&6Current votes you gained: %votes%/%max%",
 	"timer.broadcast.jailed": "&3You have been jailed!",
 	"timer.broadcast.timeleft": "&6Time left",
 	"timer.broadcast.infinite": "infinite",

@@ -493,11 +493,12 @@ class Jail extends PluginBase
         $t[$player_name]["VoteForJail"]["votedBy"][] = $voter;
         $this->data->setAll($t);
         $this->data->save();
+        if ($this->getServer()->getPlayer($player_name) === null) {
+            return false;
+        }
+        $player = $this->getServer()->getPlayer($player_name);
+        $player->sendMessage(str_replace("%votes%", $t[$player_name]["VoteForJail"]["votes"], str_replace("%max%", $this->getConfig()->get("votes-to-jail-player"), $this->getMessage("vote.target.voteAdded"))));
         if ($t[$player_name]["VoteForJail"]["votes"] >= $this->getConfig()->get("votes-to-jail-player")) {
-            if ($this->getServer()->getPlayer($player_name) === null) {
-                return false;
-            }
-            $player = $this->getServer()->getPlayer($player_name);
             $this->jail($player, array_rand(array_keys($this->data1->getAll())), 45, "Jailed automatically due to enough votes");
             $t[$player_name]["VoteForJail"]["votes"] = 0;
             $t[$player_name]["VoteForJail"]["votedBy"] = [];
