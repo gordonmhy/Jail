@@ -1,6 +1,8 @@
 Changelog of Jail
 
 Alpha0.2.2
+- Added an option to disable timer GUI on prisoners in config
+- Updated README.md for Github
 - Added '/votejail' cmd, allowing players to vote someone who behaves badly
 - Fixed loading message of compatible economy plugin
 

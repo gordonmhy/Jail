@@ -7,7 +7,7 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 >
 > Proved to be advanced relative to other similar plugins!
 
-####Latest build: [Alpha0.2.1](https://github.com/hoyinm14mc/Jail/releases/download/alpha0.2.1/Jail_vAlpha0.2.1.phar)
+####Download Latest Build: [Jail_vAlpha0.2.1.phar](https://github.com/hoyinm14mc/Jail/releases/download/alpha0.2.1/Jail_vAlpha0.2.1.phar)
 
 _Jail is still in alpha stage, that means it doesn't contain all of the features that are planned for the final version._
 

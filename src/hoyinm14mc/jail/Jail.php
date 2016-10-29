@@ -347,8 +347,8 @@ class Jail extends PluginBase
         $this->data->save();
         $player = $this->getServer()->getPlayer($player_name);
         if ($player !== null) {
-            //Currently default spawn. Soon maybe implement EssentialsPE support
             $player->setGamemode($gm);
+            //The spawn location can be changed by executing '/setspawn' command in EssentialsPE
             $player->teleport($this->getServer()->getDefaultLevel()->getSpawnLocation());
             $player->sendMessage($this->getMessage("unjail.you.success"));
         }

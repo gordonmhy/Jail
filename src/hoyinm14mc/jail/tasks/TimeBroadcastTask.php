@@ -29,33 +29,35 @@ class TimeBroadcastTask extends BaseTask
     public function onRun($currentTick)
     {
         $t = $this->getPlugin()->data->getAll();
-        foreach ($this->getPlugin()->getAllJailedPlayerNames() as $name) {
-            $player = $this->getPlugin()->getServer()->getPlayer($name);
-            if ($player !== null) {
-                $length = strlen("&3You have been jailed!");
-                if (strlen($this->dots) + 5 != $length) {
-                    $this->dots = $this->dots . ">";
-                } else {
-                    $this->dots = "";
-                }
-                $bail_dis = "&2" . $this->getPlugin()->getMessage("timer.broadcast.bail") . ": &d" . ($this->getPlugin()->getEco() !== null && $this->getPlugin()->getConfig()->get("allow-bail") ? ($this->getPlugin()->isJailTimeInfinity(strtolower($player->getName())) !== false ? $this->getPlugin()->getMessage("timer.broadcast.notallowed") : "$" . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")))) : $this->getPlugin()->getMessage("timer.broadcast.disabled") . " ^o^");
-                if (isset($t[$name]["seconds"])) {
-                    $time = $t[$name]["seconds"];
-                    $seconds = $time;
-                    $minutes = 0;
-                    $hours = 0;
-                    while ($seconds > 59) {
-                        $minutes = $minutes + 1;
-                        $seconds = $seconds - 60;
+        if ($this->getPlugin()->getConfig()->get("show-prisoner-timer") !== false) {
+            foreach ($this->getPlugin()->getAllJailedPlayerNames() as $name) {
+                $player = $this->getPlugin()->getServer()->getPlayer($name);
+                if ($player !== null) {
+                    $length = strlen("&3You have been jailed!");
+                    if (strlen($this->dots) + 5 != $length) {
+                        $this->dots = $this->dots . ">";
+                    } else {
+                        $this->dots = "";
                     }
-                    while ($minutes > 59) {
-                        $hours = $hours + 1;
-                        $minutes = $minutes - 60;
+                    $bail_dis = "&2" . $this->getPlugin()->getMessage("timer.broadcast.bail") . ": &d" . ($this->getPlugin()->getEco() !== null && $this->getPlugin()->getConfig()->get("allow-bail") ? ($this->getPlugin()->isJailTimeInfinity(strtolower($player->getName())) !== false ? $this->getPlugin()->getMessage("timer.broadcast.notallowed") : "$" . ($t[strtolower($player->getName())]["seconds"] * ($this->getPlugin()->getConfig()->get("bail-per-second")))) : $this->getPlugin()->getMessage("timer.broadcast.disabled") . " ^o^");
+                    if (isset($t[$name]["seconds"])) {
+                        $time = $t[$name]["seconds"];
+                        $seconds = $time;
+                        $minutes = 0;
+                        $hours = 0;
+                        while ($seconds > 59) {
+                            $minutes = $minutes + 1;
+                            $seconds = $seconds - 60;
+                        }
+                        while ($minutes > 59) {
+                            $hours = $hours + 1;
+                            $minutes = $minutes - 60;
+                        }
+                        $time_dis = "&e" . ($hours < 10 ? "0" . $hours : $hours) . "&b:&e" . ($minutes < 10 ? "0" . $minutes : $minutes) . "&b:&e" . ($seconds < 10 ? "0" . $seconds : $seconds);
+                        $player->sendTip($this->getPlugin()->colorMessage($this->getPlugin()->getMessage("timer.broadcast.jailed") . "\n" . $this->getPlugin()->getMessage("timer.broadcast.timeleft") . ": " . $time_dis . "\n" . $bail_dis . "&r\n&l&c" . $this->dots));
+                    } else {
+                        $player->sendTip($this->getPlugin()->colorMessage($this->getPlugin()->getMessage("timer.broadcast.jailed") . "\n" . $this->getPlugin()->getMessage("timer.broadcast.timeleft") . ": &e" . $this->getPlugin()->getMessage("timer.broadcast.infinite") . "\n" . $bail_dis . "&r\n&l&c" . $this->dots));
                     }
-                    $time_dis = "&e" . ($hours < 10 ? "0" . $hours : $hours) . "&b:&e" . ($minutes < 10 ? "0" . $minutes : $minutes) . "&b:&e" . ($seconds < 10 ? "0" . $seconds : $seconds);
-                    $player->sendTip($this->getPlugin()->colorMessage($this->getPlugin()->getMessage("timer.broadcast.jailed") . "\n" . $this->getPlugin()->getMessage("timer.broadcast.timeleft") . ": " . $time_dis . "\n" . $bail_dis . "&r\n&l&c" . $this->dots));
-                } else {
-                    $player->sendTip($this->getPlugin()->colorMessage($this->getPlugin()->getMessage("timer.broadcast.jailed") . "\n" . $this->getPlugin()->getMessage("timer.broadcast.timeleft") . ": &e" . $this->getPlugin()->getMessage("timer.broadcast.infinite") . "\n" . $bail_dis . "&r\n&l&c" . $this->dots));
                 }
             }
         }
