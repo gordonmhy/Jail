@@ -3,7 +3,7 @@ Jail [![Gitter](https://badges.gitter.im/hoyinm14mc/Jail.svg)](https://gitter.im
 
 A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) / [Genisys](https://github.com/iTXTech/Genisys) servers
 
-> Highly secure jail penitential player-punishment system!
+> Highly secure jail player-punishment system!
 >
 > Proved to be advanced relative to other similar plugins!
 
