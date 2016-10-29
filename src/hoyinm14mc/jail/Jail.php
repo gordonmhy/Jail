@@ -192,12 +192,14 @@ class Jail extends PluginBase
         $colors = [
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "k", "l", "m", "n", "o", "r"
         ];
+        $search = [];
+        $replace = [];
         foreach ($colors as $code) {
             $search[] = "&" . $code;
             $replace[] = TextFormat::ESCAPE . $code;
         }
 
-        return (string)str_replace($search, $replace, $message);
+        return str_replace($search, $replace, $message);
     }
 
     /**
