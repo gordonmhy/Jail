@@ -1,5 +1,6 @@
 {
     "language": "zh",
+	"command.error.duringExecution": "An error occured during execution of this command!",
 	"no.permission": "&c您沒有權限使用此指令!",
 	"only.works.in.game": "&c指令僅可於遊戲中執行!",
 	"jail.not.exist": "&c監獄不存在!",
@@ -39,6 +40,8 @@
 	"jails.listing": "List of jails: %jails%",
 	"jailed.listing": "List of jailed players: %prisoners%",
 	"votes.enough.jail.broadcast": "&e%player% 由於足夠的票, 已被監禁！",
+	"vote.sender.votedAlready": "&cYou have already voted this player!",
+	"vote.sender.votedSuccessfully": "&eYou voted the player successfully!",
 	"timer.broadcast.jailed": "&3You have been jailed!",
 	"timer.broadcast.timeleft": "&6Time left",
 	"timer.broadcast.infinite": "infinite",

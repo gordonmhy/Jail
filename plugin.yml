@@ -1,7 +1,7 @@
 name: Jail
 main: hoyinm14mc\jail\Jail
 api: 2.0.0
-version: Alpha0.2.1
+version: Alpha0.2.2
 author: hoyinm14mc
 description: An advanced jail punishment system for PocketMine servers
 load: POSTWORLD
@@ -48,6 +48,11 @@ commands:
     description: Bails from a jail
     permission: jail.command.bail
     usage: /bail
+  votejail:
+    description: Vote a player into jail
+    permission: jail.command.votejail
+    usage: /votejail <player>
+    aliases: ["jailvote"]
     
 permission:
   jail.command.setjail:
@@ -77,3 +82,6 @@ permission:
   jail.command.bail:
     default: true
     description: Allows jailed players to bail
+  jail.command.votejail:
+    defaul: true
+    description: Allows players to vote someone who behaves badly into jail

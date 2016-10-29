@@ -1,5 +1,9 @@
 Changelog of Jail
 
+Alpha0.2.2
+- Added '/votejail' cmd, allowing players to vote someone who behaves badly
+- Fixed loading message of compatible economy plugin
+
 Alpha0.2.1
 - Added Russian #5
 - Redefined language keys

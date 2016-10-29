@@ -28,6 +28,7 @@ use hoyinm14mc\jail\commands\SetjailCommand;
 use hoyinm14mc\jail\commands\SwitchjailCommand;
 use hoyinm14mc\jail\commands\TpjailCommand;
 use hoyinm14mc\jail\commands\UnjailCommand;
+use hoyinm14mc\jail\commands\VotejailCommand;
 use hoyinm14mc\jail\listeners\BlockListener;
 use hoyinm14mc\jail\listeners\PlayerListener;
 use hoyinm14mc\jail\listeners\EntityListener;
@@ -131,7 +132,7 @@ class Jail extends PluginBase
             }
         }
         if ($this->eco !== null) {
-            $this->getLogger()->info($this->colorMessage("Loaded with " . $ecoPlug . "!"));
+            $this->getLogger()->info($this->colorMessage("Loaded with " . $this->getEco()->getName() . "!"));
         }
         $this->getCommand("deljail")->setExecutor(new DeljailCommand($this));
         $this->getCommand("jail")->setExecutor(new JailCommand($this));
@@ -142,6 +143,7 @@ class Jail extends PluginBase
         $this->getCommand("switchjail")->setExecutor(new SwitchjailCommand($this));
         $this->getCommand("tpjail")->setExecutor(new TpjailCommand($this));
         $this->getCommand("bail")->setExecutor(new BailCommand($this));
+        $this->getCommand("votejail")->setExecutor(new VotejailCommand($this));
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new JailTimingTask($this), 20);
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new TimeBroadcastTask($this), 3);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerListener($this), $this);

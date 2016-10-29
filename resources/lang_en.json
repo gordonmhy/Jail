@@ -1,5 +1,6 @@
 {
     "language": "en",
+  "command.error.duringExecution": "An error occured during execution of this command!",
   "no.permission": "&cYou don't have permission for this!",
   "only.works.in.game": "&cCommand only works in-game!",
   "jail.not.exist": "&cJail doesn't exist!",
@@ -39,6 +40,8 @@
   "jails.listing": "List of jails: %jails%",
   "jailed.listing": "List of jailed players: %prisoners%",
   "votes.enough.jail.broadcast": "&e%player% has been jailed due to enough votes!",
+  "vote.sender.votedAlready": "&cYou have already voted this player!",
+  "vote.sender.votedSuccessfully": "&eYou voted the player successfully!",
   "timer.broadcast.jailed": "&3You have been jailed!",
   "timer.broadcast.timeleft": "&6Time left",
   "timer.broadcast.infinite": "infinite",

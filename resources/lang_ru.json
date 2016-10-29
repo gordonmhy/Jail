@@ -1,5 +1,6 @@
 {
     "language": "ru",
+	"command.error.duringExecution": "An error occured during execution of this command!",
 	"no.permission": "&cУ вас нет на это разрешение!",
 	"only.works.in.game": "&cКоманда доступна только в игре!",
 	"jail.not.exist": "&cТюрма не доступна",
@@ -39,6 +40,8 @@
 	"jails.listing": "List of jails: %jails%",
 	"jailed.listing": "List of jailed players: %prisoners%",
 	"votes.enough.jail.broadcast": "&e%player% has been jailed due to enough votes!",
+	"vote.sender.votedAlready": "&cYou have already voted this player!",
+	"vote.sender.votedSuccessfully": "&eYou voted the player successfully!",
 	"timer.broadcast.jailed": "&3You have been jailed!",
 	"timer.broadcast.timeleft": "&6Time left",
 	"timer.broadcast.infinite": "infinite",
