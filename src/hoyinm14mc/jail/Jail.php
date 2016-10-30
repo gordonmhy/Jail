@@ -46,27 +46,27 @@ class Jail extends PluginBase
 {
 
     /**
-     * @var multitype:array
+     * @var array:array
      */
     public $c1_tmp = [];
 
     /**
-     * @var multitype:array
+     * @var array:array
      */
     public $c2_tmp = [];
 
     /**
-     * @var multitype:string
+     * @var array:string
      */
     public $pos_tmp = [];
 
     /**
-     * @var multitype:string
+     * @var array:string
      */
     public $jailName_tmp = [];
 
     /**
-     * @var multitype:string
+     * @var array:string
      */
     public $selection_mode = [];
 
@@ -166,6 +166,7 @@ class Jail extends PluginBase
 
     private function initializeLanguage()
     {
+        unlink($this->getDataFolder() . "messages.yml");
         foreach ($this->getResources() as $resource) {
             if ($resource->isFile() and substr(($filename = $resource->getFilename()), 0, 5) === "lang_") {
                 $this->lang[substr($filename, 5, -5)] = json_decode(file_get_contents($resource->getPathname()), true);
