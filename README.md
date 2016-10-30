@@ -29,6 +29,5 @@ _Jail is still in alpha stage, that means it doesn't contain all of the features
 
 - [Jailing a player](https://youtu.be/EtmXwf4Oivs)
 
-###known bugs 
-######_(Will be ticked after fixing)_
+###known bugs:
 - [ ] Timer GUI not showing on 0.16 clients
