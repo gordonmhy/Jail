@@ -445,16 +445,20 @@ class Jail extends PluginBase
 
     /**
      * @param Player $player
+     * @param string $jail
      * @return bool
      */
-    public function tpJail(Player $player): bool
+    public function tpJail(Player $player, string $jail): bool
     {
         $t = $this->data->getAll();
         $j = $this->data1->getAll();
-        if ($this->isJailed(strtolower($player->getName())) !== true) {
+        if ($this->isJailed(strtolower($player->getName())) !== false) {
             return false;
         }
-        $player->teleport(new Position($j[$t[strtolower($player->getName())]["jail"]]["pos"]["x"], $j[$t[strtolower($player->getName())]["jail"]]["pos"]["y"], $j[$t[strtolower($player->getName())]["jail"]]["pos"]["z"], $this->getServer()->getLevelByName($j[$t[strtolower($player->getName())]["jail"]]["pos"]["level"])));
+        if ($this->jailExists($jail) !== true) {
+            return false;
+        }
+        $player->teleport(new Position($j[$jail]["pos"]["x"], $j[$jail]["pos"]["y"], $j[$jail]["pos"]["z"], $this->getServer()->getLevelByName($j[$jail]["pos"]["level"])));
         return true;
     }
 

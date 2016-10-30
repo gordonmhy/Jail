@@ -55,7 +55,7 @@ class SwitchjailCommand extends BaseCommand
                 $this->getPlugin()->data->save();
                 $player = $this->getPlugin()->getServer()->getPlayer($name);
                 if ($player !== null) {
-                    $this->getPlugin()->tpJail($player);
+                    $this->getPlugin()->tpJail($player, $t[$name]["jail"]);
                     $player->sendMessage($this->getPlugin()->getMessage("switchjail.been.switched"));
                 }
                 $issuer->sendMessage(str_replace("%player%", $name, $this->getPlugin()->getMessage("switchjail.sender.success")));

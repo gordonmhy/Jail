@@ -35,7 +35,7 @@ class TpjailCommand extends BaseCommand
                 if (isset($args[0]) !== true) {
                     return false;
                 }
-                if ($issuer->hasPermission("jail.command.tpjail") !== true) {
+                if ($issuer->hasPermission("jail.command.jailtp") !== true) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
@@ -59,13 +59,13 @@ class TpjailCommand extends BaseCommand
                         $issuer->sendMessage($this->getPlugin()->getMessage("only.works.in.game"));
                         return true;
                     }
-                    if ($this->getPlugin()->tpJail($target) !== false) {
-                        $issuer->sendMessage(str_replace("%target%", $args[1], str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("tpjail.you.tp.target.to.jail"))));
-                        $target->sendMessage(str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("tpjail.you.being.tp.to.jail")));
+                    if ($this->getPlugin()->tpJail($target, $jail) !== false) {
+                        $issuer->sendMessage(str_replace("%target%", $args[1], str_replace("%jail%", $jail, $this->getPlugin()->getMessage("tpjail.you.tp.target.to.jail"))));
+                        $target->sendMessage(str_replace("%jail%", $jail, $this->getPlugin()->getMessage("tpjail.you.being.tp.to.jail")));
                         return true;
                     }
                 } else {
-                    if ($this->getPlugin()->tpJail($issuer) !== false) {
+                    if ($this->getPlugin()->tpJail($issuer, $jail) !== false) {
                         $issuer->sendMessage($this->getPlugin()->getMessage("tpjail.you.tp.to.that"));
                         return true;
                     }

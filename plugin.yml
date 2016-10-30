@@ -41,7 +41,7 @@ commands:
     aliases: ["transferjail", "jailswitch"]
   tpjail:
     description: Teleport a player to a jail location
-    permission: jail.command.tpjail
+    permission: jail.command.jailtp
     usage: /tpjail <jail>
     aliases: ["jailtp"]
   bail:
