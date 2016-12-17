@@ -35,9 +35,11 @@ class PlayerListener extends BaseListener
     public function onPlayerLogin(PlayerLoginEvent $event)
     {
         $t = $this->getPlugin()->data->getAll();
-        foreach (array_keys($t) as $name) {
-            if ($t[$name]["jailed"] !== false && $event->getPlayer()->getUniqueId() == $t[$name]["uuid"]) {
-                $event->getPlayer()->kick($this->getPlugin()->getMessage("join.uuid.rejected.kickmsg"));
+        if ($event->getPlayer()->hasPermission("jail.uuidcheck.bypass") !== true) {
+            foreach (array_keys($t) as $name) {
+                if ($t[$name]["jailed"] !== false && $event->getPlayer()->getUniqueId() == $t[$name]["uuid"]) {
+                    $event->getPlayer()->kick($this->getPlugin()->getMessage("join.uuid.rejected.kickmsg"));
+                }
             }
         }
         if ($this->getPlugin()->playerProfileExists(strtolower($event->getPlayer()->getName())) !== true) {

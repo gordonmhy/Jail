@@ -1,7 +1,7 @@
 name: Jail
 main: hoyinm14mc\jail\Jail
 api: 2.0.0
-version: Alpha0.2.2
+version: Alpha0.2.3
 author: hoyinm14mc
 description: An advanced jail punishment system for PocketMine servers
 load: POSTWORLD
@@ -83,5 +83,8 @@ permission:
     default: true
     description: Allows jailed players to bail
   jail.command.votejail:
-    defaul: true
+    default: true
     description: Allows players to vote someone who behaves badly into jail
+  jail.uuidcheck.bypass:
+    default: false
+    description: Allows players to bypass UUID check while logging into the server
