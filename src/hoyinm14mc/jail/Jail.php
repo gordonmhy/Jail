@@ -84,7 +84,7 @@ class Jail extends PluginBase
     ];
     private $lang = [];
 
-    public function getCommandMessage(string $command, $lang = false) : array
+    public function getCommandMessage(string $command, bool $lang = false) : array
     {
         if ($lang === false) {
             $lang = $this->getConfig()->get("default-lang");
@@ -93,12 +93,12 @@ class Jail extends PluginBase
         return $this->lang[$lang]["commands"][$command];
     }
 
-    public function getMessage($key, $lang = false) : string
+    public function getMessage(string $key, bool $lang = false) : string
     {
         if ($lang !== true) {
             $lang = $this->getConfig()->get("default-lang");
         }
-        return (string)(isset($this->lang[$lang][$key]) !== true ? $key : $this->colorMessage($this->lang[$lang][$key]));
+        return isset($this->lang[$lang][$key]) !== true ? $key : $this->colorMessage($this->lang[$lang][$key]);
     }
 
     public function onEnable()
@@ -230,7 +230,7 @@ class Jail extends PluginBase
     public function playerProfileExists(string $player_name): bool
     {
         $t = $this->data->getAll();
-        return (bool)array_key_exists($player_name, $t);
+        return array_key_exists($player_name, $t);
     }
 
     /**
@@ -253,7 +253,13 @@ class Jail extends PluginBase
         if ($this->jailExists($jail) !== true) {
             return false;
         }
-        return (bool)(min($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) <= $pos->x) && (max($j[$jail]["c1"]["x"], $j[$jail]["c2"]["x"]) >= $pos->x) && (min($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) <= $pos->y) && (max($j[$jail]["c1"]["y"], $j[$jail]["c2"]["y"]) >= $pos->y) && (min($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) <= $pos->z) && (max($j[$jail]["c1"]["z"], $j[$jail]["c2"]["z"]) >= $pos->z) && ($j[$jail]["pos"]["level"] == $pos->getLevel()->getName());
+        return (min($j[$jail]["c1"]["x"],
+                $j[$jail]["c2"]["x"]) <= $pos->x) && (max($j[$jail]["c1"]["x"],
+                $j[$jail]["c2"]["x"]) >= $pos->x) && (min($j[$jail]["c1"]["y"],
+                $j[$jail]["c2"]["y"]) <= $pos->y) && (max($j[$jail]["c1"]["y"],
+                $j[$jail]["c2"]["y"]) >= $pos->y) && (min($j[$jail]["c1"]["z"],
+                $j[$jail]["c2"]["z"]) <= $pos->z) && (max($j[$jail]["c1"]["z"],
+                $j[$jail]["c2"]["z"]) >= $pos->z) && ($j[$jail]["pos"]["level"] == $pos->getLevel()->getName());
     }
 
     /**
@@ -262,7 +268,7 @@ class Jail extends PluginBase
      */
     public function hasAreaSelected(Player $player): bool
     {
-        return (bool)array_key_exists(strtolower($player->getName()), $this->c1_tmp) && array_key_exists(strtolower($player->getName()), $this->c2_tmp);
+        return array_key_exists(strtolower($player->getName()), $this->c1_tmp) && array_key_exists(strtolower($player->getName()), $this->c2_tmp);
     }
 
     /**
@@ -277,7 +283,7 @@ class Jail extends PluginBase
                 $jailed[] = $p;
             }
         }
-        return (array)$jailed;
+        return $jailed;
     }
 
     /**
@@ -323,7 +329,7 @@ class Jail extends PluginBase
         if ($this->isJailed($player_name) !== true) {
             return false;
         }
-        return (bool)!isset($t[$player_name]["seconds"]);
+        return isset($t[$player_name]["seconds"]) !== true;
     }
 
     /**
@@ -459,7 +465,11 @@ class Jail extends PluginBase
         if ($this->jailExists($jail) !== true) {
             return false;
         }
-        $player->teleport(new Position($j[$jail]["pos"]["x"], $j[$jail]["pos"]["y"], $j[$jail]["pos"]["z"], $this->getServer()->getLevelByName($j[$jail]["pos"]["level"])));
+        $player->teleport(new Position(
+            $j[$jail]["pos"]["x"],
+            $j[$jail]["pos"]["y"],
+            $j[$jail]["pos"]["z"],
+            $this->getServer()->getLevelByName($j[$jail]["pos"]["level"])));
         return true;
     }
 
