@@ -7,6 +7,7 @@ Alpha0.2.2
 - Fixed loading message of compatible economy plugin
 - Fixed /tpjail command and tpJail() not working
 - Code cleanup
+- Added UUID Checker
 
 Alpha0.2.1
 - Added Russian #5

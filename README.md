@@ -22,6 +22,7 @@ _Jail is still in alpha stage, that means it doesn't contain all of the features
 - [x] Setting jails by entering jail setting mode
 - [x] Bail! Allows players to bail to unjail
 - [x] Count the time when player is offline! (Can be disabled)
+- [x] UUID Checker! Prevents IGN changes
 - [x] More to be added very soon!
 - [ ] Mines for prisons mode
 - [ ] Jail escape mode
