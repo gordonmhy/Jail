@@ -2,6 +2,7 @@ Changelog of Jail
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players
+- Added 'jail.uuidcheck.bypass' permission
 
 Alpha0.2.2
 - Added an option to disable timer GUI on prisoners in config
