@@ -39,6 +39,8 @@ scheduled-update-checker-interval: 45
 votes-to-jail-player: 4
 #Show timer GUI to prisoners?
 show-prisoner-timer: true
+#Check player's UUID when they join? (Jailed players may change their name)
+check-UUID: true
 
 ### Config version ###
 #Do not modify this, otherwise plugin may not work properly

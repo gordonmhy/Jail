@@ -48,5 +48,6 @@
   "timer.broadcast.infinite": "infinite",
   "timer.broadcast.bail": "Bail",
   "timer.broadcast.notallowed": "not allowed",
-  "timer.broadcast.disabled": "disabled"
+  "timer.broadcast.disabled": "disabled",
+  "join.uuid.rejected.kickmsg": "&c&b[JAIL&c]\n&eYour UUID is duplicated with a jailed player"
 }
