@@ -23,6 +23,8 @@ _Jail is still in alpha stage, that means it doesn't contain all of the features
 - [x] Bail! Allows players to bail to unjail
 - [x] Count the time when player is offline! (Can be disabled)
 - [x] More to be added very soon!
+- [ ] Mines for prisons mode
+- [ ] Jail escape mode
 
 ###Tutorials:
 - [Building and setting a jail](https://youtu.be/HR8XhOizd-c)
