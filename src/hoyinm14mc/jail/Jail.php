@@ -42,8 +42,13 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
-class Jail extends PluginBase
+class Jail extends PluginBase implements JailAPI
 {
+
+    /**
+     * @var static $this |null
+     */
+    private static $instance = null;
 
     /**
      * @var array:array
@@ -75,15 +80,16 @@ class Jail extends PluginBase
      */
     private $eco = null;
 
-    private $langList = [
-        "def" => "Default",
-        "en" => "English",
-        "zh" => "繁體中文",
-        "ru" => "Русский",
-
-    ];
+    /**
+     * @var array
+     */
     private $lang = [];
 
+    /**
+     * @param string $command
+     * @param bool $lang
+     * @return array
+     */
     public function getCommandMessage(string $command, bool $lang = false) : array
     {
         if ($lang === false) {
@@ -93,6 +99,11 @@ class Jail extends PluginBase
         return $this->lang[$lang]["commands"][$command];
     }
 
+    /**
+     * @param string $key
+     * @param bool $lang
+     * @return string
+     */
     public function getMessage(string $key, bool $lang = false) : string
     {
         if ($lang !== true) {
@@ -134,6 +145,7 @@ class Jail extends PluginBase
         if ($this->eco !== null) {
             $this->getLogger()->info($this->colorMessage("Loaded with " . $this->getEco()->getName() . "!"));
         }
+        self::$instance = $this;
         $this->getCommand("deljail")->setExecutor(new DeljailCommand($this));
         $this->getCommand("jail")->setExecutor(new JailCommand($this));
         $this->getCommand("jails")->setExecutor(new JailsCommand($this));
@@ -174,6 +186,14 @@ class Jail extends PluginBase
         }
         $lang = $this->getConfig()->get("default-lang");
         $this->lang["def"] = (new Config($this->getDataFolder() . "messages.yml", Config::YAML, $this->lang[$lang]))->getAll();
+    }
+
+    /**
+     * @return Jail
+     */
+    public static function getInstance(): Jail
+    {
+        return self::$instance;
     }
 
     /**
