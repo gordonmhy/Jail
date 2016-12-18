@@ -1,5 +1,9 @@
 Changelog of Jail
 
+Alpha0.3.0
+- Code cleanup
+- Added JailAPI.php, as an interface of Jail's API
+
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players
 - Added 'jail.uuidcheck.bypass' permission

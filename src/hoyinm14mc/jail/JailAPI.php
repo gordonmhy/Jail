@@ -19,9 +19,151 @@
 
 namespace hoyinm14mc\jail;
 
+use pocketmine\level\Position;
+use pocketmine\Player;
+
 interface JailAPI
 {
 
-}
+    /**
+     * Do this before accessing Jail externally
+     * @return Jail
+     */
+    public static function getInstance(): Jail;
 
+    /**
+     * Checks if a player's profile exist in Jail's data
+     * @param string $player_name
+     * @return bool
+     */
+    public function playerProfileExists(string $player_name): bool;
+
+    /**
+     * Checks if the player is in jail-selection-mode
+     * @param Player $player
+     * @return bool
+     */
+    public function isSelectionMode(Player $player): bool;
+
+    /**
+     * Checks if the player is positioned inside a jail
+     * @param string $jail
+     * @param Position $pos
+     * @return bool
+     */
+    public function insideJail(string $jail, Position $pos): bool;
+
+    /**
+     * Checks if the player already selected two corners as an area
+     * @param Player $player
+     * @return bool
+     */
+    public function hasAreaSelected(Player $player): bool;
+
+    /**
+     * Returns an array of player names who are jailed
+     * @return array
+     */
+    public function getAllJailedPlayerNames(): array;
+
+    /**
+     * To jail a player into a jail for a specific amount of time for a reason
+     * @param Player $player
+     * @param string $jail_name
+     * @param int $minutes
+     * @param string $reason
+     * @return bool
+     */
+    public function jail(Player $player, string $jail_name, int $minutes = -1, string $reason = "no reason"): bool;
+
+    /**
+     * Checks if a player is jailed without time counting
+     * @param string $player_name
+     * @return bool
+     */
+    public function isJailTimeInfinity(string $player_name): bool;
+
+    /**
+     * To unjail a player, whatever jail he/she is located
+     * @param string $player_name
+     * @return bool
+     */
+    public function unjail(string $player_name): bool;
+
+    /**
+     * Checks if a player is jailed
+     * @param string $player_name
+     * @return bool
+     */
+    public function isJailed(string $player_name): bool;
+
+    /**
+     * List all jailed players, as a message
+     * @return string
+     */
+    public function jailedToString(): string;
+
+    /**
+     * To set/create a jail.
+     * The jail name could be duplicated with an existing jail, which will
+     * reset that jail with new preferences
+     * @param string $jail_name
+     * @param Position $pos
+     * @param Position $c1
+     * @param Position $c2
+     * @param bool $bail
+     * @param bool $escape
+     */
+    public function setJail(string $jail_name, Position $pos, Position $c1, Position $c2, bool $bail = false, bool $escape = false);
+
+    /**
+     * To delete an existing jail
+     * @param string $jail_name
+     * @return bool
+     */
+    public function delJail(string $jail_name): bool;
+
+    /**
+     * Checks if a jail exists
+     * @param string $jail_name
+     * @return bool
+     */
+    public function jailExists(string $jail_name): bool;
+
+    /**
+     * Lists all available jails, as a message
+     * @return string
+     */
+    public function jailsToString(): string;
+
+    /**
+     * Teleports a player into a jail.
+     * The player won't be allowed to modify the jail structure
+     * @param Player $player
+     * @param string $jail
+     * @return bool
+     */
+    public function tpJail(Player $player, string $jail): bool;
+
+    /**
+     * Adds a specific amount of punishmental jail-time for the player
+     * as its penalty
+     * @param string $player_name
+     * @param int $minutes
+     * @return bool
+     */
+    public function applyPenalty(string $player_name, int $minutes = 10): bool;
+
+    /**
+     * To let players vote a specific target player.
+     * When votes exceed the limit set in the configuration file,
+     * the player will be jailed for a specific amount of time
+     * set in the configuration file.
+     * @param string $player_name
+     * @param string $voter
+     * @return bool
+     */
+    public function voteForJail(string $player_name, string $voter): bool;
+
+}
 ?>

@@ -392,7 +392,7 @@ class Jail extends PluginBase implements JailAPI
     {
         $t = $this->data->getAll();
         if ($this->playerProfileExists($player_name)) {
-            return (bool)$t[$player_name]["jailed"];
+            return $t[$player_name]["jailed"];
         }
         return false;
     }
@@ -467,7 +467,7 @@ class Jail extends PluginBase implements JailAPI
     {
         $j = $this->data1->getAll();
         $jails = array_keys($j);
-        return (string)implode(", ", $jails);
+        return implode(", ", $jails);
     }
 
     /**
@@ -494,7 +494,6 @@ class Jail extends PluginBase implements JailAPI
     }
 
     /**
-     * Adds additional time to the prisoner
      * @param string $player_name
      * @param int $minutes
      * @return bool
@@ -512,7 +511,6 @@ class Jail extends PluginBase implements JailAPI
     }
 
     /**
-     * To let players vote players into jail
      * @param string $player_name
      * @param string $voter
      * @return bool
