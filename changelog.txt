@@ -3,8 +3,10 @@ Changelog of Jail
 Alpha0.3.0
 - Added JailAPI.php, as an interface of Jail's API
 - Code cleanup
-- Fixed new joined players all being jailed bug #10
+- Fixed newly joined players all being jailed bug #10
 - Fixed console popping errors of isJailed() bug #10
+- Bumped to PocketMine API 3.0.0-ALPHA1 (Older APIs compatible)
+- Updated README.md, removing known bug 'GUI not showing'
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players
