@@ -299,7 +299,7 @@ class Jail extends PluginBase implements JailAPI
         $t = $this->data->getAll();
         $jailed = [];
         foreach ($t as $p => $value) {
-            if ($t[$p]["jailed"] !== false) {
+            if (isset($t[$p]["jailed"]) !== false && $t[$p]["jailed"] !== false) {
                 $jailed[] = $p;
             }
         }
