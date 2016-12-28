@@ -224,33 +224,13 @@ class Jail extends PluginBase implements JailAPI
     }
 
     /**
-     * Creates a profile for the player when they first join the server
-     * @param string $player_name
-     * @return bool
-     */
-    public function initializePlayerProfile(string $player_name): bool
-    {
-        $t = $this->data->getAll();
-        if ($this->playerProfileExists($player_name)) {
-            return false;
-        }
-        $t[$player_name]["jailed"] = false;
-        $t[$player_name]["gamemode"] = $this->getServer()->getDefaultGamemode();
-        $t[$player_name]["voteForJail"]["votes"] = 0;
-        $t[$player_name]["voteForJail"]["votedBy"] = []; //Players who voted for him
-        $this->data->setAll($t);
-        $this->data->save();
-        return true;
-    }
-
-    /**
      * @param string $player_name
      * @return bool
      */
     public function playerProfileExists(string $player_name): bool
     {
         $t = $this->data->getAll();
-        return array_key_exists($player_name, $t);
+        return isset($t[$player_name]);
     }
 
     /**

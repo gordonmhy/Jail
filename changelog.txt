@@ -1,8 +1,10 @@
 Changelog of Jail
 
 Alpha0.3.0
-- Code cleanup
 - Added JailAPI.php, as an interface of Jail's API
+- Code cleanup
+- Fixed new joined players all being jailed bug #10
+- Fixed console popping errors of isJailed() bug #10
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players
