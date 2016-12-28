@@ -24,7 +24,7 @@ commands:
   jail:
     description: Jails a player
     permission: jail.command.jail
-    usage: /jail <player> <jail> <minutes|-i> <reason..>
+    usage: /jail <player> <jail> <time|-i> <reason..>
   unjail:
     description: Unjails an online/offline player
     permission: jail.command.unjail

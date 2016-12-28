@@ -230,6 +230,23 @@ class Jail extends PluginBase implements JailAPI
     }
 
     /**
+     * @param int $time
+     */
+    public function convertTime(int $time)
+    {
+        switch ($this->getConfig()->get("time-unit")) {
+            case "min":
+                return $time * 60;
+            case "sec":
+                return $time;
+            case "hr":
+                return $time * 60 * 60;
+            default:
+                return $time;
+        }
+    }
+
+    /**
      * @param string $player_name
      * @return bool
      */
@@ -295,11 +312,11 @@ class Jail extends PluginBase implements JailAPI
     /**
      * @param Player $player
      * @param string $jail_name
-     * @param int $minutes
+     * @param int $time
      * @param string $reason
      * @return bool
      */
-    public function jail(Player $player, string $jail_name, int $minutes = -1, string $reason = "no reason"): bool
+    public function jail(Player $player, string $jail_name, int $time = -1, string $reason = "no reason"): bool
     {
         $t = $this->data->getAll();
         $j = $this->data1->getAll();
@@ -311,17 +328,17 @@ class Jail extends PluginBase implements JailAPI
         }
         $t[strtolower($player->getName())]["jailed"] = true;
         $t[strtolower($player->getName())]["jail"] = $jail_name;
-        if ($minutes != -1) {
-            $t[strtolower($player->getName())]["seconds"] = $minutes * 60;
+        if ($time != -1) {
+            $t[strtolower($player->getName())]["seconds"] = $this->convertTime($time);
         }
         $t[strtolower($player->getName())]["reason"] = $reason;
         $t[strtolower($player->getName())]["gamemode"] = $player->getGamemode();
         $this->data->setAll($t);
         $this->data->save();
         $player->setGamemode(($this->getConfig()->get("enable-penalty") !== true ? 2 : 0));
-        $player->sendMessage(str_replace("%time%", ($minutes != -1 ? $minutes : "infinite"), str_replace("%reason%", $reason, $this->getMessage("jail.success.prisoner"))));
+        $player->sendMessage(str_replace("%time%", ($time != -1 ? $time : "infinite"), str_replace("%reason%", $reason, $this->getMessage("jail.success.prisoner"))));
         $player->teleport(new Position($j[$jail_name]["pos"]["x"], $j[$jail_name]["pos"]["y"], $j[$jail_name]["pos"]["z"], $this->getServer()->getLevelByName($j[$jail_name]["pos"]["level"])));
-        $this->getLogger()->info($this->colorMessage("&6Jailed player " . strtolower($player->getName()) . " for " . ($minutes == -1 ? "infinite time" : ($minutes > 1 ? $minutes . " minutes" : $minutes . " minute")) . "\nReason: " . $reason));
+        $this->getLogger()->info($this->colorMessage("&6Jailed player " . strtolower($player->getName()) . " for " . ($time == -1 ? "infinite time" : ($time > 1 ? $time . " " . $this->getConfig()->get("time-unit") . "s" : $time . " " . $this->getConfig()->get("time-unit"))) . "\nReason: " . $reason));
         return true;
     }
 
@@ -481,16 +498,16 @@ class Jail extends PluginBase implements JailAPI
 
     /**
      * @param string $player_name
-     * @param int $minutes
+     * @param int $time
      * @return bool
      */
-    public function applyPenalty(string $player_name, int $minutes = 10): bool
+    public function applyPenalty(string $player_name, int $time = 10): bool
     {
         $t = $this->data->getAll();
         if ($this->isJailed($player_name) !== true) {
             return false;
         }
-        $t[$player_name]["seconds"] = $t[$player_name]["seconds"] + ($minutes * 60);
+        $t[$player_name]["seconds"] = $t[$player_name]["seconds"] + $this->convertTime($time);
         $this->data->setAll($t);
         $this->data->save();
         return true;

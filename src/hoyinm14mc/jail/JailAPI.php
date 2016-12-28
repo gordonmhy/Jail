@@ -70,11 +70,11 @@ interface JailAPI
      * To jail a player into a jail for a specific amount of time for a reason
      * @param Player $player
      * @param string $jail_name
-     * @param int $minutes
+     * @param int $time
      * @param string $reason
      * @return bool
      */
-    public function jail(Player $player, string $jail_name, int $minutes = -1, string $reason = "no reason"): bool;
+    public function jail(Player $player, string $jail_name, int $time = -1, string $reason = "no reason"): bool;
 
     /**
      * Checks if a player is jailed without time counting
@@ -149,10 +149,10 @@ interface JailAPI
      * Adds a specific amount of punishmental jail-time for the player
      * as its penalty
      * @param string $player_name
-     * @param int $minutes
+     * @param int $time
      * @return bool
      */
-    public function applyPenalty(string $player_name, int $minutes = 10): bool;
+    public function applyPenalty(string $player_name, int $time = 10): bool;
 
     /**
      * To let players vote a specific target player.

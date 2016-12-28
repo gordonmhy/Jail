@@ -19,7 +19,7 @@ default-lang: en
 offline-time-counting: true
 #Enable additional penalty when players try to destroy the jail?
 enable-penalty: true
-#How much time to be added to that player as penalty? (minutes)
+#How much time to be added to that player as penalty?
 penalty-time: 10
 #Allow players to bail using money?
 allow-bail: true
@@ -41,6 +41,8 @@ votes-to-jail-player: 4
 show-prisoner-timer: true
 #Check player's UUID when they join? (Jailed players may change their name)
 check-UUID: true
+#Time unit (min|sec|hr)
+time-unit: min
 
 ### Config version ###
 #Do not modify this, otherwise plugin may not work properly

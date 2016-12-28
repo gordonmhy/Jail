@@ -45,7 +45,7 @@ class JailCommand extends BaseCommand
                     return true;
                 }
                 $jail = $args[1];
-                $minutes = $args[2];
+                $time = $args[2];
                 if (isset($args[3]) !== false) {
                     $reason = $this->getReason($args);
                 }
@@ -57,7 +57,7 @@ class JailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("jail.you.not.jail.that.player"));
                     return true;
                 }
-                if ($minutes != "-i" && (is_numeric($minutes) !== true || $minutes > 6000)) {
+                if ($time != "-i" && (is_numeric($time) !== true || $time > 6000)) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("jail.invalid.time"));
                     return true;
                 }
@@ -65,8 +65,8 @@ class JailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("jail.already.jailed"));
                     return true;
                 }
-                if ($this->getPlugin()->jail($target, $jail, ($minutes == "-i" ? -1 : $minutes), (isset($args[3]) ? $reason : "no reason")) !== false) {
-                    $issuer->sendMessage(str_replace("%player%", strtolower($target->getName()), str_replace("%time%", ($minutes == "-i" ? "infinite" : $minutes), $this->getPlugin()->getMessage("jail.success.sender"))));
+                if ($this->getPlugin()->jail($target, $jail, ($time == "-i" ? -1 : $time), (isset($args[3]) ? $reason : "no reason")) !== false) {
+                    $issuer->sendMessage(str_replace("%player%", strtolower($target->getName()), str_replace("%time%", ($time == "-i" ? "infinite" : $time), $this->getPlugin()->getMessage("jail.success.sender"))));
                 }
                 return true;
                 break;
