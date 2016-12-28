@@ -104,12 +104,21 @@ class PlayerListener extends BaseListener
             } else if (array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->c1_tmp) !== false && array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->c2_tmp) !== true && array_key_exists(strtolower($event->getPlayer()->getName()), $this->getPlugin()->pos_tmp) !== false) {
                 $this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
                 //Selection end
-                $this->getPlugin()->setJail($this->getPlugin()->jailName_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())], $this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())]);
+                $this->getPlugin()->setJail(
+                    $this->getPlugin()->jailName_tmp[strtolower($event->getPlayer()->getName())],
+                    $this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())],
+                    $this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())],
+                    $this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())],
+                    isset($this->getPlugin()->allowBail_tmp[$event->getPlayer()->getName()]) !== false ? $this->getPlugin()->allowBail_tmp[$event->getPlayer()->getName()] : $this->getPlugin()->getConfig()->get("allow-bail")
+                );
                 unset($this->getPlugin()->jailName_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->selection_mode[array_search(strtolower($event->getPlayer()->getName()), $this->getPlugin()->selection_mode)]);
+                if (isset($this->getPlugin()->allowBail_tmp[$event->getPlayer()->getName()]) !== false) {
+                    unset($this->getPlugin()->allowBail_tmp[$event->getPlayer()->getName()]);
+                }
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("setjail.success"));
             }
         }

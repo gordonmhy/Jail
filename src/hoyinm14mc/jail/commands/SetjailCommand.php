@@ -52,6 +52,14 @@ class SetjailCommand extends BaseCommand
                 $issuer->sendMessage(str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("setjail.initialization.start")));
                 $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.2"));
                 $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.3"));
+                if (isset($args[1]) !== false) {
+                    $allowbail = $args[1];
+                    if (is_bool($allowbail) !== true) {
+                        $allowbail = true;
+                    }
+                    $this->getPlugin()->allowBail_tmp[$issuer->getName()] = $allowbail;
+                    $issuer->sendMessage(str_replace("%bail%", $allowbail !== false ? "true" : "false", $this->getPlugin()->getMessage("setjail.bail.value")));
+                }
                 return true;
                 break;
         }

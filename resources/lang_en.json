@@ -49,5 +49,6 @@
   "timer.broadcast.bail": "Bail",
   "timer.broadcast.notallowed": "not allowed",
   "timer.broadcast.disabled": "disabled",
-  "join.uuid.rejected.kickmsg": "&c&b[JAIL&c]\n&eYour UUID is duplicated with a jailed player"
+  "join.uuid.rejected.kickmsg": "&c&b[JAIL&c]\n&eYour UUID is duplicated with a jailed player",
+  "setjail.bail.value": "&eAllow bail: &6%bail%"
 }

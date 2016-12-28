@@ -8,6 +8,7 @@ Alpha0.3.0
 - Bumped to PocketMine API 3.0.0-ALPHA1 (Older APIs compatible)
 - Updated README.md, removing known bug 'GUI not showing'
 - Added support for EconomyPlus (Prisoner bail function)
+- Added support for individual jail bail status (Allow bailing?)
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players

@@ -76,6 +76,11 @@ class Jail extends PluginBase implements JailAPI
     public $selection_mode = [];
 
     /**
+     * @var array:bool
+     */
+    public $allowBail_tmp = [];
+
+    /**
      * @var null|object
      */
     private $eco = null;
