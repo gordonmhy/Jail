@@ -1,6 +1,6 @@
 {
     "language": "ru",
-	"command.error.duringExecution": "An error occured during execution of this command!",
+	"command.error.duringExecution": "Произошла ошибка во время выполнения этой команды!",
 	"no.permission": "&cУ вас нет на это разрешение!",
 	"only.works.in.game": "&cКоманда доступна только в игре!",
 	"jail.not.exist": "&cТюрма не доступна",
