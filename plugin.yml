@@ -1,6 +1,6 @@
 name: Jail
 main: hoyinm14mc\jail\Jail
-api: 2.0.0
+api: ["2.0.0", "3.0.0-ALPHA1"]
 version: Alpha0.3.0
 author: hoyinm14mc
 description: An advanced jail punishment system for PocketMine servers
