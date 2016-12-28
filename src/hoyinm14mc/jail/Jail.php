@@ -134,7 +134,8 @@ class Jail extends PluginBase implements JailAPI
         $this->initializeLanguage();
         $ecoPlugs = [
             "PocketMoney",
-            "EconomyAPI"
+            "EconomyAPI",
+            "EconomyPlus"
         ];
         foreach ($ecoPlugs as $ecoPlug) {
             $pl = $this->getServer()->getPluginManager()->getPlugin($ecoPlug);

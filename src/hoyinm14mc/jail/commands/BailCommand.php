@@ -19,6 +19,7 @@
 
 namespace hoyinm14mc\jail\commands;
 
+use hoyinm14mc\jail\economy\Economyplus;
 use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseCommand;
 use hoyinm14mc\jail\economy\Economyapi;
@@ -61,6 +62,10 @@ class BailCommand extends BaseCommand
                         return true;
                     case "PocketMoney":
                         $eco = new Pocketmoney($this->getPlugin());
+                        $eco->bail($issuer);
+                        return true;
+                    case "EconomyPlus":
+                        $eco = new Economyplus($this->getPlugin());
                         $eco->bail($issuer);
                         return true;
                 }
