@@ -24,8 +24,6 @@ _Jail is still in alpha stage, that means it doesn't contain all of the features
 - [x] Customizable time counting mode (offline/online)
 - [x] UUID Checker! Prevents IGN changes
 - [x] More to be added very soon!
-- [ ] Mines for prisons mode
-- [ ] Jail escape mode
 
 ###Tutorials:
 - [Building and setting a jail](https://youtu.be/HR8XhOizd-c)
