@@ -43,7 +43,7 @@ class SetjailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
-                if ($issuer->getGamemode() != 1) {
+                if ($this->getPlugin()->getServer()->getPlayer($issuer->getName())->getGamemode() != 1) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("setjail.must.creative.mode"));
                     return true;
                 }
