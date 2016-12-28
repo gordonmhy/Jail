@@ -23,6 +23,7 @@ _Jail is still in alpha stage, that means it doesn't contain all of the features
 - [x] Bail! Allows players to bail to unjail
 - [x] Customizable time counting mode (offline/online)
 - [x] UUID Checker! Prevents IGN changes
+- [x] Customizable time unit
 - [x] More to be added very soon!
 
 ###Tutorials:
