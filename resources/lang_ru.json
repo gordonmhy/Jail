@@ -46,9 +46,12 @@
 	"timer.broadcast.jailed": "&3Вы посажены!",
 	"timer.broadcast.timeleft": "&6Время вышло",
 	"timer.broadcast.infinite": "бесконечность",
-	"timer.broadcast.bail": "Bail",
+	"timer.broadcast.bail": "&fBail&r",
 	"timer.broadcast.notallowed": "не доступно",
 	"timer.broadcast.disabled": "отключает",
 	"join.uuid.rejected.kickmsg": "&c&b[JAIL&c]\n&eYour UUID is duplicated with a jailed player",
-	"setjail.bail.value": "&eAllow bail: &6%bail%"
+	"setjail.bail.value": "&eAllow bail: &6%bail%",
+	"sign.destroy.success": "[Jail] Bail sign removed!",
+	"sign.create.success": "[Jail] Bail sign created!",
+	"sign.not.jailed": "&cYou are not jailed!"
 }

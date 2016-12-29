@@ -88,3 +88,12 @@ permission:
   jail.uuidcheck.bypass:
     default: false
     description: Allows players to bypass UUID check while logging into the server
+  jail.sign.destroy:
+    default: op
+    description: Allows admins to remove bail signs
+  jail.sign.create:
+    default: op
+    description: Allows admins to create bail signs
+  jail.sign.use:
+    default: true
+    description: Allows prisoners to bail

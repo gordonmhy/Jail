@@ -151,12 +151,6 @@ class PlayerListener extends BaseListener
         }
     }
 
-    /*public function onPlayerHungerChange(PlayerHungerChangeEvent $event){
-        if($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $this->getPlugin()->getConfig()->get("disable-hunger") !== false){
-            $event->setCancelled(true);
-        }
-    }*/
-
 }
 
 ?>

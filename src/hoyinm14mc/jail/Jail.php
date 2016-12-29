@@ -32,6 +32,7 @@ use hoyinm14mc\jail\commands\VotejailCommand;
 use hoyinm14mc\jail\listeners\BlockListener;
 use hoyinm14mc\jail\listeners\PlayerListener;
 use hoyinm14mc\jail\listeners\EntityListener;
+use hoyinm14mc\jail\listeners\sign\SignListener;
 use hoyinm14mc\jail\tasks\JailTimingTask;
 use hoyinm14mc\jail\tasks\TimeBroadcastTask;
 use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
@@ -167,6 +168,7 @@ class Jail extends PluginBase implements JailAPI
         $this->getServer()->getPluginManager()->registerEvents(new PlayerListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new BlockListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new EntityListener($this), $this);
+        $this->getServer()->getPluginManager()->registerEvents(new SignListener($this), $this);
         $this->getLogger()->info($this->colorMessage("&aLoaded Successfully!"));
         if ($this->getConfig()->get("scheduled-update-checker") !== false) {
             $this->getLogger()->info($this->colorMessage("&eInitialized scheduled update checker"));

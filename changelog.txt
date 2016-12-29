@@ -10,6 +10,7 @@ Alpha0.3.0
 - Added support for EconomyPlus (Prisoner bail function)
 - Added support for individual jail bail status (Allow bailing?)
 - Default time unit is now customizable in configuration file
+- Added bail sign. 1st line: [Bail]
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players

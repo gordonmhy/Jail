@@ -46,9 +46,12 @@
 	"timer.broadcast.jailed": "&3你被監禁了!",
 	"timer.broadcast.timeleft": "&6剩下的時間",
 	"timer.broadcast.infinite": "無限",
-	"timer.broadcast.bail": "保釋",
+	"timer.broadcast.bail": "&f保釋&r",
 	"timer.broadcast.notallowed": "不允許",
 	"timer.broadcast.disabled": "停用",
 	"join.uuid.rejected.kickmsg": "&c&b[監獄&c]\n&e您的UDID與一名被監禁的玩家相同",
-	"setjail.bail.value": "&e允許保釋： &6%bail%"
+	"setjail.bail.value": "&e允許保釋： &6%bail%",
+	"sign.destroy.success": "[Jail] Bail sign removed!",
+	"sign.create.success": "[Jail] Bail sign created!",
+	"sign.not.jailed": "&cYou are not jailed!"
 }
