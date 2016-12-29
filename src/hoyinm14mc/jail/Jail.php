@@ -233,8 +233,9 @@ class Jail extends PluginBase implements JailAPI
 
     /**
      * @param int $time
+     * @return int
      */
-    public function convertTime(int $time)
+    public function convertTime(int $time): int
     {
         switch ($this->getConfig()->get("time-unit")) {
             case "min":
