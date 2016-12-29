@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is a part of Jail.
- * Copyright (C) 2016 hoyinm14mc
+ * Copyright (C) 2017 hoyinm14mc
  *
  * Jail is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
