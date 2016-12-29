@@ -44,11 +44,11 @@ class BailCommand extends BaseCommand
                     return true;
                 }
                 if ($this->getPlugin()->isJailed(strtolower($issuer->getName())) !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("bail-no-jailed"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("you.not.jailed"));
                     return true;
                 }
                 if ($this->getPlugin()->getEco() === null || $this->getPlugin()->getConfig()->get("allow-bail") !== true) {
-                    $issuer->sendMessage($this->getPlugin()->getMessage("bail-feature-is-disabled"));
+                    $issuer->sendMessage($this->getPlugin()->getMessage("bail.feature.disabled"));
                     return true;
                 }
                 if ($this->getPlugin()->isJailTimeInfinity(strtolower($issuer->getName())) !== false) {
