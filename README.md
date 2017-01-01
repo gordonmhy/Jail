@@ -7,7 +7,7 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 >
 > Proved to be advanced relative to other similar plugins!
 
-####Download Latest Build: [Jail_vAlpha0.2.3.phar](https://github.com/hoyinm14mc/Jail/releases/download/alpha0.2.3/Jail_vAlpha0.2.3.phar)
+####Download Latest Build: [Jail_vAlpha0.3.0.1phar](https://github.com/hoyinm14mc/Jail/releases/download/alpha0.3.0.1/Jail_vAlpha0.3.0.1.phar)
 
 _Jail is still in alpha stage, that means it doesn't contain all of the features that are planned for the final version._
 
@@ -24,6 +24,7 @@ _Jail is still in alpha stage, that means it doesn't contain all of the features
 - [x] Customizable time counting mode (offline/online)
 - [x] UUID Checker! Prevents IGN changes
 - [x] Customizable time unit
+- [x] Jail-vote! Players voting players into jail
 - [x] More to be added very soon!
 
 ###Tutorials:
