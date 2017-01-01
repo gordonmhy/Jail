@@ -25,6 +25,7 @@ _Jail is still in alpha stage, that means it doesn't contain all of the features
 - [x] UUID Checker! Prevents IGN changes
 - [x] Customizable time unit
 - [x] Jail-vote! Players voting players into jail
+- [x] API for developers to access externally
 - [x] More to be added very soon!
 
 ###Tutorials:
