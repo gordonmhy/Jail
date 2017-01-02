@@ -294,7 +294,8 @@ class Jail extends PluginBase implements JailAPI
      */
     public function hasAreaSelected(Player $player): bool
     {
-        return array_key_exists(strtolower($player->getName()), $this->c1_tmp) && array_key_exists(strtolower($player->getName()), $this->c2_tmp);
+        return array_key_exists(strtolower($player->getName()), $this->c1_tmp) &&
+            array_key_exists(strtolower($player->getName()), $this->c2_tmp);
     }
 
     /**
@@ -436,6 +437,7 @@ class Jail extends PluginBase implements JailAPI
         $j[$jail_name]["c2"]["level"] = $c2->getLevel()->getName();
         $j[$jail_name]["allow-bail"] = $bail;
         $j[$jail_name]["allow-escape-area"] = $escape;
+        $j[$jail_name]["mine"]["isSet"] = false;
         $this->data1->setAll($j);
         $this->data1->save();
     }

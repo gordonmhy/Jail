@@ -43,6 +43,11 @@ show-prisoner-timer: true
 check-UUID: true
 #Time unit (min|sec|hr)
 time-unit: min
+#Block type of mine (The blocks that fill the mine, which sells money) (block_id) TODO
+block: 4
+#Money per 20 blocks (Please put in integers instead of float value) TODO
+money-per-20blocks: 10
+
 
 ### Config version ###
 #Do not modify this, otherwise plugin may not work properly
