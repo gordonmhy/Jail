@@ -32,6 +32,12 @@ interface JailAPI
     public static function getInstance(): Jail;
 
     /**
+     * Allow external access to mines control
+     * @return Mines
+     */
+    public function getMines();
+
+    /**
      * Checks if a player's profile exist in Jail's data
      * @param string $player_name
      * @return bool
