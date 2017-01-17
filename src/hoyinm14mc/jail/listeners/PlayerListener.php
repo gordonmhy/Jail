@@ -21,6 +21,7 @@ namespace hoyinm14mc\jail\listeners;
 
 use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseListener;
+use hoyinm14mc\jail\Mines;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerJoinEvent;
@@ -122,6 +123,21 @@ class PlayerListener extends BaseListener
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("setjail.success"));
             }
         }
+        // Mine of jail
+        $mines = new Mines($this->getPlugin());
+        if (array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mineName_tmp) !== false && array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mine_c1) !== true && array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mine_c2) !== true) {
+            $mines->mine_c1[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("mine.set.tap.corner.1"));
+        } else if (array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mineName_tmp) !== false && array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mine_c1) !== false && array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mine_c2) !== true) {
+            $mines->mine_c2[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("mine.set.tap.corner.2"));
+            //Selection end
+            $mines->setMine($mines->mineName_tmp[strtolower($event->getPlayer()->getName())], $mines->mine_c1[strtolower($event->getPlayer()->getName())], $mines->mine_c2[strtolower($event->getPlayer()->getName())]);
+            unset($this->getPlugin()->mineName_tmp[strtolower($event->getPlayer()->getName())]);
+            unset($this->getPlugin()->mine_c1[strtolower($event->getPlayer()->getName())]);
+            unset($this->getPlugin()->mine_c2[strtolower($event->getPlayer()->getName())]);
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("mine.set.success"));
+        }
     }
 
     public function onPlayerMove(PlayerMoveEvent $event)
@@ -148,6 +164,12 @@ class PlayerListener extends BaseListener
             unset($this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())]);
             unset($this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())]);
             unset($this->getPlugin()->selection_mode[array_search(strtolower($event->getPlayer()->getName()), $this->getPlugin()->selection_mode)]);
+        }
+        $mines = new Mines($this->getPlugin());
+        if (isset($mines->mineName_tmp[$event->getPlayer()->getName()])) {
+            unset($this->getPlugin()->mineName_tmp[strtolower($event->getPlayer()->getName())]);
+            unset($this->getPlugin()->mine_c1[strtolower($event->getPlayer()->getName())]);
+            unset($this->getPlugin()->mine_c2[strtolower($event->getPlayer()->getName())]);
         }
     }
 

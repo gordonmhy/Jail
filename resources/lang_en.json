@@ -53,5 +53,8 @@
   "setjail.bail.value": "&eAllow bail: &6%bail%",
   "sign.destroy.success": "[Jail] Bail sign removed!",
   "sign.create.success": "[Jail] Bail sign created!",
-  "sign.not.jailed": "&cYou are not jailed!"
+  "sign.not.jailed": "&cYou are not jailed!",
+  "mine.set.success": "&aMine set successfully!",
+  "mine.set.tap.corner.1": "&eNow tap on the 1st corner of the mine",
+  "mine.set.tap.corner.2": "&eNow tap on the 2nd corner of the mine"
 }
