@@ -14,6 +14,7 @@ Alpha0.3.0
 - Fixed some messages not converted from their keys
 - Prisoners' gamemode will be set to 0 instead of 2
 - Added 'jail.modify.bypass' perm-node (detail in plugin.yml)
+- Fixed block-break detection (warning broadcasting issue)
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players

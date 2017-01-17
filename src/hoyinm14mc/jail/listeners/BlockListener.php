@@ -21,6 +21,7 @@ namespace hoyinm14mc\jail\listeners;
 
 use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseListener;
+use hoyinm14mc\jail\Mines;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\level\Position;
@@ -33,18 +34,21 @@ class BlockListener extends BaseListener
         $t = $this->getPlugin()->data->getAll();
         $j = $this->getPlugin()->data1->getAll();
         $cfg = $this->getPlugin()->getConfig();
+        $mines = new Mines($this->getPlugin());
         foreach ($j as $jail => $value) {
-            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->hasPermission("jail.modify.bypass") !== true) {
+            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== true && $event->getPlayer()->hasPermission("jail.modify.bypass") !== true) {
                 $event->setCancelled(true);
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.block.is.restricted"));
             }
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-break") !== true) {
-            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
-            $event->setCancelled(true);
-            if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
-                $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));
-                $event->getPlayer()->sendMessage(str_replace("%time%", $cfg->get("penalty-time"), $this->getPlugin()->getMessage("penalty.added.prisoner")));
+            if ($mines->hasMineSet($t[strtolower($event->getPlayer()->getName())]["jail"]) !== true && $mines->insideMine($t[strtolower($event->getPlayer()->getName())]["jail"], new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) !== true) {
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
+                $event->setCancelled(true);
+                if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
+                    $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));
+                    $event->getPlayer()->sendMessage(str_replace("%time%", $cfg->get("penalty-time"), $this->getPlugin()->getMessage("penalty.added.prisoner")));
+                }
             }
         }
     }
@@ -55,7 +59,7 @@ class BlockListener extends BaseListener
         $j = $this->getPlugin()->data1->getAll();
         $cfg = $this->getPlugin()->getConfig();
         foreach ($j as $jail => $value) {
-            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->hasPermission("jail.modify.bypass") !== true) {
+            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== true && $event->getPlayer()->hasPermission("jail.modify.bypass") !== true) {
                 $event->setCancelled(true);
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.block.is.restricted"));
 
