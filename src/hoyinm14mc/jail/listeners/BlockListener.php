@@ -34,7 +34,7 @@ class BlockListener extends BaseListener
         $j = $this->getPlugin()->data1->getAll();
         $cfg = $this->getPlugin()->getConfig();
         foreach ($j as $jail => $value) {
-            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->isOp() !== true) {
+            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->hasPermission("jail.modify.bypass") !== true) {
                 $event->setCancelled(true);
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.block.is.restricted"));
             }
@@ -55,7 +55,7 @@ class BlockListener extends BaseListener
         $j = $this->getPlugin()->data1->getAll();
         $cfg = $this->getPlugin()->getConfig();
         foreach ($j as $jail => $value) {
-            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->isOp() !== true) {
+            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) && $event->getPlayer()->hasPermission("jail.modify.bypass") !== true) {
                 $event->setCancelled(true);
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.block.is.restricted"));
 

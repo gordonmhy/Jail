@@ -97,3 +97,6 @@ permission:
   jail.sign.use:
     default: true
     description: Allows prisoners to bail
+  jail.modify.bypass:
+    default: op
+    description: Allows certain players to build/destroy jail area structures
