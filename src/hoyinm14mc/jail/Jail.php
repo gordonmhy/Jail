@@ -339,7 +339,7 @@ class Jail extends PluginBase implements JailAPI
         $t[strtolower($player->getName())]["gamemode"] = $player->getGamemode();
         $this->data->setAll($t);
         $this->data->save();
-        $player->setGamemode(($this->getConfig()->get("enable-penalty") !== true ? 2 : 0));
+        $player->setGamemode(0);
         $player->sendMessage(str_replace("%time%", ($time != -1 ? $time : "infinite"), str_replace("%reason%", $reason, $this->getMessage("jail.success.prisoner"))));
         $player->teleport(new Position($j[$jail_name]["pos"]["x"], $j[$jail_name]["pos"]["y"], $j[$jail_name]["pos"]["z"], $this->getServer()->getLevelByName($j[$jail_name]["pos"]["level"])));
         $this->getLogger()->info($this->colorMessage("&6Jailed player " . strtolower($player->getName()) . " for " . ($time == -1 ? "infinite time" : ($time > 1 ? $time . " " . $this->getConfig()->get("time-unit") . "s" : $time . " " . $this->getConfig()->get("time-unit"))) . "\nReason: " . $reason));
