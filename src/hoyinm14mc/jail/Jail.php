@@ -213,6 +213,14 @@ class Jail extends PluginBase implements JailAPI
     }
 
     /**
+     * @return Mines
+     */
+    public function getMines()
+    {
+        return new Mines($this);
+    }
+
+    /**
      * @param string $message
      * @return string
      */
