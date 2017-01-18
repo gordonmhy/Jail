@@ -1,11 +1,9 @@
 Changelog of Jail
 
 Alpha0.3.0
-- Added JailAPI.php, as an interface of Jail's API
 - Code cleanup
 - Fixed newly joined players all being jailed bug #10
 - Fixed console popping errors of isJailed() bug #10
-- Bumped to PocketMine API 3.0.0-ALPHA1 (Older APIs compatible)
 - Updated README.md, removing known bug 'GUI not showing'
 - Added support for EconomyPlus (Prisoner bail function)
 - Added support for individual jail bail status (Allow bailing?)
@@ -17,6 +15,11 @@ Alpha0.3.0
 - Fixed block-break detection (warning broadcasting issue)
 - Fixed player-escape-warning overlapping the timer GUI
 - Implemented prisoner inventory saver
+- Fixed a word misspell in lang_zh.json
+Technical updates:
+- Added JailAPI.php, as an interface of Jail's API
+- Bumped to PocketMine API 3.0.0-ALPHA1 (Older APIs compatible)
+- Different sign types are checked in individual listeners
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players

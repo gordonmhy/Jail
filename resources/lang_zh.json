@@ -49,7 +49,7 @@
 	"timer.broadcast.bail": "&f保釋&r",
 	"timer.broadcast.notallowed": "不允許",
 	"timer.broadcast.disabled": "停用",
-	"join.uuid.rejected.kickmsg": "&c&b[監獄&c]\n&e您的UDID與一名被監禁的玩家相同",
+  "join.uuid.rejected.kickmsg": "&c&b[監獄&c]\n&e您的UUID與一名被監禁的玩家相同",
 	"setjail.bail.value": "&e允許保釋： &6%bail%",
 	"sign.destroy.success": "[Jail] Bail sign removed!",
 	"sign.create.success": "[Jail] Bail sign created!",
@@ -63,5 +63,7 @@
 	"mine.not.set": "&cMine isn't set in this jail!",
 	"mine.set.initialization": "&aInitialized mine set procedure for jail '%jail%'",
 	"mine.remove.successful": "&aRemoved mine successfully for jail '%jail%'",
-	"mine.is.set": "&eMine is set in this jail!"
+  "mine.is.set": "&eMine is set in this jail!",
+  "sign.sellhand.tag": "&fSell Hand&r",
+  "sign.located.outsideJail": "&eYou should create the sign inside a jail!"
 }
