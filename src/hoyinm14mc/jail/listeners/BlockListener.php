@@ -19,7 +19,6 @@
 
 namespace hoyinm14mc\jail\listeners;
 
-use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseListener;
 use hoyinm14mc\jail\Mines;
 use pocketmine\event\block\BlockBreakEvent;
