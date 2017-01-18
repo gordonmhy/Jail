@@ -1,10 +1,8 @@
 Changelog of Jail
 
 Alpha0.3.0
-- Code cleanup
 - Fixed newly joined players all being jailed bug #10
-- Fixed console popping errors of isJailed() bug #10
-- Updated README.md, removing known bug 'GUI not showing'
+- Fixed console popping errors of isJailed()-error bug #10
 - Added support for EconomyPlus (Prisoner bail function)
 - Added support for individual jail bail status (Allow bailing?)
 - Default time unit is now customizable in configuration file
@@ -17,9 +15,10 @@ Alpha0.3.0
 - Implemented prisoner inventory saver
 - Fixed a word misspell in lang_zh.json
 Technical updates:
-- Added JailAPI.php, as an interface of Jail's API
+- Code cleanup - Removed unused code
+- Added an interface class for Jail's API
 - Bumped to PocketMine API 3.0.0-ALPHA1 (Older APIs compatible)
-- Different sign types are checked in individual listeners
+- Different sign types are checked with individual listeners
 - Signs positioning technology enhancement
 
 Alpha0.2.3
