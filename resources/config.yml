@@ -43,10 +43,13 @@ show-prisoner-timer: true
 check-UUID: true
 #Time unit (min|sec|hr)
 time-unit: min
-#Block type of mine (The blocks that fill the mine, which sells money) (block_id) TODO
-block: 4
-#Money per 20 blocks (Please put in integers instead of float value) TODO
-money-per-20blocks: 10
+#Block type of mine (The blocks that fill the mine) (block_id)
+block: 15
+#Item type of mine (The item that prisoners can sell and earn money) (item_id)
+#The value corresponds to the item which drops when you destroy a block in mine
+item: 265
+#Money per 20 blocks
+money-per-block: 0.5
 
 
 ### Config version ###

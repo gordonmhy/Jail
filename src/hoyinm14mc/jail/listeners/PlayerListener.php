@@ -24,6 +24,7 @@ use hoyinm14mc\jail\base\BaseListener;
 use hoyinm14mc\jail\Mines;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\player\PlayerItemConsumeEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerMoveEvent;
@@ -127,10 +128,9 @@ class PlayerListener extends BaseListener
         $mines = new Mines($this->getPlugin());
         if (array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mineName_tmp) !== false && array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mine_c1) !== true && array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mine_c2) !== true) {
             $mines->mine_c1[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
-            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("mine.set.tap.corner.1"));
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("mine.set.tap.corner.2"));
         } else if (array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mineName_tmp) !== false && array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mine_c1) !== false && array_key_exists(strtolower($event->getPlayer()->getName()), $mines->mine_c2) !== true) {
             $mines->mine_c2[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
-            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("mine.set.tap.corner.2"));
             //Selection end
             $mines->setMine($mines->mineName_tmp[strtolower($event->getPlayer()->getName())], $mines->mine_c1[strtolower($event->getPlayer()->getName())], $mines->mine_c2[strtolower($event->getPlayer()->getName())]);
             unset($this->getPlugin()->mineName_tmp[strtolower($event->getPlayer()->getName())]);
@@ -146,7 +146,7 @@ class PlayerListener extends BaseListener
         $j = $this->getPlugin()->data1->getAll();
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) && $this->getPlugin()->jailExists($t[strtolower($event->getPlayer()->getName())]["jail"]) && $this->getPlugin()->insideJail($t[strtolower($event->getPlayer()->getName())]["jail"], $event->getPlayer()->getPosition()) !== true) {
             $event->getPlayer()->teleport(new Position($j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["x"], $j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["y"], $j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["z"], $this->getPlugin()->getServer()->getLevelByName($j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["level"])));
-            $event->getPlayer()->sendPopup($this->getPlugin()->getMessage("listener.player.not.allowed.leave"));
+            $event->getPlayer()->sendPopup("\n" . $this->getPlugin()->getMessage("listener.player.not.allowed.leave"));
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $this->getPlugin()->getConfig()->get("allow-movement") !== true) {
             if ($event->getFrom()->x != $event->getPlayer()->x || $event->getFrom()->y != $event->getPlayer()->y || $event->getFrom()->z != $event->getPlayer()->z) {
@@ -173,6 +173,12 @@ class PlayerListener extends BaseListener
         }
     }
 
-}
+    public function onItemConsume(PlayerItemConsumeEvent $event)
+    {
+        if ($this->getPlugin()->isJailed($event->getPlayer()->getName()) !== false && $event->getItem()->getId() == 274) {
+            $event->setCancelled(true);
+        }
+    }
 
+}
 ?>

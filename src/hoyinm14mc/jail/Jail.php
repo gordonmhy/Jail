@@ -23,6 +23,7 @@ use hoyinm14mc\jail\commands\BailCommand;
 use hoyinm14mc\jail\commands\DeljailCommand;
 use hoyinm14mc\jail\commands\JailCommand;
 use hoyinm14mc\jail\commands\JailedCommand;
+use hoyinm14mc\jail\commands\JailmineCommand;
 use hoyinm14mc\jail\commands\JailsCommand;
 use hoyinm14mc\jail\commands\SetjailCommand;
 use hoyinm14mc\jail\commands\SwitchjailCommand;
@@ -37,6 +38,7 @@ use hoyinm14mc\jail\tasks\JailTimingTask;
 use hoyinm14mc\jail\tasks\TimeBroadcastTask;
 use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
 use hoyinm14mc\jail\tasks\updater\AutoUpdateChecker;
+use pocketmine\item\Item;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -163,6 +165,7 @@ class Jail extends PluginBase implements JailAPI
         $this->getCommand("tpjail")->setExecutor(new TpjailCommand($this));
         $this->getCommand("bail")->setExecutor(new BailCommand($this));
         $this->getCommand("votejail")->setExecutor(new VotejailCommand($this));
+        $this->getCommand("jailmine")->setExecutor(new JailmineCommand($this));
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new JailTimingTask($this), 20);
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new TimeBroadcastTask($this), 3);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerListener($this), $this);
@@ -345,9 +348,12 @@ class Jail extends PluginBase implements JailAPI
         }
         $t[strtolower($player->getName())]["reason"] = $reason;
         $t[strtolower($player->getName())]["gamemode"] = $player->getGamemode();
+        $t[strtolower($player->getName())]["inventory"] = $player->getInventory()->getContents();
         $this->data->setAll($t);
         $this->data->save();
         $player->setGamemode(0);
+        $player->getInventory()->clearAll();
+        $player->getInventory()->setItemInHand(Item::get(274));
         $player->sendMessage(str_replace("%time%", ($time != -1 ? $time : "infinite"), str_replace("%reason%", $reason, $this->getMessage("jail.success.prisoner"))));
         $player->teleport(new Position($j[$jail_name]["pos"]["x"], $j[$jail_name]["pos"]["y"], $j[$jail_name]["pos"]["z"], $this->getServer()->getLevelByName($j[$jail_name]["pos"]["level"])));
         $this->getLogger()->info($this->colorMessage("&6Jailed player " . strtolower($player->getName()) . " for " . ($time == -1 ? "infinite time" : ($time > 1 ? $time . " " . $this->getConfig()->get("time-unit") . "s" : $time . " " . $this->getConfig()->get("time-unit"))) . "\nReason: " . $reason));
@@ -378,6 +384,7 @@ class Jail extends PluginBase implements JailAPI
             return false;
         }
         $gm = $t[$player_name]["gamemode"];
+        $contents = $t[$player_name]["inventory"];
         $t[$player_name]["jailed"] = false;
         unset($t[$player_name]["jail"]);
         if ($this->isJailTimeInfinity($player_name) !== true) {
@@ -385,6 +392,7 @@ class Jail extends PluginBase implements JailAPI
         }
         unset($t[$player_name]["reason"]);
         unset($t[$player_name]["gamemode"]);
+        unset($t[$player_name]["inventory"]);
         $this->data->setAll($t);
         $this->data->save();
         $player = $this->getServer()->getPlayer($player_name);
@@ -392,6 +400,8 @@ class Jail extends PluginBase implements JailAPI
             $player->setGamemode($gm);
             //The spawn location can be changed by executing '/setspawn' command in EssentialsPE
             $player->teleport($this->getServer()->getDefaultLevel()->getSpawnLocation());
+            $player->getInventory()->clearAll();
+            $player->getInventory()->setContents($contents);
             $player->sendMessage($this->getMessage("unjail.you.success"));
         }
         $this->getLogger()->info($this->colorMessage("&6Unjailed player " . $player_name));
