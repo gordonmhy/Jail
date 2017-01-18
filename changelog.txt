@@ -20,6 +20,7 @@ Technical updates:
 - Added JailAPI.php, as an interface of Jail's API
 - Bumped to PocketMine API 3.0.0-ALPHA1 (Older APIs compatible)
 - Different sign types are checked in individual listeners
+- Signs positioning technology enhancement
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players

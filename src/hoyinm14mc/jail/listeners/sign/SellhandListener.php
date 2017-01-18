@@ -127,6 +127,11 @@ class SellhandListener extends BaseListener
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("mine.not.set"));
                 return false;
             }
+            $t = $this->getPlugin()->data->getAll();
+            if ($t[$event->getPlayer()->getName()]["jail"] != $ja) {
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("sign.not.inJail"));
+                return false;
+            }
             $this->getPlugin()->getServer()->dispatchCommand($event->getPlayer(), "jailsellhand");
             return true;
         }

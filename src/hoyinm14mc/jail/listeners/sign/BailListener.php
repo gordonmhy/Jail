@@ -24,6 +24,8 @@ use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\tile\Sign;
+use pocketmine\level\Position;
+use pocketmine\math\Vector3;
 
 class BailListener extends BaseListener
 {
@@ -67,6 +69,18 @@ class BailListener extends BaseListener
             $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("no.permission"));
             return false;
         }
+        $j = $this->getPlugin()->data1->getAll();
+        $inside = false;
+        foreach (array_keys($j) as $jail) {
+            if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) !== false) {
+                $inside = true;
+            }
+        }
+        if ($inside !== true) {
+            $event->getBlock()->getLevel()->setBlock(new Vector3($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z), Block::get(0));
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("sign.located.outsideJail"));
+            return false;
+        }
         $event->setLine(0, $this->getPlugin()->colorMessage("&7[" . $this->getPlugin()->getMessage("timer.broadcast.bail") . "&7]"));
         $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("sign.create.success"));
         return true;
@@ -89,6 +103,18 @@ class BailListener extends BaseListener
             }
             if ($event->getPlayer()->hasPermission("jail.sign.use") !== true) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("no.permission"));
+                return false;
+            }
+            $j = $this->getPlugin()->data1->getAll();
+            $ja = "";
+            foreach (array_keys($j) as $jail) {
+                if ($this->getPlugin()->insideJail($jail, new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) !== false) {
+                    $ja = $jail;
+                }
+            }
+            $t = $this->getPlugin()->data->getAll();
+            if ($t[$event->getPlayer()->getName()]["jail"] != $ja) {
+                $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("sign.not.inJail"));
                 return false;
             }
             $this->getPlugin()->getServer()->dispatchCommand($event->getPlayer(), "bail");
