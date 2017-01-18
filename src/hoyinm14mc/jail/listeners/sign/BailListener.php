@@ -25,7 +25,7 @@ use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\tile\Sign;
 
-class SignListener extends BaseListener
+class BailListener extends BaseListener
 {
 
     public function onBlockBreak(BlockBreakEvent $event)
