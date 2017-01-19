@@ -19,7 +19,6 @@
 
 namespace hoyinm14mc\jail\economy;
 
-use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseEconomy;
 use pocketmine\item\Item;
 use pocketmine\Player;
