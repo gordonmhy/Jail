@@ -58,6 +58,11 @@ class Jail extends PluginBase implements JailAPI
     private static $instance = null;
 
     /**
+     * @var bool
+     */
+    public $database = false;
+
+    /**
      * @var array:array
      */
     public $c1_tmp = [];
@@ -141,6 +146,11 @@ class Jail extends PluginBase implements JailAPI
             $this->saveDefaultConfig();
         }
         $this->reloadConfig();
+        $database = false;
+        if ($this->initializeDatabase() !== false) {
+            $database = true;
+        }
+        $this->database = $database;
         $this->data = new Config($this->getDataFolder() . "players.yml", Config::YAML, array());
         $this->data1 = new Config($this->getDataFolder() . "jails.yml", Config::YAML, array());
         $this->initializeLanguage();
@@ -575,6 +585,22 @@ class Jail extends PluginBase implements JailAPI
             $this->data->save();
             $this->getServer()->broadcastMessage(str_replace("%player%", $player_name, $this->getMessage("votes.enough.jail.broadcast")));
         }
+        return true;
+    }
+
+    private function initializeDatabase(): bool
+    {
+        $cfg = $this->getConfig();
+        $host = $cfg->get("host");
+        $username = $cfg->get("username");
+        $password = $cfg->get("password");
+        $databaseName = $cfg->get("databaseName");
+        $connection = new \mysqli($host, $username, $password, $databaseName);
+        if ($connection->connect_error) {
+            $this->getLogger()->info("SQL Server connection error: " . $connection->connect_error);
+            return false;
+        }
+        $this->getLogger()->info("SQL server connection detected!");
         return true;
     }
 
