@@ -1,6 +1,7 @@
 Changelog of Jail
 
 Alpha0.3.0
+- Implemented Mining-For-Money-For-Bailing feature! (Tutorial soon)
 - Fixed newly joined players all being jailed bug #10
 - Fixed console popping errors of isJailed()-error bug #10
 - Added support for EconomyPlus (Prisoner bail function)

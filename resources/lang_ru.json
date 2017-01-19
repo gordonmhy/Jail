@@ -64,6 +64,7 @@
 	"mine.set.initialization": "&aInitialized mine set procedure for jail '%jail%'",
 	"mine.remove.successful": "&aRemoved mine successfully for jail '%jail%'",
   "mine.is.set": "&eMine is set in this jail!",
+  "mine.reset.success": "Resetting mine of '%jail%'...",
   "sign.sellhand.tag": "&fSell Hand&r",
 	"sign.resetmine.tag": "&fReset Mine&r",
 	"sign.located.outsideJail": "&eYou should create the sign inside a jail!",

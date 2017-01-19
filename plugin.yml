@@ -57,6 +57,14 @@ commands:
     description: Manage mines of jails
     permission: jail.command.jailmine
     usage: /jailmine reset|set|remove|check <jail(mine)>
+  jailsellhand:
+    description: Prisoner's cmd> Sell ores mined for money
+    permission: jail.command.jailsellhand
+    usage: /jailsellhand
+  jailresetmine:
+    descripiton: Prisoner's cmd> Reset the mine of prisoner's jail
+    permission: jail.command.jailresetmine
+    usage: /jailresetmine
     
 permission:
   jail.command.setjail:
@@ -107,3 +115,9 @@ permission:
   jail.modify.bypass:
     default: op
     description: Allows certain players to build/destroy jail area structures
+  jail.command.jailsellhand:
+    default: true
+    description: Allows jailed players to sell their ores mined in jail
+  jail.command.jailresetmine:
+    default: true
+    description: Allows jailed players to reset their jail's mine
