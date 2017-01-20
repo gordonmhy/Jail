@@ -15,6 +15,7 @@ Alpha0.3.0
 - Fixed player-escape-warning overlapping the timer GUI
 - Implemented prisoner inventory saver
 - Fixed a word misspell in lang_zh.json
+- Database support! (Jails.yml data backup)
 Technical updates:
 - Code cleanup - Removed unused code
 - Added an interface class for Jail's API

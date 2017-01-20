@@ -161,9 +161,6 @@ class Jail extends PluginBase implements JailAPI
         if ($this->database !== false && $this->getConfig()->get("syncLOCALtoDB") !== false) {
             $this->synchronizeToDatabase();
         }
-        if ($this->database !== false && $this->getConfig()->get("syncDBtoLOCAL") !== false) {
-            $this->synchronizeToLocal();
-        }
         $this->initializeLanguage();
         $ecoPlugs = [
             "PocketMoney",
@@ -629,7 +626,6 @@ class Jail extends PluginBase implements JailAPI
         return true;
     }
 
-    //Database synchronization task 1 (per 15 minutes)
     private function synchronizeToDatabase()
     {
         //Table name = JailData01
@@ -685,12 +681,6 @@ class Jail extends PluginBase implements JailAPI
                                       " . $j[$jail]["mine"]["c2"]["y"] . ", 
                                       " . $j[$jail]["mine"]["c2"]["z"] . ")");
         }
-    }
-
-    //Database synchronization task 2 (per 15 minutes)
-    private function synchronizeToLocal()
-    {
-
     }
 
 }
