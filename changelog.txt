@@ -7,7 +7,7 @@ Alpha0.3.0
 - Added support for EconomyPlus (Prisoner bail function)
 - Added support for individual jail's bail status(Allow bailing or not)
 - Default time unit is now customizable in configuration file
-- Added bail sign. 1st line: [Bail]
+- Implemented sign support: 1st line: [Bail] [ResetMine] [SellHand]
 - Fixed some messages not converted from their keys
 - Prisoners' gamemode will be set to 0 instead of 2
 - Added 'jail.modify.bypass' perm-node (detail in plugin.yml)
