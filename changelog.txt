@@ -22,6 +22,10 @@ Technical updates:
 - Bumped to PocketMine API 3.0.0-ALPHA1 (Older APIs compatible)
 - Different sign types are checked with individual listeners
 - Signs positioning technology enhancement
+New commands:
+- /jailmine set|remove|check|reset <jail>
+- /jailsellhand
+- /jailresetmine
 
 Alpha0.2.3
 - Fixed '/votejail' command not working for normal players
