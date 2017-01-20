@@ -51,7 +51,11 @@ item: 265
 #Money per 20 blocks
 money-per-block: 0.5
 
-### DATABASE ###
+#### DATABASE ####
+## NOT NECESSARY if you don't want to save your data to your database.
+## If nothing is set, console shows an error of SQL when server starts.
+## The above error is NORMAL and EXPECTED if you have no SQL server
+## information correctly configured.
 #Server info
 host: 127.0.0.1
 username: User01
