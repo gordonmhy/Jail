@@ -14,7 +14,7 @@
 	"jail.success.prisoner": "&eВы были посажены на %time% минут (ы)!\n&eПричина: %reason%",
 	"bail.feature.disabled": "&cФункция 'Bail' отключена!",
 	"bail.not.use": "&cВы не можете использовать Bail, как вы заключены в тюрьму на неопределенный срок",
-	"bail.money.remaining": "Bank : -$%deduction% | $%remaining% remaining in your account",
+	"bail.money.remaining": "Банк : -$%deduction% | $%remaining% оставшихся в вашем аккаунте",
 	"bail.money.not.enough": "&cYou don't have enough money to bail!\n&cYou need $%money%",
 	"deljail.success": "&eТюрма удалена успешно!",
 	"setjail.must.creative.mode": "&cВы должны быть в творческом режиме чтобы использывать эту команду!",
@@ -53,7 +53,7 @@
 	"setjail.bail.value": "&eРазрешеные залоги: &6%bail%",
 	"sign.destroy.success": "[Jail] Залог удален!",
 	"sign.create.success": "[Jail] Залог установлен!",
-	"sign.not.jailed": "&cYou are not jailed!",
+	"sign.not.jailed": "&cВы не заключены в тюрьму!",
 	"mine.set.success": "&aШахта установлена!",
 	"mine.set.tap.corner.1": "&eНажмите на первую точку чтобы установить позицию шахты",
 	"mine.set.tap.corner.2": "&eНажмите на вторую точку чтобы установить позицию шахты",
@@ -65,8 +65,8 @@
 	"mine.remove.successful": "&aУдаление шахты в тюрме '%jail%' удалось",
   "mine.is.set": "&eШахта установлена к этой тюрме",
   "mine.reset.success": "Сброс шахты в тюрме '%jail%'...",
-  "sign.sellhand.tag": "&fSell Hand&r",
+  "sign.sellhand.tag": "&fПродать рукой&r",
 	"sign.resetmine.tag": "&fСбросить шахту&r",
-	"sign.located.outsideJail": "&eYou should create the sign inside a jail!",
-	"sign.not.inJail": "Operation failed - Sign positioned outside jail."
+	"sign.located.outsideJail": "&eВы должны создать табличку внутри тюрьмы!",
+	"sign.not.inJail": "Не удалось выполнить операцию - Вход расположен снаружи тюрьмы."
 }
