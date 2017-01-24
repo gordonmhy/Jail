@@ -23,7 +23,7 @@
 	"setjail.initialization.start": "&bInitialized jail &a%jail% &bcreation procedure.",
 	"setjail.success": "&aТюрьма установлена!",
 	"setjail.tap.corner.1": "&eНажмите на первую точку чтобы установить позицыю тюрьмы.",
-	"setjail.tap.corner.2": "&eНажмите на вторую точку чтобы установить позицию тюрьмы".",
+	"setjail.tap.corner.2": "&eНажмите на вторую точку чтобы установить позицию тюрьмы.",
 	"switchjail.been.switched": "&dВы переключены на другую тюрьму.",
 	"switchjail.sender.success": "&dВы перешли %player% в другую тюрьму!",
 	"tpjail-you.tp.to.that": "&eВы тлепортирываны в тюрму!",
