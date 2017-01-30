@@ -656,7 +656,6 @@ class Jail extends PluginBase implements JailAPI
         $j = $this->data1->getAll();
         foreach (array_keys($j) as $jail) {
             $this->connection->query("INSERT INTO JailData01 
-                                      (Jail, PosX, PosY, PosZ, PosLevel, C1X, C1Y, C1Z, C1Level, C2X, C2Y, C2Z, C2Level, AllowBail, AllowAreaEscape, MineIsSet, MineC1X, MineC1Y, MineC1Z, MineC2X, MineC2Y, MineC2Z) 
                                       VALUES 
                                       ('" . $jail . "', 
                                       " . $j[$jail]["pos"]["x"] . ", 
