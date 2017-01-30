@@ -376,6 +376,7 @@ class Jail extends PluginBase implements JailAPI
         }
         $t[strtolower($player->getName())]["jailed"] = true;
         $t[strtolower($player->getName())]["jail"] = $jail_name;
+        //If time is infinite, then 'seconds' key will not be set.
         if ($time != -1) {
             $t[strtolower($player->getName())]["seconds"] = $this->convertTime($time);
         }
