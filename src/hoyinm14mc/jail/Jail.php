@@ -300,7 +300,8 @@ class Jail extends PluginBase implements JailAPI
     public function playerProfileExists(string $player_name): bool
     {
         $t = $this->data->getAll();
-        return isset($t[$player_name]);
+        return (bool)isset($t[$player_name]) !== false
+            && isset($t[$player_name]["jailed"]) !== false;
     }
 
     /**
@@ -388,8 +389,15 @@ class Jail extends PluginBase implements JailAPI
         $player->setGamemode(0);
         $player->getInventory()->clearAll();
         $player->getInventory()->setItemInHand(Item::get(274));
-        $player->sendMessage(str_replace("%time%", ($time != -1 ? $time : "infinite"), str_replace("%reason%", $reason, $this->getMessage("jail.success.prisoner"))));
-        $player->teleport(new Position($j[$jail_name]["pos"]["x"], $j[$jail_name]["pos"]["y"], $j[$jail_name]["pos"]["z"], $this->getServer()->getLevelByName($j[$jail_name]["pos"]["level"])));
+        $player->sendMessage(
+            str_replace("%time%", ($time != -1 ? $time : "infinite"),
+                str_replace("%reason%", $reason, $this->getMessage("jail.success.prisoner"))));
+        $player->teleport(
+            new Position(
+                $j[$jail_name]["pos"]["x"],
+                $j[$jail_name]["pos"]["y"],
+                $j[$jail_name]["pos"]["z"],
+                $this->getServer()->getLevelByName($j[$jail_name]["pos"]["level"])));
         $this->getLogger()->info($this->colorMessage("&6Jailed player " . strtolower($player->getName()) . " for " . ($time == -1 ? "infinite time" : ($time > 1 ? $time . " " . $this->getConfig()->get("time-unit") . "s" : $time . " " . $this->getConfig()->get("time-unit"))) . "\nReason: " . $reason));
         return true;
     }
@@ -451,7 +459,7 @@ class Jail extends PluginBase implements JailAPI
     {
         $t = $this->data->getAll();
         if ($this->playerProfileExists($player_name)) {
-            return $t[$player_name]["jailed"];
+            return (bool)$t[$player_name]["jailed"];
         }
         return false;
     }
