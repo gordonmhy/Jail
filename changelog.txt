@@ -1,5 +1,9 @@
 Changelog of Jail
 
+Alpha0.3.1
+- API updated, should support the latest PocketMine build
+- Fixed error message popping when a player who's jailed forever joins
+
 Alpha0.3.0
 - Implemented Mining-For-Money-For-Bailing feature! (Tutorial soon)
 - Fixed newly joined players all being jailed bug #10
