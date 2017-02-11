@@ -1,5 +1,8 @@
 Changelog of Jail
 
+Alpha0.3.2
+- Fixed player-UUIDs checked with incorrect data-type
+
 Alpha0.3.1
 - API updated, should support the latest PocketMine build
 - Fixed error message popping when a player who's jailed forever joins
