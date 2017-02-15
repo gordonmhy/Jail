@@ -2,6 +2,7 @@ Changelog of Jail
 
 Alpha0.3.3
 - Fixed error in console when a jailed player joins
+- Fixed BlockPlacer not resetting the whole mine
 
 Alpha0.3.2
 - Fixed player-UUIDs checked with incorrect data-type
