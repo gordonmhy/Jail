@@ -48,7 +48,9 @@ class PlayerListener extends BaseListener
         }
         if ($event->getPlayer()->hasPermission("jail.uuidcheck.bypass") !== true) {
             foreach ($t as $name => $value) {
-                if ($t[$name]["jailed"] !== false && (string)$event->getPlayer()->getUniqueId() == $t[$name]["uuid"]) {
+                if ($t[$name]["jailed"] !== false 
+                    && $name != $event->getPlayer()->getName() 
+                    && (string)$event->getPlayer()->getUniqueId() == $t[$name]["uuid"]) {
                     $event->getPlayer()->kick($this->getPlugin()->getMessage("join.uuid.rejected.kickmsg"));
                 }
             }
