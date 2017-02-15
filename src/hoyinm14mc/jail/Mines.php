@@ -142,13 +142,13 @@ class Mines
         }
         //Block Placer
         for ($x = min($j[$jail_name]["mine"]["c1"]["x"], $j[$jail_name]["mine"]["c2"]["x"]);
-             $x < max($j[$jail_name]["c1"]["x"], $j[$jail_name]["mine"]["c2"]["x"]);
+             $x <= max($j[$jail_name]["c1"]["x"], $j[$jail_name]["mine"]["c2"]["x"]);
              $x++) {
             for ($y = min($j[$jail_name]["mine"]["c1"]["y"], $j[$jail_name]["mine"]["c2"]["y"]);
-                 $y < max($j[$jail_name]["c1"]["y"], $j[$jail_name]["mine"]["c2"]["y"]);
+                 $y <= max($j[$jail_name]["c1"]["y"], $j[$jail_name]["mine"]["c2"]["y"]);
                  $y++) {
                 for ($z = min($j[$jail_name]["mine"]["c1"]["z"], $j[$jail_name]["mine"]["c2"]["z"]);
-                     $z < max($j[$jail_name]["c1"]["z"], $j[$jail_name]["mine"]["c2"]["z"]);
+                     $z <= max($j[$jail_name]["c1"]["z"], $j[$jail_name]["mine"]["c2"]["z"]);
                      $z++) {
                     $this->plugin->getServer()->getLevelByName($j[$jail_name]["pos"]["level"])->setBlock(new Vector3($x, $y, $z), Block::get($this->plugin->getConfig()->get("block")));
                 }
