@@ -300,8 +300,8 @@ class Jail extends PluginBase implements JailAPI
     public function playerProfileExists(string $player_name): bool
     {
         $t = $this->data->getAll();
-        return (bool)isset($t[$player_name]) !== false
-            && isset($t[$player_name]["jailed"]) !== false;
+        return (bool)isset($t[strtolower($player_name)]) !== false
+            && isset($t[strtolower($player_name)]["jailed"]) !== false;
     }
 
     /**
@@ -409,10 +409,10 @@ class Jail extends PluginBase implements JailAPI
     public function isJailTimeInfinity(string $player_name): bool
     {
         $t = $this->data->getAll();
-        if ($this->isJailed($player_name) !== true) {
+        if ($this->isJailed(strtolower($player_name)) !== true) {
             return false;
         }
-        return isset($t[$player_name]["seconds"]) !== true;
+        return isset($t[strtolower($player_name)]["seconds"]) !== true;
     }
 
     /**
@@ -422,19 +422,19 @@ class Jail extends PluginBase implements JailAPI
     public function unjail(string $player_name): bool
     {
         $t = $this->data->getAll();
-        if ($this->isJailed($player_name) !== true) {
+        if ($this->isJailed(strtolower($player_name)) !== true) {
             return false;
         }
-        $gm = $t[$player_name]["gamemode"];
-        $contents = $t[$player_name]["inventory"];
-        $t[$player_name]["jailed"] = false;
-        unset($t[$player_name]["jail"]);
-        if ($this->isJailTimeInfinity($player_name) !== true) {
-            unset($t[$player_name]["seconds"]);
+        $gm = $t[strtolower($player_name)]["gamemode"];
+        $contents = $t[strtolower($player_name)]["inventory"];
+        $t[strtolower($player_name)]["jailed"] = false;
+        unset($t[strtolower($player_name)]["jail"]);
+        if ($this->isJailTimeInfinity(strtolower($player_name)) !== true) {
+            unset($t[strtolower($player_name)]["seconds"]);
         }
-        unset($t[$player_name]["reason"]);
-        unset($t[$player_name]["gamemode"]);
-        unset($t[$player_name]["inventory"]);
+        unset($t[strtolower($player_name)]["reason"]);
+        unset($t[strtolower($player_name)]["gamemode"]);
+        unset($t[strtolower($player_name)]["inventory"]);
         $this->data->setAll($t);
         $this->data->save();
         $player = $this->getServer()->getPlayer($player_name);
@@ -458,8 +458,8 @@ class Jail extends PluginBase implements JailAPI
     public function isJailed(string $player_name): bool
     {
         $t = $this->data->getAll();
-        if ($this->playerProfileExists($player_name)) {
-            return (bool)$t[$player_name]["jailed"];
+        if ($this->playerProfileExists(strtolower($player_name))) {
+            return (bool)$t[strtolower($player_name)]["jailed"];
         }
         return false;
     }
@@ -569,10 +569,10 @@ class Jail extends PluginBase implements JailAPI
     public function applyPenalty(string $player_name, int $time = 10): bool
     {
         $t = $this->data->getAll();
-        if ($this->isJailed($player_name) !== true) {
+        if ($this->isJailed(strtolower($player_name)) !== true) {
             return false;
         }
-        $t[$player_name]["seconds"] = $t[$player_name]["seconds"] + $this->convertTime($time);
+        $t[strtolower($player_name)]["seconds"] = $t[strtolower($player_name)]["seconds"] + $this->convertTime($time);
         $this->data->setAll($t);
         $this->data->save();
         return true;
@@ -586,25 +586,25 @@ class Jail extends PluginBase implements JailAPI
     public function voteForJail(string $player_name, string $voter): bool
     {
         $t = $this->data->getAll();
-        if ($this->playerProfileExists($player_name) !== true) {
+        if ($this->playerProfileExists(strtolower($player_name)) !== true) {
             return false;
         }
-        if (in_array($voter, $t[$player_name]["VoteForJail"]["votedBy"]) !== false) {
+        if (in_array($voter, $t[strtolower($player_name)]["VoteForJail"]["votedBy"]) !== false) {
             return false;
         }
-        $t[$player_name]["VoteForJail"]["votes"] = $t[$player_name]["VoteForJail"]["votes"] + 1;
-        $t[$player_name]["VoteForJail"]["votedBy"][] = $voter;
+        $t[strtolower($player_name)]["VoteForJail"]["votes"] = $t[strtolower($player_name)]["VoteForJail"]["votes"] + 1;
+        $t[strtolower($player_name)]["VoteForJail"]["votedBy"][] = $voter;
         $this->data->setAll($t);
         $this->data->save();
-        if ($this->getServer()->getPlayer($player_name) === null) {
+        if ($this->getServer()->getPlayer(strtolower($player_name)) === null) {
             return false;
         }
         $player = $this->getServer()->getPlayer($player_name);
-        $player->sendMessage(str_replace("%votes%", $t[$player_name]["VoteForJail"]["votes"], str_replace("%max%", $this->getConfig()->get("votes-to-jail-player"), $this->getMessage("vote.target.voteAdded"))));
-        if ($t[$player_name]["VoteForJail"]["votes"] >= $this->getConfig()->get("votes-to-jail-player")) {
+        $player->sendMessage(str_replace("%votes%", $t[strtolower($player_name)]["VoteForJail"]["votes"], str_replace("%max%", $this->getConfig()->get("votes-to-jail-player"), $this->getMessage("vote.target.voteAdded"))));
+        if ($t[strtolower($player_name)]["VoteForJail"]["votes"] >= $this->getConfig()->get("votes-to-jail-player")) {
             $this->jail($player, array_rand(array_keys($this->data1->getAll())), 45, "Jailed automatically due to enough votes");
-            $t[$player_name]["VoteForJail"]["votes"] = 0;
-            $t[$player_name]["VoteForJail"]["votedBy"] = [];
+            $t[strtolower($player_name)]["VoteForJail"]["votes"] = 0;
+            $t[strtolower($player_name)]["VoteForJail"]["votedBy"] = [];
             $this->data->setAll($t);
             $this->data->save();
             $this->getServer()->broadcastMessage(str_replace("%player%", $player_name, $this->getMessage("votes.enough.jail.broadcast")));

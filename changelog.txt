@@ -1,8 +1,8 @@
 Changelog of Jail
 
 Alpha0.3.4
-- Fixed error when allow-chat=true & allow-command=false
-- Fixed incompletion of forcing player names lowercase
+- Fixed error when allow-chat=true & allow-command=false #18
+- Fixed all errors caused by name case detections #16 #18 #15
 
 Alpha0.3.3
 - Fixed error in console when a jailed player joins
