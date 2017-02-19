@@ -107,7 +107,7 @@ class ResetmineListener extends BaseListener
         }
         $sign = $sign->getText();
         if ($sign[0] == $this->getPlugin()->colorMessage("&7[" . $this->getPlugin()->getMessage("sign.resetmine.tag") . "&7]")) {
-            if ($this->getPlugin()->isJailed($event->getPlayer()->getName()) !== true) {
+            if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== true) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("sign.not.jailed"));
                 return false;
             }
@@ -128,7 +128,7 @@ class ResetmineListener extends BaseListener
                 return false;
             }
             $t = $this->getPlugin()->data->getAll();
-            if ($t[$event->getPlayer()->getName()]["jail"] != $ja) {
+            if ($t[strtolower($event->getPlayer()->getName())]["jail"] != $ja) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("sign.not.inJail"));
                 return false;
             }
