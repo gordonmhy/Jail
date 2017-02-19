@@ -60,7 +60,7 @@ class JailmineCommand extends BaseCommand
                         return true;
                         break;
                     case "set":
-                        $mines->mineName_tmp[$issuer->getName()] = $jail;
+                        $mines->mineName_tmp[strtolower($issuer->getName())] = $jail;
                         $issuer->sendMessage(str_replace("%jail%", $jail, $this->getPlugin()->getMessage("mine.set.initialization")));
                         $issuer->sendMessage($this->getPlugin()->getMessage("mine.set.tap.corner.2"));
                         return true;

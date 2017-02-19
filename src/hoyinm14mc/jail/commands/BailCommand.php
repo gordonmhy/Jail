@@ -43,7 +43,7 @@ class BailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("only.works.in.game"));
                     return true;
                 }
-                if ($this->getPlugin()->isJailed(strtolower($issuer->getName())) !== true) {
+                if ($this->getPlugin()->isJailed(strtolower(strtolower($issuer->getName()))) !== true) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("you.not.jailed"));
                     return true;
                 }
@@ -51,7 +51,7 @@ class BailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("bail.feature.disabled"));
                     return true;
                 }
-                if ($this->getPlugin()->isJailTimeInfinity(strtolower($issuer->getName())) !== false) {
+                if ($this->getPlugin()->isJailTimeInfinity(strtolower(strtolower($issuer->getName()))) !== false) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("bail.not.use"));
                     return true;
                 }

@@ -43,11 +43,11 @@ class VotejailCommand extends BaseCommand
                     return true;
                 }
                 $t = $this->getPlugin()->data->getAll();
-                if (in_array($issuer->getName(), $t[$target->getName()]["VoteForJail"]["votedBy"]) !== false) {
+                if (in_array(strtolower(strtolower($issuer->getName())), $t[$target->getName()]["VoteForJail"]["votedBy"]) !== false) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("vote.sender.votedAlready"));
                     return true;
                 }
-                if ($this->getPlugin()->voteForJail($target->getName(), $issuer->getName()) !== false) {
+                if ($this->getPlugin()->voteForJail($target->getName(), strtolower(strtolower($issuer->getName()))) !== false) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("vote.sender.votedSuccessfully"));
                 } else {
                     $issuer->sendMessage($this->getPlugin()->getMessage("command.error.duringExecution"));

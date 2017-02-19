@@ -43,12 +43,12 @@ class SetjailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
-                if ($this->getPlugin()->getServer()->getPlayer($issuer->getName())->getGamemode() != 1) {
+                if ($this->getPlugin()->getServer()->getPlayer(strtolower($issuer->getName()))->getGamemode() != 1) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("setjail.must.creative.mode"));
                     return true;
                 }
-                $this->getPlugin()->selection_mode[] = strtolower($issuer->getName());
-                $this->getPlugin()->jailName_tmp[strtolower($issuer->getName())] = $args[0];
+                $this->getPlugin()->selection_mode[] = strtolower(strtolower($issuer->getName()));
+                $this->getPlugin()->jailName_tmp[strtolower(strtolower($issuer->getName()))] = $args[0];
                 $issuer->sendMessage(str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("setjail.initialization.start")));
                 $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.2"));
                 $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.3"));
@@ -57,7 +57,7 @@ class SetjailCommand extends BaseCommand
                     if (is_bool($allowbail) !== true) {
                         $allowbail = true;
                     }
-                    $this->getPlugin()->allowBail_tmp[$issuer->getName()] = $allowbail;
+                    $this->getPlugin()->allowBail_tmp[strtolower($issuer->getName())] = $allowbail;
                     $issuer->sendMessage(str_replace("%bail%", $allowbail !== false ? "true" : "false", $this->getPlugin()->getMessage("setjail.bail.value")));
                 }
                 return true;

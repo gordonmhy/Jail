@@ -41,17 +41,17 @@ class JailresetmineCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("only.works.in.game"));
                     return true;
                 }
-                if ($this->getPlugin()->isJailed($issuer->getName()) !== true) {
+                if ($this->getPlugin()->isJailed(strtolower($issuer->getName())) !== true) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("you.not.jailed"));
                     return true;
                 }
                 $t = $this->getPlugin()->data->getAll();
                 $mines = new Mines($this->getPlugin());
-                if ($mines->hasMineSet($t[$issuer->getName()]["jail"]) !== true) {
+                if ($mines->hasMineSet($t[strtolower($issuer->getName())]["jail"]) !== true) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("mine.not.set"));
                     return true;
                 }
-                $mines->resetMine($t[$issuer->getName()]["jail"]);
+                $mines->resetMine($t[strtolower($issuer->getName())]["jail"]);
                 $issuer->sendMessage($this->getPlugin()->getMessage("mine.reset.success"));
                 return true;
                 break;
