@@ -47,7 +47,7 @@ class Economyapi extends BaseEconomy
 
     public function sellHand(Player $player): bool
     {
-        if ($this->getPlugin()->isJailed($player->getName()) !== true) {
+        if ($this->getPlugin()->isJailed(strtolower($player->getName())) !== true) {
             $player->sendMessage($this->getPlugin()->getMessage("you.not.jailed"));
             return false;
         }
