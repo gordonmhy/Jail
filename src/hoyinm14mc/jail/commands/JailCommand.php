@@ -61,12 +61,12 @@ class JailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("jail.invalid.time"));
                     return true;
                 }
-                if ($this->getPlugin()->isJailed(strtolower(strtolower($target->getName()))) !== false) {
+                if ($this->getPlugin()->isJailed(strtolower($target->getName())) !== false) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("jail.already.jailed"));
                     return true;
                 }
                 if ($this->getPlugin()->jail($target, $jail, ($time == "-i" ? -1 : $time), (isset($args[3]) ? $reason : "no reason")) !== false) {
-                    $issuer->sendMessage(str_replace("%player%", strtolower(strtolower($target->getName())), str_replace("%time%", ($time == "-i" ? "infinite" : $time), $this->getPlugin()->getMessage("jail.success.sender"))));
+                    $issuer->sendMessage(str_replace("%player%", strtolower($target->getName()), str_replace("%time%", ($time == "-i" ? "infinite" : $time), $this->getPlugin()->getMessage("jail.success.sender"))));
                 }
                 return true;
                 break;

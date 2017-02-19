@@ -47,8 +47,8 @@ class SetjailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("setjail.must.creative.mode"));
                     return true;
                 }
-                $this->getPlugin()->selection_mode[] = strtolower(strtolower($issuer->getName()));
-                $this->getPlugin()->jailName_tmp[strtolower(strtolower($issuer->getName()))] = $args[0];
+                $this->getPlugin()->selection_mode[] = strtolower($issuer->getName());
+                $this->getPlugin()->jailName_tmp[strtolower($issuer->getName())] = $args[0];
                 $issuer->sendMessage(str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("setjail.initialization.start")));
                 $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.2"));
                 $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.3"));
