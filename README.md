@@ -21,7 +21,7 @@ _Jail is still in alpha stage, that means it doesn't contain all of the features
 - [x] Jail players for a period or infinite time
 - [x] Setting jails by entering jail setting mode
 - [x] Bail! Allows players to bail to unjail
-- [x] UUID Checker! Prevents IGN changes
+- [x] UUID Checker! Prevents IGN changes (Experimental)
 - [x] Customizable time unit
 - [x] Jail-vote! Players voting players into jail
 - [x] Mines support. Mine and gain money to bail!
