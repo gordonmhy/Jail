@@ -38,18 +38,18 @@ class PlayerListener extends BaseListener
     {
         $t = $this->getPlugin()->data->getAll();
         if ($this->getPlugin()->playerProfileExists(strtolower($event->getPlayer()->getName())) !== true) {
-            $t[$event->getPlayer()->getName()]["jailed"] = false;
-            $t[$event->getPlayer()->getName()]["gamemode"] = $this->getPlugin()->getServer()->getGamemode();
-            $t[$event->getPlayer()->getName()]["voteForJail"]["votes"] = 0;
-            $t[$event->getPlayer()->getName()]["voteForJail"]["votedBy"] = []; //Players who voted for him
-            $t[$event->getPlayer()->getName()]["uuid"] = $event->getPlayer()->getUniqueId();
+            $t[strtolower($event->getPlayer()->getName())]["jailed"] = false;
+            $t[strtolower($event->getPlayer()->getName())]["gamemode"] = $this->getPlugin()->getServer()->getGamemode();
+            $t[strtolower($event->getPlayer()->getName())]["voteForJail"]["votes"] = 0;
+            $t[strtolower($event->getPlayer()->getName())]["voteForJail"]["votedBy"] = []; //Players who voted for him
+            $t[strtolower($event->getPlayer()->getName())]["uuid"] = $event->getPlayer()->getUniqueId();
             $this->getPlugin()->data->setAll($t);
             $this->getPlugin()->data->save();
         }
         if ($event->getPlayer()->hasPermission("jail.uuidcheck.bypass") !== true) {
             foreach ($t as $name => $value) {
-                if ($t[$name]["jailed"] !== false 
-                    && $name != $event->getPlayer()->getName() 
+                if ($t[$name]["jailed"] !== false
+                    && $name != strtolower($event->getPlayer()->getName())
                     && (string)$event->getPlayer()->getUniqueId() == $t[$name]["uuid"]) {
                     $event->getPlayer()->kick($this->getPlugin()->getMessage("join.uuid.rejected.kickmsg"));
                 }
@@ -71,16 +71,16 @@ class PlayerListener extends BaseListener
         $cfg = $this->getPlugin()->getConfig();
         $msg = $event->getMessage();
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false) {
-            if ($cfg->get("allow-chat") == false && $cfg->get("allow-command") == true) {
+            if ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== false) {
                 if ($msg{0} !== "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
                 }
-            } else if ($cfg->get("allow-chat") == false && $cfg->get("allow-command") == false) {
+            } elseif ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== true) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
-            } else if ($cfg->get("allow-chat") == true && $cfg->get("allow-command") == false) {
-                if ($msg{0} = "/") {
+            } elseif ($cfg->get("allow-chat") !== false && $cfg->get("allow-command") !== true) {
+                if ($msg{0} == "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.player.command.cancelled"));
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
@@ -91,6 +91,7 @@ class PlayerListener extends BaseListener
 
     /**
      * @priority HIGH
+     * @param PlayerInteractEvent $event
      */
     public function onPlayerInteract(PlayerInteractEvent $event)
     {
