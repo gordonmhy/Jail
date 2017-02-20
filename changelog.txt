@@ -1,6 +1,6 @@
 Changelog of Jail
 
-1.0
+1.0.0
 - Added jailinfo command, allows admins to obtain a jail's information
 - Prisoners' force jail TP now only occurs upon Δs(displacement change)
 - Fixed config key 'check-UUID' being ignored by the code
