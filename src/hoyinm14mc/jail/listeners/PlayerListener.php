@@ -148,6 +148,7 @@ class PlayerListener extends BaseListener
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName()))
             && $this->getPlugin()->jailExists($t[strtolower($event->getPlayer()->getName())]["jail"])
             && $this->getPlugin()->insideJail($t[strtolower($event->getPlayer()->getName())]["jail"], $event->getPlayer()->getPosition()) !== true
+            && ($event->getFrom()->x != $event->getPlayer()->x || $event->getFrom()->y != $event->getPlayer()->y || $event->getFrom()->z != $event->getPlayer()->z)
         ) {
             $event->getPlayer()->teleport(
                 new Position(
