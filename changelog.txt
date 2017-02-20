@@ -1,5 +1,8 @@
 Changelog of Jail
 
+1.0
+- Added jailinfo command, allows admins to obtain a jail's information
+
 Alpha0.3.4
 - Fixed error when allow-chat=true & allow-command=false #18
 - Fixed all errors caused by name case detections #16 #18 #15

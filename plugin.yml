@@ -65,6 +65,10 @@ commands:
     descripiton: Prisoner's cmd> Reset the mine of prisoner's jail
     permission: jail.command.jailresetmine
     usage: /jailresetmine
+  jailinfo:
+    description: Provides information about a jail
+    permission: jail.command.jailinfo
+    usage: /jailinfo <jail>
     
 permission:
   jail.command.setjail:
@@ -121,3 +125,6 @@ permission:
   jail.command.jailresetmine:
     default: true
     description: Allows jailed players to reset their jail's mine
+  jail.command.jailinfo:
+    default: op
+    description: Allows admins to obtain a jail's information
