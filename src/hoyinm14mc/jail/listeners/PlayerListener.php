@@ -46,7 +46,7 @@ class PlayerListener extends BaseListener
             $this->getPlugin()->data->setAll($t);
             $this->getPlugin()->data->save();
         }
-        if ($event->getPlayer()->hasPermission("jail.uuidcheck.bypass") !== true) {
+        if ($this->getPlugin()->getConfig()->get("check-UUID") !== false && $event->getPlayer()->hasPermission("jail.uuidcheck.bypass") !== true) {
             foreach ($t as $name => $value) {
                 if ($t[$name]["jailed"] !== false
                     && $name !== strtolower($event->getPlayer()->getName())

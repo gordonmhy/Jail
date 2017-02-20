@@ -2,6 +2,7 @@ Changelog of Jail
 
 1.0
 - Added jailinfo command, allows admins to obtain a jail's information
+- Fixed config key 'check-UUID' being ignored by the code
 
 Alpha0.3.4
 - Fixed error when allow-chat=true & allow-command=false #18
