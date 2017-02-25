@@ -28,6 +28,7 @@ use hoyinm14mc\jail\commands\JailmineCommand;
 use hoyinm14mc\jail\commands\JailresetmineCommand;
 use hoyinm14mc\jail\commands\JailsCommand;
 use hoyinm14mc\jail\commands\JailsellhandCommand;
+use hoyinm14mc\jail\commands\PrisonerinfoCommand;
 use hoyinm14mc\jail\commands\SetjailCommand;
 use hoyinm14mc\jail\commands\SwitchjailCommand;
 use hoyinm14mc\jail\commands\TpjailCommand;
@@ -192,6 +193,7 @@ class Jail extends PluginBase implements JailAPI
         $this->getCommand("jailsellhand")->setExecutor(new JailsellhandCommand($this));
         $this->getCommand("jailresetmine")->setExecutor(new JailresetmineCommand($this));
         $this->getCommand("jailinfo")->setExecutor(new JailinfoCommand($this));
+        $this->getCommand("prisonerinfo")->setExecutor(new PrisonerinfoCommand($this));
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new JailTimingTask($this), 20);
         $this->getServer()->getScheduler()->scheduleRepeatingTask(new TimeBroadcastTask($this), 3);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerListener($this), $this);

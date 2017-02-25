@@ -1,7 +1,7 @@
 name: Jail
 main: hoyinm14mc\jail\Jail
 api: ["2.0.0", "3.0.0-ALPHA3", "3.0.0-ALPHA4"]
-version: 1.0
+version: 1.0.0
 author: hoyinm14mc
 description: An advanced jail punishment system for PocketMine servers
 load: POSTWORLD
@@ -69,6 +69,10 @@ commands:
     description: Provides information about a jail
     permission: jail.command.jailinfo
     usage: /jailinfo <jail>
+  prisonerinfo:
+    description: Provides information about a prisoner
+    permission: jail.command.prisonerinfo
+    usage: /prisonerinfo <player_name>
     
 permission:
   jail.command.setjail:
@@ -128,3 +132,6 @@ permission:
   jail.command.jailinfo:
     default: op
     description: Allows admins to obtain a jail's information
+  jail.command.prisonerinfo:
+    default: op
+    description: Allows admins to obtain a prisoner's information

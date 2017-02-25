@@ -69,5 +69,6 @@
 	"sign.resetmine.tag": "&fReset Mine&r",
 	"sign.located.outsideJail": "&eYou should create the sign inside a jail!",
 	"sign.not.inJail": "Operation failed - Sign positioned outside jail.",
-	"jailinfo": "&eInfo of Jail '&f%jail%'\n&eTP Pos&f: %pos%\n&eCorner1 Pos&f: %c1%\n&eCorner2 Pos&f: %c2%\n&ePrisoners(&f%count%&e)&f: %prisoners%\n&eMine&f: %isMineSet%"
+	"jailinfo": "&eInfo of Jail '&f%jail%'\n&eTP Pos&f: %pos%\n&eCorner1 Pos&f: %c1%\n&eCorner2 Pos&f: %c2%\n&ePrisoners(&f%count%&e)&f: %prisoners%\n&eMine&f: %isMineSet%",
+	"prisonerinfo": "&eInfo of prisoner '%prisoner%'\n&eJail&f: %jail%\n&eTime left&f: %time_left%\n&eReason&f: %reason%"
 }
