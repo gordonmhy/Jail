@@ -56,7 +56,7 @@ class PrisonerinfoCommand extends BaseCommand
                     $hrs++;
                     $mins = $mins - 60;
                 }
-                $time = ($hrs < 10 ? "0" : "") . (string)$hrs . ($mins < 10 ? "0" : "") . (string)$mins . ($secs < 10 ? "0" : "") . $secs;
+                $time = ($hrs < 10 ? "0" : "") . (string)$hrs . ":" . ($mins < 10 ? "0" : "") . (string)$mins . ":" . ($secs < 10 ? "0" : "") . $secs;
                 $issuer->sendMessage(str_replace("%jail%", $jail,
                     str_replace("%time_left%", $time,
                         str_replace("%reason%", $reason,
