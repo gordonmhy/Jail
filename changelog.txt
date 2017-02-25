@@ -7,6 +7,7 @@ Changelog of Jail
 - Players w/ perm 'jail.override.restrictions' can ignore all jail restrictions
 - Fixed config key 'check-UUID' being ignored by the code
 Technical updates:
+- Old config file(s) is now saved with old version name
 - 'offline-time-counting' is now default as false
 New commands:
 - /prisonerinfo <player_name>
