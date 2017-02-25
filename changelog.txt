@@ -1,12 +1,14 @@
 Changelog of Jail
 
 1.0.0
-- Added jailinfo command, allows admins to obtain a jail's information
-- Added prisonerinfo command, allows admins to obtain a prisoner's information
+- Added informational commands for admins to obtain data from the plugin
 - Prisoners' force jail TP now only occurs upon Δs(displacement change)
 - Item dropping by prisoners can now be disabled in config
 - Players w/ perm 'jail.override.restrictions' can ignore all jail restrictions
 - Fixed config key 'check-UUID' being ignored by the code
+New commands:
+- /prisonerinfo <player_name>
+- /jailinfo <jail>
 
 Alpha0.3.4
 - Fixed error when allow-chat=true & allow-command=false #18
