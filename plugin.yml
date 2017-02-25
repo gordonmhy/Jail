@@ -69,6 +69,7 @@ commands:
     description: Provides information about a jail
     permission: jail.command.jailinfo
     usage: /jailinfo <jail>
+    aliases: ["jailcheck"]
   prisonerinfo:
     description: Provides information about a prisoner
     permission: jail.command.prisonerinfo
