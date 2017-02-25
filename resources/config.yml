@@ -17,7 +17,7 @@ default-lang: en
 
 ### Settings ###
 #Count when the prisoner is offline?
-offline-time-counting: true
+offline-time-counting: false
 #Enable additional penalty when players try to destroy the jail?
 enable-penalty: true
 #How much time to be added to that player as penalty?

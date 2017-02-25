@@ -6,6 +6,8 @@ Changelog of Jail
 - Item dropping by prisoners can now be disabled in config
 - Players w/ perm 'jail.override.restrictions' can ignore all jail restrictions
 - Fixed config key 'check-UUID' being ignored by the code
+Technical updates:
+- 'offline-time-counting' is now default as false
 New commands:
 - /prisonerinfo <player_name>
 - /jailinfo <jail>
