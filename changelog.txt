@@ -4,6 +4,7 @@ Changelog of Jail
 - Added jailinfo command, allows admins to obtain a jail's information
 - Added prisonerinfo command, allows admins to obtain a prisoner's information
 - Prisoners' force jail TP now only occurs upon Δs(displacement change)
+- Item dropping by prisoners can now be disabled in config
 - Fixed config key 'check-UUID' being ignored by the code
 
 Alpha0.3.4

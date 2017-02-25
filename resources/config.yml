@@ -5,6 +5,7 @@ allow-chat: true
 allow-command: false
 allow-block-break: false
 allow-block-place: false
+allow-item-drop: false
 #If false, restricts player's VECTOR3 movement, not whole POSITION
 allow-movement: true
 allow-attack: false

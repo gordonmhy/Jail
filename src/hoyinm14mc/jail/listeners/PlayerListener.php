@@ -23,6 +23,7 @@ use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseListener;
 use hoyinm14mc\jail\Mines;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
+use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerItemConsumeEvent;
 use pocketmine\event\player\PlayerJoinEvent;
@@ -186,6 +187,14 @@ class PlayerListener extends BaseListener
     public function onItemConsume(PlayerItemConsumeEvent $event)
     {
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $event->getItem()->getId() == 274) {
+            $event->setCancelled(true);
+        }
+    }
+
+    public function onItemDrop(PlayerDropItemEvent $event)
+    {
+        if ($this->getPlugin()->getConfig()->get("allow-item-drop") !== true) {
+            $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
             $event->setCancelled(true);
         }
     }
