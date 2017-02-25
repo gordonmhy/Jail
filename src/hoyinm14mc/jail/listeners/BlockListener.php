@@ -41,7 +41,7 @@ class BlockListener extends BaseListener
             }
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-break") !== true) {
-            if ($mines->hasMineSet($t[strtolower($event->getPlayer()->getName())]["jail"]) !== true && $mines->insideMine($t[strtolower($event->getPlayer()->getName())]["jail"], new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) !== true) {
+            if ($mines->hasMineSet($t[strtolower($event->getPlayer()->getName())]["jail"]) !== true && $mines->insideMine($t[strtolower($event->getPlayer()->getName())]["jail"], new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
                 if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
@@ -64,7 +64,7 @@ class BlockListener extends BaseListener
 
             }
         }
-        if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-place") !== true) {
+        if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-place") !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
             $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
             $event->setCancelled(true);
             if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
