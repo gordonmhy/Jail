@@ -61,6 +61,7 @@ class PrisonerinfoCommand extends BaseCommand
                     str_replace("%time_left%", $time,
                         str_replace("%reason%", $reason,
                             str_replace("%prisoner%", $prisoner, $this->getPlugin()->getMessage("prisonerinfo"))))));
+                return true;
                 break;
         }
     }
