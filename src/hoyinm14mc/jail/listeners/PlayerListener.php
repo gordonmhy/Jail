@@ -193,7 +193,10 @@ class PlayerListener extends BaseListener
 
     public function onItemDrop(PlayerDropItemEvent $event)
     {
-        if ($this->getPlugin()->getConfig()->get("allow-item-drop") !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
+        if ($this->getPlugin()->getConfig()->get("allow-item-drop") !== true
+            && $this->getPlugin()->isJailed($event->getPlayer()->getName()) !== false
+            && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true
+        ) {
             $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
             $event->setCancelled(true);
         }
