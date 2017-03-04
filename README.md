@@ -11,6 +11,10 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 
 -----------------------------------
 
+##Full documentary and tutorial *[HERE](https://github.com/hoyinm14mc/Jail/wiki)*!
+
+-----------------------------------
+
 ###Features:
 - [x] Supports multiple languages
 - [x] Multiple jails support
