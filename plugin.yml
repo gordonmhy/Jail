@@ -42,7 +42,7 @@ commands:
   tpjail:
     description: Teleport a player to a jail location
     permission: jail.command.jailtp
-    usage: /tpjail <jail>
+    usage: /tpjail <jail> <player>
     aliases: ["jailtp"]
   bail:
     description: Bails from a jail
