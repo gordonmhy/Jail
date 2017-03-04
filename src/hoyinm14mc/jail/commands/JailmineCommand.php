@@ -62,7 +62,7 @@ class JailmineCommand extends BaseCommand
                     case "set":
                         $mines->mineName_tmp[strtolower($issuer->getName())] = $jail;
                         $issuer->sendMessage(str_replace("%jail%", $jail, $this->getPlugin()->getMessage("mine.set.initialization")));
-                        $issuer->sendMessage($this->getPlugin()->getMessage("mine.set.tap.corner.2"));
+                        $issuer->sendMessage($this->getPlugin()->getMessage("mine.set.tap.corner.1"));
                         return true;
                         break;
                     case "rm":

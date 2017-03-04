@@ -1,5 +1,8 @@
 Changelog of Jail
 
+1.0.1
+- Fixed incorrect message output of '/jailmine set' command
+
 1.0.0
 - Added informational commands for admins to obtain data from the plugin
 - Prisoners' force jail TP now only occurs upon Δs(displacement change)

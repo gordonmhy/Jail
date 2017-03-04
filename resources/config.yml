@@ -69,4 +69,4 @@ sync-LOCALtoDB: false
 
 ### Config version ###
 #Do not modify this, otherwise plugin may not work properly
-v: 1.0.0
+v: 1.0.1
