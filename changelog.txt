@@ -1,6 +1,7 @@
 Changelog of Jail
 
 1.0.1
+- Prisoners in deleted jails are now assigned automatically to random jails #21
 - Fixed incorrect message output of '/jailmine set' command
 
 1.0.0

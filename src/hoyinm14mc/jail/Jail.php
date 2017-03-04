@@ -513,6 +513,7 @@ class Jail extends PluginBase implements JailAPI
      */
     public function delJail(string $jail_name): bool
     {
+        $t = $this->data->getAll();
         $j = $this->data1->getAll();
         if ($this->jailExists($jail_name) !== true) {
             return false;
@@ -520,6 +521,25 @@ class Jail extends PluginBase implements JailAPI
         unset($j[$jail_name]);
         $this->data1->setAll($j);
         $this->data1->save();
+        if (count(array_keys($j)) <= 0) {
+            foreach (array_keys($t) as $player) {
+                if ($t[$player]["jailed"] !== false) {
+                    if ($t[$player]["jail"] == $jail_name) {
+                        $this->unjail($player);
+                    }
+                }
+            }
+        } else {
+            foreach (array_keys($t) as $player) {
+                if ($t[$player]["jailed"] !== false) {
+                    if ($t[$player]["jail"] == $jail_name) {
+                        $t[$player]["jail"] = (string)array_rand(array_keys($j));
+                    }
+                }
+            }
+            $this->data->setAll($t);
+            $this->data->save();
+        }
         return true;
     }
 
