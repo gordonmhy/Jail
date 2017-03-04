@@ -32,8 +32,6 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 ###Tutorials:
 - [Building and setting a jail](https://youtu.be/HR8XhOizd-c)
 
-- [![Building and setting a jail](http://img.youtube.com/vi/HR8XhOizd-c/0.jpg)](http://www.youtube.com/watch?v=hHR8XhOizd-c)
-
 - [Jailing a player](https://youtu.be/EtmXwf4Oivs)
 
 ###Compatible economic plugins:
