@@ -63,9 +63,6 @@ class PlayerListener extends BaseListener
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) && isset($t[strtolower($event->getPlayer()->getName())]["seconds"]) !== false && $t[strtolower($event->getPlayer()->getName())]["seconds"] < 0) {
             $this->getPlugin()->unjail(strtolower($event->getPlayer()->getName()));
         }
-        if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) && $this->getPlugin()->jailExists($t[strtolower($event->getPlayer()->getName())]["jail"]) !== true) {
-            $this->getPlugin()->unjail(strtolower($event->getPlayer()->getName()));
-        }
     }
 
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event)
