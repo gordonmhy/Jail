@@ -3,5 +3,6 @@ branches:
 - master
 projects:
   Jail:
-    path: ""
+    path: Jail
+    icon: icon.png
 ...
