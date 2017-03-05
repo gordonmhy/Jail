@@ -450,6 +450,11 @@ class Jail extends PluginBase implements JailAPI
             $player->getInventory()->clearAll();
             $player->getInventory()->setContents($contents);
             $player->sendMessage($this->getMessage("unjail.you.success"));
+        } else {
+            $t[strtolower($player_name)]["unjailedSettings"]["gm"] = $gm;
+            $t[strtolower($player_name)]["unjailedSettings"]["inv"] = $contents;
+            $this->data->setAll($t);
+            $this->data->save();
         }
         $this->getLogger()->info($this->colorMessage("&6Unjailed player " . $player_name));
         return true;
