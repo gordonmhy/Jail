@@ -153,6 +153,19 @@ class PlayerListener extends BaseListener
     {
         $t = $this->getPlugin()->data->getAll();
         $j = $this->getPlugin()->data1->getAll();
+        if ($event->getPlayer()->hasPermission("jail.showInOutMessage") !== false) {
+            foreach (array_keys($j) as $jail) {
+                if ($this->getPlugin()->insideJail($jail, $event->getPlayer()->getPosition()) !== false
+                    && $this->getPlugin()->insideJail($jail, new Position($event->getFrom()->x, $event->getFrom()->y, $event->getFrom()->z, $event->getFrom()->getLevel())) !== true
+                ) {
+                    $event->getPlayer()->sendMessage(str_replace("%jail%", $jail, $this->getPlugin()->getMessage("enterJail.msg")));
+                } else if ($this->getPlugin()->insideJail($jail, $event->getPlayer()->getPosition()) !== true
+                    && $this->getPlugin()->insideJail($jail, new Position($event->getFrom()->x, $event->getFrom()->y, $event->getFrom()->z, $event->getFrom()->getLevel())) !== false
+                ) {
+                    $event->getPlayer()->sendMessage(str_replace("%jail%", $jail, $this->getPlugin()->getMessage("leaveJail.msg")));
+                }
+            }
+        }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName()))
             && $this->getPlugin()->jailExists($t[strtolower($event->getPlayer()->getName())]["jail"])
             && $this->getPlugin()->insideJail($t[strtolower($event->getPlayer()->getName())]["jail"], $event->getPlayer()->getPosition()) !== true

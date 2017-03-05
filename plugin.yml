@@ -139,3 +139,6 @@ permission:
   jail.command.prisonerinfo:
     default: op
     description: Allows admins to obtain a prisoner's information
+  jail.showInOutMessage:
+    default: true
+    description: Allows receiving jail enter/leave notification

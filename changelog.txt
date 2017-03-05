@@ -5,6 +5,8 @@ Changelog of Jail
 - Offline unjailed players are now teleported back to spawn when they join #20
 - Offline unjailed players' inventory and gamemode are now recovered upon rejoin #20
 - SellHand signs now show money-per-block to prisoner
+- Added permission node 'jail.showInOutMessage' (detail pls refer to Jail's Wiki)
+- Notification now shows upon entering/leaving a jail's 3D area
 - Fixed incorrect message output of '/jailmine set' command
 
 1.0.0
