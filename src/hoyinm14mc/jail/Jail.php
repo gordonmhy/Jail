@@ -152,7 +152,7 @@ class Jail extends PluginBase implements JailAPI
             if (file_exists($this->getDataFolder() . "config.old.v" . $oldV . ".yml") !== false) {
                 unlink($this->getDataFolder() . "config.old.v" . $oldV . ".yml");
             }
-            rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "config.old.v" . $oldV . "yml");
+            rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "config.old.v" . $oldV . ".yml");
         }
         $this->saveDefaultConfig();
         $this->reloadConfig();
