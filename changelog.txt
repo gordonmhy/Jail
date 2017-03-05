@@ -10,7 +10,7 @@ Changelog of Jail
 - Fixed incorrect message output of '/jailmine set' command
 - Fixed configuration file updater malfunction
 
-1.0.0
+1.0.0 - 04/MAR/2017
 - Added informational commands for admins to obtain data from the plugin
 - Prisoners' force jail TP now only occurs upon Δs(displacement change)
 - Item dropping by prisoners can now be disabled in config
@@ -23,24 +23,24 @@ New commands:
 - /prisonerinfo <player_name>
 - /jailinfo <jail>
 
-Alpha0.3.4
+Alpha0.3.4 - 19/FEB/2017
 - Fixed error when allow-chat=true & allow-command=false #18
 - Fixed all errors caused by name case detections #16 #18 #15
 
-Alpha0.3.3
+Alpha0.3.3 - 15/FEB/2017
 - Fixed error in console when a jailed player joins
 - Fixed BlockPlacer not resetting the whole mine
 - Fixed non-jailed players get kicked upon second join
 
-Alpha0.3.2
+Alpha0.3.2 - 11/FEB/2017
 - Fixed player-UUIDs checked with incorrect data-type
 
-Alpha0.3.1
+Alpha0.3.1 - 11/FEB/2017
 - API updated, should support the latest PocketMine build
 - Fixed error message popping when a player who's jailed forever joins
 - Fixed player-UUID incorrectly saved
 
-Alpha0.3.0
+Alpha0.3.0 - 20/JAN/2017
 - Implemented Mining-For-Money-For-Bailing feature! (Tutorial soon)
 - Fixed newly joined players all being jailed bug #10
 - Fixed console popping errors of isJailed()-error bug #10
@@ -67,11 +67,11 @@ New commands:
 - /jailsellhand
 - /jailresetmine
 
-Alpha0.2.3
+Alpha0.2.3 - 17/DEC/2016
 - Fixed '/votejail' command not working for normal players
 - Added 'jail.uuidcheck.bypass' permission
 
-Alpha0.2.2
+Alpha0.2.2 - 17/DEC/2016
 - Added an option to disable timer GUI on prisoners in config
 - Updated README.md for Github
 - Added '/votejail' cmd, allowing players to vote someone who behaves badly
@@ -80,22 +80,22 @@ Alpha0.2.2
 - Code cleanup
 - Added UUID Checker
 
-Alpha0.2.1
+Alpha0.2.1 - 27/OCT/2016
 - Added Russian #5
 - Redefined language keys
 - Added more translatable messages
 
-Alpha0.2
+Alpha0.2 - 13/OCT/2016
 - Added more languages #2
 - Various bug fixes
 
-Alpha0.1.1
+Alpha0.1.1 - 08/AUG/2016
 - Added some missing PHPDoc
 - Removed unused code
 - Resolved mobile incompatibility to update checker
 - Resolved internet connectivity issue to update checker
 
-Alpha0.1
+Alpha0.1 - 01/AUG/2016
 - Hugely improved and enhanced auto update checker/installer (config)
 - Implemented bail support for PocketMoney
 - Added an option to disable bail
@@ -103,29 +103,29 @@ Alpha0.1
 - Implemented bail money requirement on prisoner's GUI
 - Fixed server crash when player is jailed infinitely
 
-Pre-alpha0.7
+Pre-alpha0.7 - 31/JUL/2016
 - Added basic version update fetcher
 
-Pre-alpha0.6
+Pre-alpha0.6 - 31/JUL/2016
 - Fixed license text incorrect plugin name
 - Added op being jailed prevention (Can be deactivated in config)
 - Added basic bail feature, currently only supports EconomyS (/bail)
 
-Pre-alpha0.5
+Pre-alpha0.5 - NO RECORD
 - Fixed infinite time jailing pops errors on console screen
 - Fixed players infinite time still receive time penalty
 
-Pre-alpha0.4
+Pre-alpha0.4 - NO RECORD
 - Fixed auto timer unjailing not taking effect (CRITICAL)
 
-Pre-alpha0.3
+Pre-alpha0.3 - NO RECORD
 - Fixed error code appearing when new players join
 - Fixed some missing PHP Docs of API
 - Fixed gamemode issue while offline unjailed players join
 - Added the ability to jail players forever until /unjail command
 - Added penalty system, apply to prisoners if they try to destroy the jail
 
-Pre-alpha0.2
+Pre-alpha0.2 - NO RECORD
 - Fixed jailExists() detection error when player joins
 - Fixed some displays not shown clearly
 - Added switchjail command
@@ -134,7 +134,7 @@ Pre-alpha0.2
 - Removed interaction restrictor
 - Fixed bug of normal players able to modify jail area
 
-Pre-alpha0.1
+Pre-alpha0.1 - NO RECORD
 - Multiworld support
 - Timer support
 - Basic jailing system with reasons
