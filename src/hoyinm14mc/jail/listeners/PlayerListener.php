@@ -153,7 +153,7 @@ class PlayerListener extends BaseListener
     {
         $t = $this->getPlugin()->data->getAll();
         $j = $this->getPlugin()->data1->getAll();
-        if ($event->getPlayer()->hasPermission("jail.showInOutMessage") !== false) {
+        if ($event->getPlayer()->hasPermission("jail.showInOutMessage") !== false && $this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== true) {
             foreach (array_keys($j) as $jail) {
                 if ($this->getPlugin()->insideJail($jail, $event->getPlayer()->getPosition()) !== false
                     && $this->getPlugin()->insideJail($jail, new Position($event->getFrom()->x, $event->getFrom()->y, $event->getFrom()->z, $event->getFrom()->getLevel())) !== true
