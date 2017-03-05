@@ -142,8 +142,7 @@ class Jail extends PluginBase implements JailAPI
         if (is_dir($this->getDataFolder()) !== true) {
             mkdir($this->getDataFolder());
         }
-        $this->saveDefaultConfig();
-        if ($this->getConfig()->exists("v") !== true || $this->getConfig()->get("v") != $this->getDescription()->getVersion()) {
+        if ($this->getConfig()->exists("v") !== true || $this->getConfig()->get("v") !== $this->getDescription()->getVersion()) {
             $oldV = $this->getConfig()->get("v");
             $this->getLogger()->info("Update found!  Updating configuration...");
             $this->getLogger()->info("All settings are being reset. The old config is saved in the plugin data folder.");
@@ -151,8 +150,8 @@ class Jail extends PluginBase implements JailAPI
                 unlink($this->getDataFolder() . "config.old.v" . $oldV . "yml");
             }
             rename($this->getDataFolder() . "config.yml", $this->getDataFolder() . "config.old.v" . $oldV . "yml");
-            $this->saveDefaultConfig();
         }
+        $this->saveDefaultConfig();
         $this->reloadConfig();
         $this->data = new Config($this->getDataFolder() . "players.yml", Config::YAML, array());
         $this->data1 = new Config($this->getDataFolder() . "jails.yml", Config::YAML, array());

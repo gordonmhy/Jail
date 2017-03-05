@@ -8,6 +8,7 @@ Changelog of Jail
 - Added permission node 'jail.showInOutMessage' (detail pls refer to Jail's Wiki)
 - Notification now shows upon entering/leaving a jail's 3D area
 - Fixed incorrect message output of '/jailmine set' command
+- Fixed configuration file updater malfunction
 
 1.0.0
 - Added informational commands for admins to obtain data from the plugin
