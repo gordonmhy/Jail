@@ -42,4 +42,3 @@ class JailedCommand extends BaseCommand
 
 }
 
-?>

@@ -60,4 +60,3 @@ class JailresetmineCommand extends BaseCommand
 
 }
 
-?>

@@ -87,4 +87,3 @@ class JailmineCommand extends BaseCommand
 
 }
 
-?>

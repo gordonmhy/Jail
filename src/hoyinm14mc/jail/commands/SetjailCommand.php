@@ -67,4 +67,3 @@ class SetjailCommand extends BaseCommand
 
 }
 
-?>

@@ -68,4 +68,3 @@ class Economyapi extends BaseEconomy
 
 }
 
-?>

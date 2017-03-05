@@ -36,4 +36,4 @@ class AutoUpdateChecker extends BaseTask
 
 }
 
-?>
+

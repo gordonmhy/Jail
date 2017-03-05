@@ -42,4 +42,3 @@ class JailsCommand extends BaseCommand
 
 }
 
-?>

@@ -65,4 +65,3 @@ class TimeBroadcastTask extends BaseTask
 
 }
 
-?>

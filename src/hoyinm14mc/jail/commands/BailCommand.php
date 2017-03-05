@@ -75,4 +75,3 @@ class BailCommand extends BaseCommand
 
 }
 
-?>

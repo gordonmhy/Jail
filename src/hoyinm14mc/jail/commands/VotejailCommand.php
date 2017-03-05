@@ -59,4 +59,3 @@ class VotejailCommand extends BaseCommand
 
 }
 
-?>

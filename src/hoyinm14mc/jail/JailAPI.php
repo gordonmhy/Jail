@@ -172,4 +172,3 @@ interface JailAPI
     public function voteForJail(string $player_name, string $voter): bool;
 
 }
-?>

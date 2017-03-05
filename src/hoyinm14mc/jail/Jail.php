@@ -725,4 +725,4 @@ class Jail extends PluginBase implements JailAPI
 
 }
 
-?>
+

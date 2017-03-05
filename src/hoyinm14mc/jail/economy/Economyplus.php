@@ -68,4 +68,3 @@ class Economyplus extends BaseEconomy
 
 }
 
-?>

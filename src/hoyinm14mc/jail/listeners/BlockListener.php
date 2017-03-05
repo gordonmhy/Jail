@@ -76,4 +76,3 @@ class BlockListener extends BaseListener
 
 }
 
-?>

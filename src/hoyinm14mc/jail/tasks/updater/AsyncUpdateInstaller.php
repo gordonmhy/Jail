@@ -85,4 +85,3 @@ class AsyncUpdateInstaller extends AsyncTask
 
 }
 
-?>

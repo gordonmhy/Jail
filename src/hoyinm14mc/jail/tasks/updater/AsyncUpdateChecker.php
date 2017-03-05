@@ -66,4 +66,3 @@ class AsyncUpdateChecker extends AsyncTask
 
 }
 
-?>
