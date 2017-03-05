@@ -92,6 +92,7 @@ class SellhandListener extends BaseListener
             return false;
         }
         $event->setLine(0, $this->getPlugin()->colorMessage("&7[" . $this->getPlugin()->getMessage("sign.sellhand.tag") . "&7]"));
+        //Show money-per-block
         $event->setLine(1, "$" . $this->getPlugin()->getConfig()->get("money-per-block") . "/" . $this->getPlugin()->getMessage("sign.sellhand.item"));
         $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("sign.create.success"));
         return true;
