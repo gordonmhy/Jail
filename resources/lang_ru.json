@@ -66,6 +66,7 @@
   "mine.is.set": "&eШахта установлена к этой тюрме",
   "mine.reset.success": "Сброс шахты в тюрме '%jail%'...",
   "sign.sellhand.tag": "&fПродать рукой&r",
+	"sign.sellhand.item": "item",
 	"sign.resetmine.tag": "&fСбросить шахту&r",
 	"sign.located.outsideJail": "&eВы должны создать табличку внутри тюрьмы!",
 	"sign.not.inJail": "Не удалось выполнить операцию - Вход расположен снаружи тюрьмы.",

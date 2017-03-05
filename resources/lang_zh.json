@@ -66,6 +66,7 @@
   "mine.is.set": "&eMine is set in this jail!",
   "mine.reset.success": "Resetting mine of '%jail%'...",
   "sign.sellhand.tag": "&fSell Hand&r",
+	"sign.sellhand.item": "item",
 	"sign.resetmine.tag": "&fReset Mine&r",
 	"sign.located.outsideJail": "&eYou should create the sign inside a jail!",
 	"sign.not.inJail": "Operation failed - Sign positioned outside jail.",

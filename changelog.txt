@@ -1,6 +1,7 @@
 Changelog of Jail
 
 1.0.1
+- SellHand signs now show money-per-block to prisoner
 - Prisoners in deleted jails are now assigned automatically to random jails #21
 - Offline unjailed players are now teleported back to spawn when they join #20
 - Offline unjailed players' inventory and gamemode are now recovered upon rejoin #20
