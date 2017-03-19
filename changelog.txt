@@ -1,6 +1,9 @@
 Changelog of Jail
 
-1.0.1
+1.0.2
+- Fixed prisoners able to break blocks when mine is set in that jail #22
+
+1.0.1- 19/MAR/2017
 - Prisoners in deleted jails are now assigned automatically to random jails #21
 - Offline unjailed players are now teleported back to spawn when they join #20
 - Offline unjailed players' inventory and gamemode are now recovered upon rejoin #20
