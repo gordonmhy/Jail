@@ -7,7 +7,7 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 >
 > Proved to be advanced relative to other similar plugins!
 
-####Download Latest Build: [Jail_v1.0.1.phar](https://github.com/hoyinm14mc/Jail/releases/download/1.0.1/Jail_v1.0.1.phar)
+####Download Latest Build: [Jail_v1.0.2.phar](https://github.com/hoyinm14mc/Jail/releases/download/1.0.2/Jail_v1.0.2.phar)
 
 -----------------------------------
 
@@ -16,7 +16,7 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 -----------------------------------
 
 ###Features:
-- [x] Supports multiple languages
+- [x] Supports multiple languages (Community edited)
 - [x] Multiple jails support
 - [x] Anti-escape support
 - [x] Beautiful GUI for prisoners
