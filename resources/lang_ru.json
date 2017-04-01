@@ -63,7 +63,7 @@
   "mine.not.set": "&cШахта уже установлена в этой тюрьме!",
   "mine.set.initialization": "&aИнициализация шахты для тюрьмы '%jail%'",
   "mine.remove.successful": "&aУдаление шахты в тюрьме '%jail%' успешно!",
-  "mine.is.set": "&eШахта установлена в тюрьме!,
+  "mine.is.set": "&eШахта установлена в тюрьме!",
   "mine.reset.success": "Сброс шахты в тюрьме '%jail%'...",
   "sign.sellhand.tag": "&fПродать предмет в руке&r",
 	"sign.resetmine.tag": "&fСбросить шахту&r",
