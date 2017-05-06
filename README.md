@@ -30,7 +30,6 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 - [x] Sign support! Bail/SellHand/ResetMine
 - [x] Saves prisoner's inventory, and return upon unjail
 - [x] Customizable time unit!
-- [x] Database data backup support!
 - [x] API for developers to access externally
 
 ###Youtube Tutorials:
