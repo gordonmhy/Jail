@@ -60,16 +60,6 @@ class Jail extends PluginBase implements JailAPI
     private static $instance = null;
 
     /**
-     * @var bool
-     */
-    public $database = false;
-
-    /**
-     * @var \mysqli
-     */
-    public $connection;
-
-    /**
      * @var array:array
      */
     public $c1_tmp = [];
@@ -163,15 +153,6 @@ class Jail extends PluginBase implements JailAPI
         $this->saveDefaultConfig();
         $this->reloadConfig();
         $this->data = new Config($this->getDataFolder() . "players.yml", Config::YAML, array());
-        $this->data1 = new Config($this->getDataFolder() . "jails.yml", Config::YAML, array());
-        $database = false;
-        if ($this->initializeDatabase() !== false) {
-            $database = true;
-        }
-        $this->database = $database;
-        if ($this->database !== false && $this->getConfig()->get("syncLOCALtoDB") !== false) {
-            $this->synchronizeToDatabase();
-        }
         $this->initializeLanguage();
         $ecoPlugs = [
             "PocketMoney",
@@ -672,7 +653,7 @@ class Jail extends PluginBase implements JailAPI
      * ####################
      */
 
-    private function initializeDatabase(): bool
+    /*private function initializeDatabase(): bool
     {
         $cfg = $this->getConfig();
         $host = $cfg->get("host");
@@ -687,63 +668,7 @@ class Jail extends PluginBase implements JailAPI
         $this->connection = $connection;
         $this->getLogger()->info("SQL server connection detected!");
         return true;
-    }
-
-    private function synchronizeToDatabase()
-    {
-        //Table name = JailData01
-        $this->connection->query("DROP TABLE JailData01");
-        $this->connection->query("CREATE TABLE JailData01 
-                                  (Jail CHAR(25) PRIMARY KEY, 
-                                  PosX INTEGER, 
-                                  PosY INTEGER, 
-                                  PosZ INTEGER, 
-                                  PosLevel CHAR(25), 
-                                  C1X INTEGER, 
-                                  C1Y INTEGER, 
-                                  C1Z INTEGER, 
-                                  C1Level CHAR(25), 
-                                  C2X INTEGER, 
-                                  C2Y INTEGER, 
-                                  C2Z INTEGER, 
-                                  C2Level CHAR(25), 
-                                  AllowBail BOOLEAN, 
-                                  AllowEscapeArea BOOLEAN, 
-                                  MineIsSet BOOLEAN, 
-                                  MineC1X INTEGER, 
-                                  MineC1Y INTEGER, 
-                                  MineC1Z INTEGER, 
-                                  MineC2X INTEGER, 
-                                  MineC2Y INTEGER, 
-                                  MineC2Z INTEGER)");
-        $j = $this->data1->getAll();
-        foreach (array_keys($j) as $jail) {
-            $this->connection->query("INSERT INTO JailData01 
-                                      VALUES 
-                                      ('" . $jail . "', 
-                                      " . $j[$jail]["pos"]["x"] . ", 
-                                      " . $j[$jail]["pos"]["y"] . ", 
-                                      " . $j[$jail]["pos"]["z"] . ", 
-                                      " . $j[$jail]["pos"]["level"] . ", 
-                                      " . $j[$jail]["c1"]["x"] . ", 
-                                      " . $j[$jail]["c1"]["y"] . ", 
-                                      " . $j[$jail]["c1"]["z"] . ", 
-                                      " . $j[$jail]["c1"]["level"] . ", 
-                                      " . $j[$jail]["c2"]["x"] . ", 
-                                      " . $j[$jail]["c2"]["y"] . ", 
-                                      " . $j[$jail]["c2"]["z"] . ", 
-                                      " . $j[$jail]["c2"]["level"] . ", 
-                                      " . (bool)$j[$jail]["allow-bail"] . ", 
-                                      " . (bool)$j[$jail]["allow-escape-area"] . ", 
-                                      " . (bool)$j[$jail]["mine"]["isSet"] . ", 
-                                      " . $j[$jail]["mine"]["c1"]["x"] . ", 
-                                      " . $j[$jail]["mine"]["c1"]["y"] . ", 
-                                      " . $j[$jail]["mine"]["c1"]["z"] . ", 
-                                      " . $j[$jail]["mine"]["c2"]["x"] . ", 
-                                      " . $j[$jail]["mine"]["c2"]["y"] . ", 
-                                      " . $j[$jail]["mine"]["c2"]["z"] . ")");
-        }
-    }
+    }*/
 
 }
 

@@ -52,21 +52,7 @@ item: 265
 #Money per 20 blocks
 money-per-block: 1
 
-#### DATABASE ####
-## NOT NECESSARY if you don't want to save your data to your database.
-## If nothing is set, console shows an error of SQL when server starts.
-## The above error is NORMAL and EXPECTED if you have no SQL server
-## information correctly configured.
-#Server info
-host: 127.0.0.1
-username: User01
-password: 123-321-1234567
-databaseName: DatabaseName
-#Sychronize FROM local storage TO Database when server starts?
-#To backup jails.yml data to your DataBase for future recovery
-sync-LOCALtoDB: false
-
 
 ### Config version ###
 #Do not modify this, otherwise plugin may not work properly
-v: 1.1.0
+v: 1.1.1
