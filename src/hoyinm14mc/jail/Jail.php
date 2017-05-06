@@ -435,7 +435,7 @@ class Jail extends PluginBase implements JailAPI
      * @param string $player_name
      * @return bool
      */
-    public function isJailTimeInfinity(string $player_name): bool
+    public function isJailTimeInfinite(string $player_name): bool
     {
         $t = $this->data->getAll();
         if ($this->isJailed(strtolower($player_name)) !== true) {
@@ -458,7 +458,7 @@ class Jail extends PluginBase implements JailAPI
         $contents = $t[strtolower($player_name)]["inventory"];
         $t[strtolower($player_name)]["jailed"] = false;
         unset($t[strtolower($player_name)]["jail"]);
-        if ($this->isJailTimeInfinity(strtolower($player_name)) !== true) {
+        if ($this->isJailTimeInfinite(strtolower($player_name)) !== true) {
             unset($t[strtolower($player_name)]["seconds"]);
             unset($this->prisoner_time[strtolower($player_name)]);
         }

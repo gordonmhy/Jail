@@ -51,7 +51,7 @@ class BailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("bail.feature.disabled"));
                     return true;
                 }
-                if ($this->getPlugin()->isJailTimeInfinity(strtolower($issuer->getName())) !== false) {
+                if ($this->getPlugin()->isJailTimeInfinite(strtolower($issuer->getName())) !== false) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("bail.not.use"));
                     return true;
                 }

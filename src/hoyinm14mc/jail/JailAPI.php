@@ -87,7 +87,7 @@ interface JailAPI
      * @param string $player_name
      * @return bool
      */
-    public function isJailTimeInfinity(string $player_name): bool;
+    public function isJailTimeInfinite(string $player_name): bool;
 
     /**
      * To unjail a player, whatever jail he/she is located

@@ -39,7 +39,7 @@ class TimeBroadcastTask extends BaseTask
                     } else {
                         $this->dots = "";
                     }
-                    $bail_dis = "&2" . $this->getPlugin()->getMessage("timer.broadcast.bail") . ": &d" . ($this->getPlugin()->getEco() !== null && $this->getPlugin()->getConfig()->get("allow-bail") ? ($this->getPlugin()->isJailTimeInfinity(strtolower($player->getName())) !== false ? $this->getPlugin()->getMessage("timer.broadcast.notallowed") : "$" . ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * ($this->getPlugin()->getConfig()->get("bail-per-second")))) : $this->getPlugin()->getMessage("timer.broadcast.disabled") . " ^o^");
+                    $bail_dis = "&2" . $this->getPlugin()->getMessage("timer.broadcast.bail") . ": &d" . ($this->getPlugin()->getEco() !== null && $this->getPlugin()->getConfig()->get("allow-bail") ? ($this->getPlugin()->isJailTimeInfinite(strtolower($player->getName())) !== false ? $this->getPlugin()->getMessage("timer.broadcast.notallowed") : "$" . ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * ($this->getPlugin()->getConfig()->get("bail-per-second")))) : $this->getPlugin()->getMessage("timer.broadcast.disabled") . " ^o^");
                     if (isset($this->getPlugin()->prisoner_time[strtolower($name)])) {
                         $time = $this->getPlugin()->prisoner_time[strtolower($name)];
                         $seconds = $time;
