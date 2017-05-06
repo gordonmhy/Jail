@@ -171,4 +171,19 @@ interface JailAPI
      */
     public function voteForJail(string $player_name, string $voter): bool;
 
+    /**
+     * To unvote a player who was voted by a specific voter.
+     * @param string $player_name
+     * @param string $devoter
+     * @return bool
+     */
+    public function unvotePlayer(string $player_name, string $devoter): bool;
+
+    /**
+     * Gets the number a votes a player has.
+     * @param string $player_name
+     * @return int
+     */
+    public function getVotesNumber(string $player_name): int;
+
 }

@@ -644,6 +644,41 @@ class Jail extends PluginBase implements JailAPI
         return true;
     }
 
+    /**
+     * @param string $player_name
+     * @return int
+     */
+    public function getVotesNumber(string $player_name): int
+    {
+        $t = $this->data->getAll();
+        if ($this->playerProfileExists(strtolower($player_name)) !== true) {
+            //This is kind of an issue. We wouldn't know if the player has 0 votes or the player hasn't joined the server before.
+            return 0;
+        }
+        return $t[strtolower($player_name)]["VoteForJail"]["votes"] ?? 0;
+    }
+
+    /**
+     * @param string $player_name
+     * @param string $devoter
+     * @return bool
+     */
+    public function unvotePlayer(string $player_name, string $devoter): bool
+    {
+        $t = $this->data->getAll();
+        if ($this->playerProfileExists(strtolower($player_name)) !== true) {
+            return false;
+        }
+        if (in_array($devoter, $t[strtolower($player_name)]["VoteForJail"]["votedBy"]) !== true) {
+            return false;
+        }
+        $t[strtolower($player_name)]["VoteForJail"]["votes"] = $t[strtolower($player_name)]["VoteForJail"]["votes"] - 1;
+        unset($t[strtolower($player_name)]["VoteForJail"]["votedBy"][array_search(strtolower($devoter), $t[strtolower($player_name)]["VoteForJail"]["votedBy"])]);
+        $this->data->setAll($t);
+        $this->data->save();
+        return true;
+    }
+
     /*
      * ####################
      *       DATABASE
