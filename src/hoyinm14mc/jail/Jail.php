@@ -215,9 +215,6 @@ class Jail extends PluginBase implements JailAPI
 
     public function onDisable()
     {
-        if ($this->database !== false) {
-            $this->connection->close();
-        }
         $t = $this->data->getAll();
         foreach ($this->prisoner_time as $name => $seconds) {
             if (isset($t[$name]["seconds"]) !== false) {
