@@ -600,7 +600,6 @@ class Jail extends PluginBase implements JailAPI
      */
     public function tpJail(Player $player, string $jail): bool
     {
-        $t = $this->data->getAll();
         $j = $this->data1->getAll();
         if ($this->isJailed(strtolower($player->getName())) !== false) {
             return false;

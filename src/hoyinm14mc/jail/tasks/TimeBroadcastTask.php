@@ -28,7 +28,6 @@ class TimeBroadcastTask extends BaseTask
 
     public function onRun($currentTick)
     {
-        $t = $this->getPlugin()->data->getAll();
         if ($this->getPlugin()->getConfig()->get("show-prisoner-timer") !== false) {
             foreach ($this->getPlugin()->getAllJailedPlayerNames() as $name) {
                 $player = $this->getPlugin()->getServer()->getPlayer($name);
