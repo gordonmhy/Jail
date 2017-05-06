@@ -7,7 +7,7 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 >
 > Proved to be advanced relative to other similar plugins!
 
-####Download Latest Build: [Jail_v1.0.2.phar](https://github.com/hoyinm14mc/Jail/releases/download/1.0.2/Jail_v1.0.2.phar)
+####Download Latest Build: [Jail_v1.1.1.phar](https://github.com/hoyinm14mc/Jail/releases/download/1.1.1/Jail_v1.1.1.phar)
 
 -----------------------------------
 
