@@ -31,7 +31,10 @@ abstract class BaseEconomy
         $this->plugin = $plugin;
     }
 
-    public function getPlugin(): object
+    /**
+     * @return Jail
+     */
+    public function getPlugin(): Jail
     {
         return $this->plugin;
     }

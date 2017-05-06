@@ -43,7 +43,7 @@ class PrisonerinfoCommand extends BaseCommand
                 }
                 $t = $this->getPlugin()->data->getAll();
                 $jail = $t[$prisoner]["jail"];
-                $seconds = (string)$t[$prisoner]["seconds"];
+                $seconds = (string)$this->getPlugin()->prisoner_time[strtolower($prisoner)];
                 $reason = $t[$prisoner]["reason"];
                 $secs = $seconds;
                 $mins = 0;

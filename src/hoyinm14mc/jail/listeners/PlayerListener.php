@@ -60,7 +60,7 @@ class PlayerListener extends BaseListener
         $t[strtolower($event->getPlayer()->getName())]["uuid"] = (string)$event->getPlayer()->getUniqueId();
         $this->getPlugin()->data->setAll($t);
         $this->getPlugin()->data->save();
-        if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) && isset($t[strtolower($event->getPlayer()->getName())]["seconds"]) !== false && $t[strtolower($event->getPlayer()->getName())]["seconds"] < 0) {
+        if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) && isset($this->getPlugin()->prisoner_time[strtolower($event->getPlayer()->getName())]) !== false && $this->getPlugin()->prisoner_time[strtolower($event->getPlayer()->getName())] < 0) {
             $this->getPlugin()->unjail(strtolower($event->getPlayer()->getName()));
         }
         if (isset($t[strtolower($event->getPlayer()->getName())]["unjailedSettings"]) !== false

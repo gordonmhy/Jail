@@ -29,24 +29,22 @@ class JailTimingTask extends BaseTask
         $t = $this->getPlugin()->data->getAll();
         foreach ($this->getPlugin()->getAllJailedPlayerNames() as $name) {
             if ($this->getPlugin()->getConfig()->get("offline-time-counting") !== false) {
-                if (isset($t[$name]["seconds"])) {
-                    $t[$name]["seconds"] = $t[$name]["seconds"] - 1;
-                    $this->getPlugin()->data->setAll($t);
-                    $this->getPlugin()->data->save();
-                    if ($t[$name]["seconds"] < 0 && $this->getPlugin()->getServer()->getPlayer($name) !== null) {
+                if ($t[$name]["jailed"] !== false && isset($this->getPlugin()->prisoner_time[$name]) !== false) {
+                    $this->getPlugin()->prisoner_time[$name] = $this->getPlugin()->prisoner_time[$name] - 1;
+                    if ($this->getPlugin()->prisoner_time[$name] < 0) {
                         $this->getPlugin()->unjail($name);
                     }
                 }
             } else {
-                if ($this->getPlugin()->getServer()->getPlayer($name) !== null && isset($t[$name]["seconds"])) {
-                    $t[$name]["seconds"] = $t[$name]["seconds"] - 1;
-                    $this->getPlugin()->data->setAll($t);
-                    $this->getPlugin()->data->save();
-                    if ($t[$name]["seconds"] < 0) {
+                if ($this->getPlugin()->getServer()->getPlayer($name) !== null
+                    && $t[$name]["jailed"] !== false
+                    && isset($this->getPlugin()->prisoner_time[$name]) !== false
+                ) {
+                    $this->getPlugin()->prisoner_time[$name] = $this->getPlugin()->prisoner_time[$name] - 1;
+                    if ($this->getPlugin()->prisoner_time[$name] < 0) {
                         $this->getPlugin()->unjail($name);
                     }
                 }
-
             }
         }
     }

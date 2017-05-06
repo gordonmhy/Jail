@@ -110,6 +110,12 @@ class Jail extends PluginBase implements JailAPI
     private $lang = [];
 
     /**
+     * Player Name [STRING] => Time remaining [INT]
+     * @var array
+     */
+    public $prisoner_time = [];
+
+    /**
      * @param string $command
      * @param bool $lang
      * @return array
@@ -181,6 +187,12 @@ class Jail extends PluginBase implements JailAPI
         if ($this->eco !== null) {
             $this->getLogger()->info($this->colorMessage("Loaded with " . $this->getEco()->getName() . "!"));
         }
+        $t = $this->data->getAll();
+        foreach ($t as $name => $value) {
+            if (isset($t[strtolower($name)]["seconds"]) !== false && $t[strtolower($name)]["jailed"] !== false) {
+                $this->prisoner_time[strtolower($name)] = $t[strtolower($name)]["seconds"];
+            }
+        }
         self::$instance = $this;
         $this->getCommand("deljail")->setExecutor(new DeljailCommand($this));
         $this->getCommand("jail")->setExecutor(new JailCommand($this));
@@ -225,6 +237,15 @@ class Jail extends PluginBase implements JailAPI
         if ($this->database !== false) {
             $this->connection->close();
         }
+        $t = $this->data->getAll();
+        foreach ($this->prisoner_time as $name => $seconds) {
+            if (isset($t[$name]["seconds"]) !== false) {
+                $t[$name]["seconds"] = $seconds;
+                unset($this->prisoner_time[$name]);
+            }
+        }
+        $this->data->setAll($t);
+        $this->data->save();
     }
 
     private function initializeLanguage()
@@ -307,7 +328,7 @@ class Jail extends PluginBase implements JailAPI
     public function playerProfileExists(string $player_name): bool
     {
         $t = $this->data->getAll();
-        return (bool)isset($t[strtolower($player_name)]) !== false
+        return isset($t[strtolower($player_name)]) !== false
             && isset($t[strtolower($player_name)]["jailed"]) !== false;
     }
 
@@ -387,6 +408,7 @@ class Jail extends PluginBase implements JailAPI
         //If time is infinite, then 'seconds' key will not be set.
         if ($time != -1) {
             $t[strtolower($player->getName())]["seconds"] = $this->convertTime($time);
+            $this->prisoner_time[strtolower($player->getName())] = $this->convertTime($time);
         }
         $t[strtolower($player->getName())]["reason"] = $reason;
         $t[strtolower($player->getName())]["gamemode"] = $player->getGamemode();
@@ -419,7 +441,7 @@ class Jail extends PluginBase implements JailAPI
         if ($this->isJailed(strtolower($player_name)) !== true) {
             return false;
         }
-        return isset($t[strtolower($player_name)]["seconds"]) !== true;
+        return isset($this->prisoner_time[$player_name]) !== true;
     }
 
     /**
@@ -438,6 +460,7 @@ class Jail extends PluginBase implements JailAPI
         unset($t[strtolower($player_name)]["jail"]);
         if ($this->isJailTimeInfinity(strtolower($player_name)) !== true) {
             unset($t[strtolower($player_name)]["seconds"]);
+            unset($this->prisoner_time[strtolower($player_name)]);
         }
         unset($t[strtolower($player_name)]["reason"]);
         unset($t[strtolower($player_name)]["gamemode"]);
@@ -604,7 +627,7 @@ class Jail extends PluginBase implements JailAPI
         if ($this->isJailed(strtolower($player_name)) !== true) {
             return false;
         }
-        $t[strtolower($player_name)]["seconds"] = $t[strtolower($player_name)]["seconds"] + $this->convertTime($time);
+        $this->prisoner_time[strtolower($player_name)] = $this->prisoner_time[strtolower($player_name)] + $this->convertTime($time);
         $this->data->setAll($t);
         $this->data->save();
         return true;

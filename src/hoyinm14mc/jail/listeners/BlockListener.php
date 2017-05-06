@@ -44,14 +44,14 @@ class BlockListener extends BaseListener
             if ($mines->hasMineSet($t[strtolower($event->getPlayer()->getName())]["jail"]) !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
-                if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
+                if ($cfg->get("enable-penalty") !== false && isset($this->getPlugin()->prisoner_time[strtolower($event->getPlayer()->getName())])) {
                     $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));
                     $event->getPlayer()->sendMessage(str_replace("%time%", $cfg->get("penalty-time"), $this->getPlugin()->getMessage("penalty.added.prisoner")));
                 }
             } else if ($mines->hasMineSet($t[strtolower($event->getPlayer()->getName())]["jail"]) !== false && $mines->insideMine($t[strtolower($event->getPlayer()->getName())]["jail"], new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel())) !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
-                if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
+                if ($cfg->get("enable-penalty") !== false && isset($this->getPlugin()->prisoner_time[strtolower($event->getPlayer()->getName())])) {
                     $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));
                     $event->getPlayer()->sendMessage(str_replace("%time%", $cfg->get("penalty-time"), $this->getPlugin()->getMessage("penalty.added.prisoner")));
                 }
@@ -74,7 +74,7 @@ class BlockListener extends BaseListener
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $cfg->get("allow-block-place") !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
             $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
             $event->setCancelled(true);
-            if ($cfg->get("enable-penalty") !== false && isset($t[strtolower($event->getPlayer()->getName())]["seconds"])) {
+            if ($cfg->get("enable-penalty") !== false && isset($this->getPlugin()->prisoner_time[strtolower($event->getPlayer()->getName())])) {
                 $this->getPlugin()->applyPenalty(strtolower($event->getPlayer()->getName()), (int)$cfg->get("penalty-time"));
                 $event->getPlayer()->sendMessage(str_replace("%time%", $cfg->get("penalty-time"), $this->getPlugin()->getMessage("penalty.added.prisoner")));
             }
