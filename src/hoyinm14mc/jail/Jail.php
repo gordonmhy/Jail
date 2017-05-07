@@ -154,6 +154,7 @@ class Jail extends PluginBase implements JailAPI
         $this->saveDefaultConfig();
         $this->reloadConfig();
         $this->data = new Config($this->getDataFolder() . "players.yml", Config::YAML, array());
+        $this->data1 = new Config($this->getDataFolder() . "jails.yml", Config::YAML, array());
         $this->initializeLanguage();
         $ecoPlugs = [
             "PocketMoney",

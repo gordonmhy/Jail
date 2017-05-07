@@ -3,6 +3,7 @@ Changelog of Jail
 1.1.2 - 07/MAY/2017
 - Removed auto installer due to its violation to Poggit's submission rules.
 - Added support for checking latest version from Poggit's repository.
+- Fixed error spamming the console when players position themselves
 
 1.1.1 - 06/MAY/2017
 - Changed the way time data is updated and processed every second, reduces lags
