@@ -50,6 +50,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
+use pocketmine\utils\Utils;
 
 class Jail extends PluginBase implements JailAPI
 {
@@ -202,11 +203,11 @@ class Jail extends PluginBase implements JailAPI
         if ($this->getConfig()->get("scheduled-update-checker") !== false) {
             $this->getLogger()->info($this->colorMessage("&eInitialized scheduled update checker"));
             $this->getServer()->getScheduler()->scheduleRepeatingTask(new AutoUpdateChecker($this), 60 * 20 * (int)$this->getConfig()->get("scheduled-update-checker-interval"));
-        } else if ($this->getConfig()->get("updater-start-fetch") !== false) {
+        } else if ($this->getConfig()->get("updater-startup-fetch") !== false) {
             $this->getLogger()->info($this->colorMessage("&eFetching latest version from repository..."));
             $this->getLogger()->info($this->colorMessage("&eResult will appear when server query is started."));
-            if (is_dir($this->getServer()->getDataPath() . "tmp")) {
-                $this->getLogger()->info($this->colorMessage("&4Error: Mobile device not supported!"));
+            if (Utils::getOS() == "ios" || Utils::getOS() == "android") {
+                $this->getLogger()->info($this->colorMessage("&4Error: Mobile hosted servers are not supported!"));
             } else {
                 $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
             }

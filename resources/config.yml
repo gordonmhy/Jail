@@ -29,13 +29,13 @@ bail-per-second: 100
 #OPs can't be jailed?
 op-can-be-jailed: true
 #Enable Server-start latest version tracker?
-updater-start-fetch: true
-#Enable auto latest version installation?
-updater-auto-install: true
+updater-startup-fetch: true
 #Enable frequent scheduled auto update checker?
 scheduled-update-checker: true
 #Minutes between each check? (Ignore if scheduled-update-checker=false)
 scheduled-update-checker-interval: 45
+#Update checker channel (Poggit *recommended* / Github)
+update-checker-channel: poggit
 #Number of votes that a players has to be jailed after reaching it
 votes-to-jail-player: 4
 #Show timer GUI to prisoners?

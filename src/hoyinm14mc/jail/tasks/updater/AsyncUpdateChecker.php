@@ -32,36 +32,41 @@ class AsyncUpdateChecker extends AsyncTask
 
     public function onRun()
     {
-        $iden = json_decode(Utils::getURL("https://api.github.com/repos/hoyinm14mc/Jail/releases"), true);
-        $iden = $iden[0];
         $arr = [];
-        $arr["ver"] = substr($iden["name"], 5);
-        $arr["url"] = $iden["assets"][0]["browser_download_url"];
+        //Github Channel
+        $git_iden = json_decode(Utils::getURL("https://api.github.com/repos/hoyinm14mc/Jail/releases"), true);
+        $git_iden = $git_iden[0];
+        //Poggit Channel
+        $serverApi = \pocketmine\API_VERSION;
+        list(, $headerGroups, $httpCode) = Utils::simpleCurl("https://poggit.pmmp.io/get/Jail?api=$serverApi&prerelease", 10, [], [
+            CURLOPT_FOLLOWLOCATION => false,
+            CURLOPT_NOBODY => true
+        ]);
+        if ($httpCode != 302) return;
+        foreach ($headerGroups as $headers) {
+            foreach ($headers as $name => $value) {
+                if ($name === "x-poggit-resolved-version") {
+                    $arr["poggit_ver"] = $value;
+                }
+            }
+        }
+        if (!isset($arr["poggit_ver"])) throw new \Exception("API Error");
+        $arr["github_ver"] = substr($git_iden["name"], 5);
         $this->setResult($arr);
     }
 
     public function onCompletion(Server $server)
     {
         $plugin = $server->getPluginManager()->getPlugin("Jail");
-        if ($this->getResult()["ver"] != strtolower($plugin->getDescription()->getVersion())) {
-            $plugin->getLogger()->info($plugin->colorMessage("&bYour version is not the latest one! Latest version: &f" . $this->getResult()["ver"]));
-            $file_pl = "Jail_v" . $plugin->getDescription()->getVersion() . ".phar";
-            $file_new_pl = "Jail_v" . $this->getResult()["ver"] . ".phar";
-            $path = $plugin->getServer()->getPluginPath() . $file_pl;
-            if ($plugin->getConfig()->get("updater-auto-install") !== false) {
-                $plugin->getLogger()->info($plugin->colorMessage("&eInstalling new version..."));
-                if (file_exists($path) !== false) {
-                    $plugin->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateInstaller($this->getResult()["url"], $this->getResult()["ver"], $file_pl, $file_new_pl, $path));
-                } else {
-                    $plugin->getLogger()->info($plugin->colorMessage("&4An error occured upon installation of latest version!"));
-                    $plugin->getLogger()->info($plugin->colorMessage("&4You can still manually download and install it: &f" . $this->getResult()["url"]));
-                }
-            } else {
-                $plugin->getLogger()->info($plugin->colorMessage("^6Download link: &f" . $this->getResult()["url"]));
-            }
-        } else {
-            $plugin->getLogger()->info($plugin->colorMessage("&6No update found!"));
+        $no_update = true;
+        if (version_compare((strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? $this->getResult()["github_ver"] : $this->getResult()["poggit_ver"]), $plugin->getDescription()->getVersion(), ">")) {
+            $plugin->getLogger()->info($plugin->colorMessage("&bYour version is outdated! \nLatest version: &f" . (string)strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? $this->getResult()["github_ver"] : $this->getResult()["poggit_ver"]));
+            $no_update = false;
         }
+        if ($no_update !== false) {
+            $plugin->getLogger()->info($plugin->colorMessage("&6You are owning the latest version of Jail."));
+        }
+        $plugin->getLogger()->info($plugin->colorMessage("&6The above info was fetched from the channel: &f" . strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? "Github" : "Poggit"));
     }
 
 }

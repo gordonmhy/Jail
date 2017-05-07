@@ -7,7 +7,7 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 >
 > Proved to be advanced relative to other similar plugins!
 
-####Download Latest Build: [Jail_v1.1.1.phar](https://github.com/hoyinm14mc/Jail/releases/download/1.1.1/Jail_v1.1.1.phar)
+####Download Latest Build: [Jail_v1.1.2.phar](https://github.com/hoyinm14mc/Jail/releases/download/1.1.2/Jail_v1.1.2.phar)
 
 -----------------------------------
 
@@ -31,6 +31,8 @@ A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) 
 - [x] Saves prisoner's inventory, and return upon unjail
 - [x] Customizable time unit!
 - [x] API for developers to access externally
+
+- * Version update checker is included in this software which only works when network connection is active.
 
 ###Youtube Tutorials:
 - [Building and setting a jail](https://youtu.be/HR8XhOizd-c)
