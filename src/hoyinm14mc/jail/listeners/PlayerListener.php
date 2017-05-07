@@ -68,10 +68,10 @@ class PlayerListener extends BaseListener
             $event->getPlayer()->teleport($this->getPlugin()->getServer()->getDefaultLevel()->getSpawnLocation());
             $event->getPlayer()->getInventory()->clearAll();
             $event->getPlayer()->getInventory()->setContents($t[strtolower($event->getPlayer()->getName())]["unjailedSettings"]["inv"]);
-            $event->getPlayer()->setGamemode($t[strtolower($event->getPlayer()->getName())]["unjailedSettings"]["inv"]);
+            $event->getPlayer()->setGamemode($t[strtolower($event->getPlayer()->getName())]["unjailedSettings"]["gm"]);
             unset($t[strtolower($event->getPlayer()->getName())]["unjailedSettings"]);
-            $this->data->setAll($t);
-            $this->data->save();
+            $this->getPlugin()->data->setAll($t);
+            $this->getPlugin()->data->save();
         }
     }
 
