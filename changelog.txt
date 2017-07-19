@@ -1,5 +1,8 @@
 Changelog of Jail
 
+1.1.3
+- Updated Russian language file
+
 1.1.2 - 07/MAY/2017
 - Removed auto installer due to its violation of Poggit's submission rules.
 - Added support for checking latest version from Poggit's repository.
