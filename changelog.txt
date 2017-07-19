@@ -1,7 +1,7 @@
 Changelog of Jail
 
 1.1.2 - 07/MAY/2017
-- Removed auto installer due to its violation to Poggit's submission rules.
+- Removed auto installer due to its violation of Poggit's submission rules.
 - Added support for checking latest version from Poggit's repository.
 - Fixed console spamming when PlayerMoveEvent is called.
 - Fixed game mode not being set correctly when prisoners join the server.
