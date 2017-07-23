@@ -142,9 +142,9 @@ class PlayerListener extends BaseListener
             $mines->mine_c2[strtolower($event->getPlayer()->getName())] = new Position($event->getBlock()->x, $event->getBlock()->y, $event->getBlock()->z, $event->getBlock()->getLevel());
             //Selection end
             $mines->setMine($mines->mineName_tmp[strtolower($event->getPlayer()->getName())], $mines->mine_c1[strtolower($event->getPlayer()->getName())], $mines->mine_c2[strtolower($event->getPlayer()->getName())]);
-            unset($this->getPlugin()->mineName_tmp[strtolower($event->getPlayer()->getName())]);
-            unset($this->getPlugin()->mine_c1[strtolower($event->getPlayer()->getName())]);
-            unset($this->getPlugin()->mine_c2[strtolower($event->getPlayer()->getName())]);
+            unset($mines->mineName_tmp[strtolower($event->getPlayer()->getName())]);
+            unset($mines->mine_c1[strtolower($event->getPlayer()->getName())]);
+            unset($mines->mine_c2[strtolower($event->getPlayer()->getName())]);
             $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("mine.set.success"));
         }
     }
@@ -198,9 +198,9 @@ class PlayerListener extends BaseListener
         }
         $mines = new Mines($this->getPlugin());
         if (isset($mines->mineName_tmp[strtolower($event->getPlayer()->getName())])) {
-            unset($this->getPlugin()->mineName_tmp[strtolower($event->getPlayer()->getName())]);
-            unset($this->getPlugin()->mine_c1[strtolower($event->getPlayer()->getName())]);
-            unset($this->getPlugin()->mine_c2[strtolower($event->getPlayer()->getName())]);
+            unset($mines->mineName_tmp[strtolower($event->getPlayer()->getName())]);
+            unset($mines->mine_c1[strtolower($event->getPlayer()->getName())]);
+            unset($mines->mine_c2[strtolower($event->getPlayer()->getName())]);
         }
     }
 
