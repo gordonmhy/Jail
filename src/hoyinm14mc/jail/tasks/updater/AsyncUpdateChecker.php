@@ -22,6 +22,7 @@ namespace hoyinm14mc\jail\tasks\updater;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 use pocketmine\utils\Utils;
+use hoyinm14mc\jail\Jail;
 
 class AsyncUpdateChecker extends AsyncTask
 {
@@ -57,7 +58,7 @@ class AsyncUpdateChecker extends AsyncTask
 
     public function onCompletion(Server $server)
     {
-        $plugin = $server->getPluginManager()->getPlugin("Jail");
+        $plugin = Jail::getInstance();
         $no_update = true;
         if (version_compare((strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? $this->getResult()["github_ver"] : $this->getResult()["poggit_ver"]), $plugin->getDescription()->getVersion(), ">")) {
             $plugin->getLogger()->info($plugin->colorMessage("&bYour version is outdated! \nLatest version: &f" . (string)strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? $this->getResult()["github_ver"] : $this->getResult()["poggit_ver"]));
