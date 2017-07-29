@@ -24,7 +24,7 @@ use hoyinm14mc\jail\base\BaseTask;
 class JailTimingTask extends BaseTask
 {
 
-    public function onRun($currentTick)
+    public function onRun(int $currentTick)
     {
         $t = $this->getPlugin()->data->getAll();
         foreach ($this->getPlugin()->getAllJailedPlayerNames() as $name) {

@@ -24,7 +24,7 @@ use hoyinm14mc\jail\base\BaseTask;
 class AutoUpdateChecker extends BaseTask
 {
 
-    public function onRun($currentTick)
+    public function onRun(int $currentTick)
     {
         $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&eFetching latest version from repository..."));
         if(is_dir($this->getPlugin()->getServer()->getDataPath()."tmp")){
