@@ -101,6 +101,16 @@ class Jail extends PluginBase implements JailAPI
     private $lang = [];
 
     /**
+     * @var Config
+     */
+    public $data;
+
+    /**
+     * @var Config
+     */
+    public $data1;
+
+    /**
      * Player Name [STRING] => Time remaining [INT]
      * @var array
      */

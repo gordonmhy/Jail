@@ -28,7 +28,7 @@ use pocketmine\Player;
 class SwitchjailCommand extends BaseCommand
 {
 
-    public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
+    public function onCommand(CommandSender $issuer, Command $cmd, string $label, array $args): bool
     {
         switch (strtolower($cmd->getName())) {
             case "switchjail":

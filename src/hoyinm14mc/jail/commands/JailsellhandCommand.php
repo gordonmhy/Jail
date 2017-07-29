@@ -32,7 +32,7 @@ use pocketmine\Player;
 class JailsellhandCommand extends BaseCommand
 {
 
-    public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args)
+    public function onCommand(CommandSender $issuer, Command $cmd, string $label, array $args): bool
     {
         switch ($cmd->getName()) {
             case "jailsellhand":
