@@ -23,13 +23,13 @@ Malfunction of a prison's security features is not allowed in reality. Security 
 [Learn More.](https://youtu.be/EtmXwf4Oivs)
 
 ### Better Design. More elegant than ever.
-A revolutionary, beautiful interface is shown on the screen of prisoners. It features a timer, fee calculator, and a colored bar, all vividly animated, giving you an incredibly great looking view.
+A revolutionary, beautiful interface is shown on the screen of prisoners. It features a timer, fee calculator, and a colored bar, all vividly animated, giving you an incredibly great view.
 
 ### Stay Updated. Stay New.
-With Jail 1.1, you never get out of the trend, when your server is up on the internet. A multi-channel update detector is featured in it. And it checks for update on the air automatically.
+With Jail 1.1, you never get out of the trend, whenever your server is up on the internet. A multi-channel update detector is featured in it. And it checks for update on the air automatically.
 
 ### Start using Jail
-Try out Jail now by installing the latest PHAR file in the plugins folder. You could find the recent releases on both Poggit and Github releases page.
+Try out Jail now by placing the latest PHAR file into your plugins folder. You could find the most recent release on both Poggit and Github Releases pages.
 Before your first try out, you are advised to go through [Wiki](https://github.com/hoyinm14mc/Jail/wiki). You could learn all commands, permission nodes, and usage of specific features there.
 
 ### Feedback
