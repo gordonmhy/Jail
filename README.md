@@ -1,4 +1,4 @@
-# Jail <img src="https://github.com/hoyinm14mc/Jail/tree/master/resources/1651.png" width="60" height="60" align="right">
+# Jail <img src="https://github.com/hoyinm14mc/Jail/blob/master/resources/1651.png" width="60" height="60" align="right">
 
 A fully featured plugin for [PocketMine](https://github.com/pmmp/PocketMine-MP) servers
 
