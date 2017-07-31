@@ -36,8 +36,6 @@ updater-startup-fetch: true
 scheduled-update-checker: true
 #Minutes between each check? (Ignore if scheduled-update-checker=false)
 scheduled-update-checker-interval: 45
-#Update checker channel (Poggit *recommended* / Github)
-update-checker-channel: poggit
 #Number of votes that a players has to be jailed after reaching it
 votes-to-jail-player: 4
 #Show timer GUI to prisoners?
@@ -53,6 +51,14 @@ block: 15
 item: 265
 #Money per 20 blocks
 money-per-block: 1
+
+#Update checker channel
+#   Channels:
+#   'poggit': Versions that are checked by the PocketMine team
+#   'github': Versions that are guaranteed to be UP-TO-DATE
+#   '*': Both of the above channels will be fetched (>Recommended<)
+# (Insert 'poggit' or 'github' or '*')
+update-checker-channel: '*'
 
 
 ### Config version ###

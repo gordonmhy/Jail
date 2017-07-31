@@ -68,7 +68,7 @@ class AsyncUpdateChecker extends AsyncTask
         $no_update = true;
         if (version_compare((strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? $this->getResult()["poggit_ver"] : $this->getResult()["github_ver"]), $plugin->getDescription()->getVersion(), ">")) {
             $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . (strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? $this->getResult()["poggit_ver"] : $this->getResult()["github_ver"])));
-            $plugin->getLogger()->info("\nUpdate details for v" . (strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? $this->getResult()["github_desc"] : $this->getResult()["poggit_desc"]));
+            $plugin->getLogger()->info("\nUpdate details for v" . (strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? $this->getResult()["poggit_desc"] : $this->getResult()["github_desc"]));
             $no_update = false;
         }
         if ($no_update !== false) {
