@@ -36,7 +36,7 @@ class AsyncUpdateChecker extends AsyncTask
         $arr = [];
         //Github Channel
         $git_iden = json_decode(Utils::getURL("https://api.github.com/repos/hoyinm14mc/Jail/releases"), true);
-        $git_iden = $git_iden[0];
+        $git_iden_latest = $git_iden[0];
         //Poggit Channel
         $serverApi = \pocketmine\API_VERSION;
         list(, $headerGroups, $httpCode) = Utils::simpleCurl("https://poggit.pmmp.io/get/Jail?api=$serverApi&prerelease", 10, [], [
@@ -52,7 +52,13 @@ class AsyncUpdateChecker extends AsyncTask
             }
         }
         if (!isset($arr["poggit_ver"])) throw new \Exception("API Error");
-        $arr["github_ver"] = substr($git_iden["name"], 5);
+        $arr["github_ver"] = $git_iden_latest["tag_name"];
+        $arr["github_desc"] = $git_iden_latest["body"];
+        $key = 0;
+        while ($git_iden[$key]["tag_name"] != $arr["poggit_ver"]) {
+            $key++;
+        }
+        $arr["poggit_desc"] = $git_iden[$key]["body"];
         $this->setResult($arr);
     }
 
@@ -60,14 +66,15 @@ class AsyncUpdateChecker extends AsyncTask
     {
         $plugin = Jail::getInstance();
         $no_update = true;
-        if (version_compare((strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? $this->getResult()["github_ver"] : $this->getResult()["poggit_ver"]), $plugin->getDescription()->getVersion(), ">")) {
-            $plugin->getLogger()->info($plugin->colorMessage("&bYour version is outdated! \nLatest version: &f" . (string)strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? $this->getResult()["github_ver"] : $this->getResult()["poggit_ver"]));
+        if (version_compare((strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? $this->getResult()["poggit_ver"] : $this->getResult()["github_ver"]), $plugin->getDescription()->getVersion(), ">")) {
+            $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . (strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? $this->getResult()["poggit_ver"] : $this->getResult()["github_ver"])));
+            $plugin->getLogger()->info("\nUpdate details for v" . (strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? $this->getResult()["github_desc"] : $this->getResult()["poggit_desc"]));
             $no_update = false;
         }
         if ($no_update !== false) {
-            $plugin->getLogger()->info($plugin->colorMessage("&6You are owning the latest version of Jail."));
+            $plugin->getLogger()->info($plugin->colorMessage("&aYou are owning the &clatest &aversion of Jail."));
         }
-        $plugin->getLogger()->info($plugin->colorMessage("&6The above info was fetched from the channel: &f" . strtolower($plugin->getConfig()->get("update-checker-channel")) == "github" ? "Github" : "Poggit"));
+        $plugin->getLogger()->info($plugin->colorMessage("&6The above info was fetched from the channel: &f" . (strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? "Poggit" : "Github")));
     }
 
 }

@@ -1,5 +1,8 @@
 Changelog of Jail
 
+1.1.6 - 01/AUG/2017
+- Update fetcher now shows update changes of the latest version on Poggit or Github
+
 1.1.5 - 31/JUL/2017
 - Fixed language initialization error of missing file (Critical fix)
 - Fixed "listener.player.not.allowed.leave" message being overlapped
