@@ -27,8 +27,12 @@ use hoyinm14mc\jail\Jail;
 class AsyncUpdateChecker extends AsyncTask
 {
 
-    public function __construct()
+    private $channel;
+
+    public function __construct($complexData = null, string $channel)
     {
+        $this->channel = $channel;
+        parent::__construct($complexData);
     }
 
     public function onRun()
@@ -65,6 +69,40 @@ class AsyncUpdateChecker extends AsyncTask
     public function onCompletion(Server $server)
     {
         $plugin = Jail::getInstance();
+        switch ($this->channel) {
+            case "poggit":
+                $plugin->getLogger()->info($plugin->colorMessage("&d>>>>> &fChannel: &3Poggit &d<<<<<"));
+                $no_update = true;
+                if (version_compare($this->getResult()["poggit_ver"], $plugin->getDescription()->getVersion(), ">") !== false) {
+                    $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . $this->getResult()["poggit_ver"]));
+                    $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["poggit_desc"]);
+                    $no_update = false;
+                }
+                if ($no_update !== false) {
+                    $plugin->getLogger()->info($plugin->colorMessage("&aYou are owning the &clatest &aversion of Jail."));
+                }
+                $plugin->getLogger()->info($plugin->colorMessage("&6-------------------------------"));
+                break;
+            case "github":
+                $plugin->getLogger()->info($plugin->colorMessage("&d>>>>> &fChannel: &3Github &d<<<<<"));
+                $no_update = true;
+                if (version_compare($this->getResult()["github_ver"], $plugin->getDescription()->getVersion(), ">") !== false) {
+                    $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . $this->getResult()["github_ver"]));
+                    $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["github_desc"]);
+                    $no_update = false;
+                }
+                if ($no_update !== false) {
+                    $plugin->getLogger()->info($plugin->colorMessage("&aYou are owning the &clatest &aversion of Jail."));
+                }
+                $plugin->getLogger()->info($plugin->colorMessage("&6-------------------------------"));
+                break;
+                break;
+            default:
+                $plugin->getLogger()->info($plugin->colorMessage("&4Unidentifiable channel. Please check your configuration file."));
+                $server->getScheduler()->cancelTask($this->getTaskId());
+        }
+        //Old
+        /*$plugin = Jail::getInstance();
         $no_update = true;
         if (version_compare((strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? $this->getResult()["poggit_ver"] : $this->getResult()["github_ver"]), $plugin->getDescription()->getVersion(), ">")) {
             $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . (strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? $this->getResult()["poggit_ver"] : $this->getResult()["github_ver"])));
@@ -75,6 +113,7 @@ class AsyncUpdateChecker extends AsyncTask
             $plugin->getLogger()->info($plugin->colorMessage("&aYou are owning the &clatest &aversion of Jail."));
         }
         $plugin->getLogger()->info($plugin->colorMessage("&6The above info was fetched from the channel: &f" . (strtolower($plugin->getConfig()->get("update-checker-channel")) == "poggit" ? "Poggit" : "Github")));
+    */
     }
 
 }

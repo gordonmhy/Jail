@@ -26,11 +26,16 @@ class AutoUpdateChecker extends BaseTask
 
     public function onRun(int $currentTick)
     {
-        $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&eFetching latest version from repository..."));
+        $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&eStart fetching data..."));
         if(is_dir($this->getPlugin()->getServer()->getDataPath()."tmp")){
             $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&4Error: Mobile device not supported!"));
         }else{
-            $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
+            if ($this->getPlugin()->getConfig()->get("update-checker-channel") == "*") {
+                $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "poggit"));
+                $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "github"));
+            } else {
+                $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, $this->getPlugin()->getConfig()->get("update-checker-channel")));
+            }
         }
     }
 

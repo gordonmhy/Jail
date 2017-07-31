@@ -222,7 +222,12 @@ class Jail extends PluginBase implements JailAPI
             if (Utils::getOS() == "ios" || Utils::getOS() == "android") {
                 $this->getLogger()->info($this->colorMessage("&4Error: Mobile hosted servers are not supported!"));
             } else {
-                $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker());
+                if ($this->getConfig()->get("update-checker-channel") == "*") {
+                    $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "poggit"));
+                    $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "github"));
+                } else {
+                    $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, $this->getConfig()->get("update-checker-channel")));
+                }
             }
         }
     }
