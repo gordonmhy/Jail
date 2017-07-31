@@ -19,7 +19,6 @@
 
 namespace hoyinm14mc\jail\listeners;
 
-use hoyinm14mc\jail\Jail;
 use hoyinm14mc\jail\base\BaseListener;
 use hoyinm14mc\jail\Mines;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
@@ -27,7 +26,6 @@ use pocketmine\event\player\PlayerDropItemEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerItemConsumeEvent;
 use pocketmine\event\player\PlayerJoinEvent;
-use pocketmine\event\player\PlayerLoginEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\level\Position;
@@ -177,7 +175,7 @@ class PlayerListener extends BaseListener
                     $j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["y"],
                     $j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["z"],
                     $this->getPlugin()->getServer()->getLevelByName($j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["level"])));
-            $event->getPlayer()->sendPopup("\n" . $this->getPlugin()->getMessage("listener.player.not.allowed.leave"));
+            $event->getPlayer()->sendPopup($this->getPlugin()->getMessage("listener.player.not.allowed.leave"));
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $this->getPlugin()->getConfig()->get("allow-movement") !== true) {
             if ($event->getFrom()->x != $event->getPlayer()->x || $event->getFrom()->y != $event->getPlayer()->y || $event->getFrom()->z != $event->getPlayer()->z) {

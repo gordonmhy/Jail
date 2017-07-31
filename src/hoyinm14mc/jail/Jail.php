@@ -242,7 +242,7 @@ class Jail extends PluginBase implements JailAPI
 
     private function initializeLanguage()
     {
-        unlink($this->getDataFolder() . "messages.yml");
+        @unlink($this->getDataFolder() . "messages.yml");
         foreach ($this->getResources() as $resource) {
             if ($resource->isFile() and substr(($filename = $resource->getFilename()), 0, 5) === "lang_") {
                 $this->lang[substr($filename, 5, -5)] = json_decode(file_get_contents($resource->getPathname()), true);
