@@ -177,6 +177,26 @@ class PlayerListener extends BaseListener
                     $this->getPlugin()->getServer()->getLevelByName($j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["level"])));
             $event->getPlayer()->sendPopup($this->getPlugin()->getMessage("listener.player.not.allowed.leave") . "\n\n\n\n");
         }
+        if ($this->getPlugin()->getConfig()->get("allow-visit") !== true
+            && $event->getPlayer()->hasPermission("jail.visit.bypass") !== true
+            && $this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== true) {
+            foreach (array_keys($j) as $jail) {
+                if ($this->getPlugin()->jailExists($jail)
+                    && $this->getPlugin()->insideJail($jail, $event->getPlayer()->getPosition()) !== false
+                    && ($event->getFrom()->x != $event->getPlayer()->x || $event->getFrom()->y != $event->getPlayer()->y || $event->getFrom()->z != $event->getPlayer()->z)
+                ) {
+                    $event->getPlayer()->teleport(
+                        new Position(
+                            $event->getFrom()->x,
+                            $event->getFrom()->y,
+                            $event->getFrom()->z,
+                            $this->getPlugin()->getServer()->getLevelByName($j[$jail]["pos"]["level"])
+                        )
+                    );
+                    $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.player.not.allowed.enter"));
+                }
+            }
+        }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $this->getPlugin()->getConfig()->get("allow-movement") !== true) {
             if ($event->getFrom()->x != $event->getPlayer()->x || $event->getFrom()->y != $event->getPlayer()->y || $event->getFrom()->z != $event->getPlayer()->z) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));

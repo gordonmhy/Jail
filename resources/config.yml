@@ -24,6 +24,8 @@ enable-penalty: true
 penalty-time: 10
 #Allow players to bail using money?
 allow-bail: true
+#Allow non-jailed players to enter a jail?
+allow-visit: true
 #How much money per second a player has to pay to bail?
 bail-per-second: 100
 #OPs can't be jailed?

@@ -34,6 +34,7 @@
 	"listener.player.command.cancelled": "&c執行指令遭取消!",
 	"listener.player.set.success": "&a監獄設定成功!",
 	"listener.player.not.allowed.leave": "\n&2您不被允許離開監獄!",
+	"listener.player.not.allowed.enter": "&cYou don't have rights to visit this jail!",
 	"penalty.added.prisoner": "您已被添加 %time% 分鐘作為處罰！",
 	"unjail.you.success": "&a您成功出獄!",
 	"unjail.sender.success": "&a您成功使 %prisoner% 出獄!",

@@ -35,6 +35,7 @@
   "listener.player.set.success": "&aТюрьма успешно установлена!",
   "listener.player.not.allowed.leave": "\n&2Вы не можете покидать тюрьму!",
   "penalty.added.prisoner": "Вам было добавлено %time% минут в качестве наказания!",
+  "listener.player.not.allowed.enter": "&cYou don't have rights to visit this jail!",
   "unjail.you.success": "&aВы высажены из тюрьмы!",
   "unjail.sender.success": "&aВы высадили из тюрьмы %prisoner%!",
   "jails.listing": "Список тюрьм: %jails%",

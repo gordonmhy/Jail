@@ -34,6 +34,7 @@
   "listener.player.command.cancelled": "&cCommand execution cancelled!",
   "listener.player.set.success": "&aJail set successfully!",
   "listener.player.not.allowed.leave": "\n&2You are not allowed to leave the jail!",
+  "listener.player.not.allowed.enter": "&cYou don't have rights to visit this jail!",
   "penalty.added.prisoner": "You have been added %time% minutes as penalty!",
   "unjail.you.success": "&aYou have been unjailed successfully!",
   "unjail.sender.success": "&aYou unjailed %prisoner%!",

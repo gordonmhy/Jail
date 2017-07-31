@@ -142,3 +142,6 @@ permission:
   jail.showInOutMessage:
     default: true
     description: Allows receiving jail enter/leave notification
+  jail.visit.bypass:
+    default: op
+    description: Allows admins to visit any jails
