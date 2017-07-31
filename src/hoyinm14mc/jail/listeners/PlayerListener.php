@@ -175,7 +175,7 @@ class PlayerListener extends BaseListener
                     $j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["y"],
                     $j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["z"],
                     $this->getPlugin()->getServer()->getLevelByName($j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["level"])));
-            $event->getPlayer()->sendPopup($this->getPlugin()->getMessage("listener.player.not.allowed.leave"));
+            $event->getPlayer()->sendPopup($this->getPlugin()->getMessage("listener.player.not.allowed.leave") . "\n\n\n\n");
         }
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $this->getPlugin()->getConfig()->get("allow-movement") !== true) {
             if ($event->getFrom()->x != $event->getPlayer()->x || $event->getFrom()->y != $event->getPlayer()->y || $event->getFrom()->z != $event->getPlayer()->z) {

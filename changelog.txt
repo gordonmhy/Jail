@@ -3,6 +3,7 @@ Changelog of Jail
 1.1.5 - 31/JUL/2017
 - Fixed language initialization error of missing file (Critical fix)
 - Fixed "listener.player.not.allowed.leave" message being overlapped
+- Animated the emoji of the prisoner UI when Bail is disabled
 
 1.1.4 - 30/JUL/2017
 - Updated API version, compatible with the current latest PocketMine software
