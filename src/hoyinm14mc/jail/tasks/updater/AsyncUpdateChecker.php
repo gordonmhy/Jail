@@ -63,6 +63,8 @@ class AsyncUpdateChecker extends AsyncTask
             $key++;
         }
         $arr["poggit_desc"] = $git_iden[$key]["body"];
+        $arr["github_dllink"] = "https://github.com/hoyinm14mc/Jail/releases/tag/" . $git_iden_latest["tag_name"];
+        $arr["poggit_dllink"] = "https://poggit.pmmp.io/p/Jail/" . $git_iden[$key]["tag_name"];
         $this->setResult($arr);
     }
 
@@ -75,7 +77,7 @@ class AsyncUpdateChecker extends AsyncTask
                 $no_update = true;
                 if (version_compare($this->getResult()["poggit_ver"], $plugin->getDescription()->getVersion(), "!=") !== false) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . $this->getResult()["poggit_ver"]));
-                    $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["poggit_desc"]);
+                    $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["poggit_desc"] . "\nDownload Link: " . $this->getResult()["poggit_dllink"]);
                     $no_update = false;
                 }
                 if ($no_update !== false) {
@@ -88,14 +90,13 @@ class AsyncUpdateChecker extends AsyncTask
                 $no_update = true;
                 if (version_compare($this->getResult()["github_ver"], $plugin->getDescription()->getVersion(), "!=") !== false) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . $this->getResult()["github_ver"]));
-                    $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["github_desc"]);
+                    $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["github_desc"] . "\nDownload Link: " . $this->getResult()["github_dllink"]);
                     $no_update = false;
                 }
                 if ($no_update !== false) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYou are owning the &clatest &aversion of Jail."));
                 }
                 $plugin->getLogger()->info($plugin->colorMessage("&6-------------------------------"));
-                break;
                 break;
             default:
                 $plugin->getLogger()->info($plugin->colorMessage("&4Unidentifiable channel. Please check your configuration file."));
