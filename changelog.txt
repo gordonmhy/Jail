@@ -5,6 +5,7 @@ Changelog of Jail
 - Update fetcher now shows download link of the latest version for Poggit or Github
 - Update fetcher now has its ability to show info of both channels simultaneously
 - Fixed results of update fetcher not showing correctly in past versions
+- Fixed some of the users continued to experience problem upon start-up #28
 
 1.1.5 - 31/JUL/2017
 - Fixed language initialization error of missing file (Critical fix)
