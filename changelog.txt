@@ -11,6 +11,7 @@ Changelog of Jail
 - Bail availability now works for individual jails (/setjail <jail> bail=true/false)
 - Visit availability now works for individual jails (/setjail <jail> visit=true/false)
 - Fixed display issues and plugin compatibility issues of Bail command #33
+- Added data compatibility checker and updater, functions at start-up
 
 1.1.5 - 31/JUL/2017
 - Fixed language initialization error of missing file (Critical fix)

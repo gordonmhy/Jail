@@ -154,8 +154,11 @@ class Jail extends PluginBase implements JailAPI
         if (is_dir($this->getDataFolder()) !== true) {
             mkdir($this->getDataFolder());
         }
+        $oldVersion = $this->getDescription()->getVersion();
         if (file_exists($this->getDataFolder() . "config.yml") !== false) {
+            $this->reloadConfig();
             if ($this->getConfig()->exists("v") !== true || $this->getConfig()->get("v") !== $this->getDescription()->getVersion()) {
+                $oldVersion = $this->getConfig()->get("v");
                 if (file_exists($this->getDataFolder() . "config.yml.old")) {
                     unlink($this->getDataFolder() . "config.yml.old");
                 }
@@ -217,6 +220,10 @@ class Jail extends PluginBase implements JailAPI
         $this->getServer()->getPluginManager()->registerEvents(new BailListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new SellhandListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new ResetmineListener($this), $this);
+        $this->getLogger()->info($this->colorMessage("&eChecking data compatibility..."));
+        if (version_compare($oldVersion, $this->getDescription()->getVersion(), ">=") && $this->updateSettings($oldVersion) !== false) {
+            $this->getLogger()->info($this->colorMessage("All data is compatible to this version!"));
+        }
         $this->getLogger()->info($this->colorMessage("&aLoaded Successfully!"));
         if ($this->getConfig()->get("scheduled-update-checker") !== false) {
             $this->getLogger()->info($this->colorMessage("&eInitialized scheduled update checker"));
@@ -248,6 +255,28 @@ class Jail extends PluginBase implements JailAPI
         }
         $this->data->setAll($t);
         $this->data->save();
+    }
+
+    /**
+     * @param string $oldVersion
+     * @return bool
+     */
+    private function updateSettings(string $oldVersion): bool
+    {
+        $no_update = true;
+        $t = $this->data->getAll();
+        $j = $this->data1->getAll();
+        if (version_compare($oldVersion, "1.2.0", "<") !== false) {
+            foreach (array_keys($j) as $jail) {
+                if (isset($j[$jail]["allow-visit"]) !== true) {
+                    $j[$jail]["allow-visit"] = $this->getConfig()->get("allow-visit");
+                    $no_update = false;
+                }
+            }
+            $this->data1->setAll($j);
+            $this->data1->save();
+        }
+        return $no_update;
     }
 
     private function initializeLanguage()
