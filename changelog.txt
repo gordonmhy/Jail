@@ -7,6 +7,7 @@ Changelog of Jail
 - Fixed results of update fetcher not showing correctly in past versions
 - Fixed some of the users continued to experience problem upon start-up #28
 - SetJail command now gets more complex, with more per jail settings available
+- Fixed 'jailed' and 'tpjail' commands have their return statement missing #31 #32
 
 1.1.5 - 31/JUL/2017
 - Fixed language initialization error of missing file (Critical fix)

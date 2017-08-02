@@ -70,8 +70,10 @@ class TpjailCommand extends BaseCommand
                         return true;
                     }
                 }
+                return true;
                 break;
         }
+        return false;
     }
 
 }

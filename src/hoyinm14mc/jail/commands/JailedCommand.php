@@ -36,8 +36,10 @@ class JailedCommand extends BaseCommand
                     return true;
                 }
                 $issuer->sendMessage(str_replace("%prisoners%", $this->getPlugin()->jailedToString(), $this->getPlugin()->getMessage("jailed.listing")));
+                return true;
                 break;
         }
+        return false;
     }
 
 }
