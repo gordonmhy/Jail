@@ -35,13 +35,13 @@ class Pocketmoney extends BaseEconomy
         $t = $this->getPlugin()->data->getAll();
         $money = $this->getPlugin()->getEco()->getMoney(strtolower($player->getName()));
         if ($money < ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * $this->getPlugin()->getConfig()->get("bail-per-second") + 1)) {
-            $player->sendMessage(str_replace("&money%", ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1), $this->getPlugin()->getMessage("bail.money.not.enough")));
+            $player->sendMessage(str_replace("%money%", ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1), $this->getPlugin()->getMessage("bail.money.not.enough")));
             return false;
         }
         $this->getPlugin()->getEco()->setMoney(strtolower($player->getName()), $money - ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1));
-        $this->getPlugin()->unjail(strtolower($player->getName()));
         $player->sendMessage($this->getPlugin()->getMessage("unjail.you.success"));
         $player->sendMessage(str_replace("%deduction%", ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1), str_replace("%remaining%", $this->getPlugin()->getEco()->getMoney(strtolower($player->getName())), $this->getPlugin()->getMessage("bail.money.remaining"))));
+        $this->getPlugin()->unjail(strtolower($player->getName()));
     }
 
     public function sellHand(Player $player): bool
