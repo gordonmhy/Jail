@@ -52,6 +52,7 @@
   "timer.broadcast.disabled": "отключено",
   "join.uuid.rejected.kickmsg": "&c&b[Тюрьма&c]\n&eВаш UUID совпадает с UUID заключенного игрока!",
   "setjail.bail.value": "&eРазрешенный выкуп: &6%bail%",
+  "setjail.visit.value": "&eAllow visit: &6%visit%",
   "sign.destroy.success": "[Тюрьма] Табличка выкупа удалена!",
   "sign.create.success": "[Тюрьма] Табличка выкупа создана!",
   "sign.not.jailed": "&cВы не посажены в тюрьму!",

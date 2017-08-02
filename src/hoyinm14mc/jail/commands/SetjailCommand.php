@@ -57,15 +57,19 @@ class SetjailCommand extends BaseCommand
                     $criteria = $this->getCriteria($args);
                 }
                 foreach ($criteria as $concern => $bool) {
+                    if ($bool != "false" && $bool != "true") {
+                        $bool = "true";
+                    }
                     switch ($concern) {
                         case "bail":
-                            if ($bool != "false" && $bool != "true") {
-                                $bool = "true";
-                            }
                             $this->getPlugin()->allowBail_tmp[strtolower($issuer->getName())] = filter_var($bool, FILTER_VALIDATE_BOOLEAN);
                             $issuer->sendMessage(str_replace("%bail%", filter_var($bool, FILTER_VALIDATE_BOOLEAN) !== false ? "true" : "false", $this->getPlugin()->getMessage("setjail.bail.value")));
+                            break;
+                        case "visit":
+                            $this->getPlugin()->allowVisit_tmp[strtolower($issuer->getName())] = filter_var($bool, FILTER_VALIDATE_BOOLEAN);
+                            $issuer->sendMessage(str_replace("%visit%", filter_var($bool, FILTER_VALIDATE_BOOLEAN) !== false ? "true" : "false", $this->getPlugin()->getMessage("setjail.visit.value")));
+                            break;
                         //case "escape":
-                        //case "visit":
                     }
                 }
                 return true;

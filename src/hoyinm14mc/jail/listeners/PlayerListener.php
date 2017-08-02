@@ -118,7 +118,8 @@ class PlayerListener extends BaseListener
                     $this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())],
                     $this->getPlugin()->c1_tmp[strtolower($event->getPlayer()->getName())],
                     $this->getPlugin()->c2_tmp[strtolower($event->getPlayer()->getName())],
-                    isset($this->getPlugin()->allowBail_tmp[strtolower($event->getPlayer()->getName())]) !== false ? $this->getPlugin()->allowBail_tmp[strtolower($event->getPlayer()->getName())] : $this->getPlugin()->getConfig()->get("allow-bail")
+                    isset($this->getPlugin()->allowBail_tmp[strtolower($event->getPlayer()->getName())]) !== false ? $this->getPlugin()->allowBail_tmp[strtolower($event->getPlayer()->getName())] : $this->getPlugin()->getConfig()->get("allow-bail"),
+                    isset($this->getPlugin()->allowVisit_tmp[strtolower($event->getPlayer()->getName())]) !== false ? $this->getPlugin()->allowVisit_tmp[strtolower($event->getPlayer()->getName())] : $this->getPlugin()->getConfig()->get("allow-visit")
                 );
                 unset($this->getPlugin()->jailName_tmp[strtolower($event->getPlayer()->getName())]);
                 unset($this->getPlugin()->pos_tmp[strtolower($event->getPlayer()->getName())]);
@@ -177,11 +178,11 @@ class PlayerListener extends BaseListener
                     $this->getPlugin()->getServer()->getLevelByName($j[$t[strtolower($event->getPlayer()->getName())]["jail"]]["pos"]["level"])));
             $event->getPlayer()->sendPopup($this->getPlugin()->getMessage("listener.player.not.allowed.leave") . "\n\n\n\n");
         }
-        if ($this->getPlugin()->getConfig()->get("allow-visit") !== true
-            && $event->getPlayer()->hasPermission("jail.visit.bypass") !== true
+        if ($event->getPlayer()->hasPermission("jail.visit.bypass") !== true
             && $this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== true) {
             foreach (array_keys($j) as $jail) {
                 if ($this->getPlugin()->jailExists($jail)
+                    && ($this->getPlugin()->getConfig()->get("allow-visit") !== true && filter_var($j[$jail]["allow-visit"], FILTER_VALIDATE_BOOLEAN) !== true)
                     && $this->getPlugin()->insideJail($jail, $event->getPlayer()->getPosition()) !== false
                     && ($event->getFrom()->x != $event->getPlayer()->x || $event->getFrom()->y != $event->getPlayer()->y || $event->getFrom()->z != $event->getPlayer()->z)
                 ) {

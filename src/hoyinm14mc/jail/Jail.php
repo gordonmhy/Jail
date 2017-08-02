@@ -91,6 +91,11 @@ class Jail extends PluginBase implements JailAPI
     public $allowBail_tmp = [];
 
     /**
+     * @var array:bool
+     */
+    public $allowVisit_tmp = [];
+
+    /**
      * @var null|object
      */
     private $eco = null;
@@ -512,9 +517,10 @@ class Jail extends PluginBase implements JailAPI
      * @param Position $c1
      * @param Position $c2
      * @param bool $bail
+     * @param bool $visit
      * @param bool $escape
      */
-    public function setJail(string $jail_name, Position $pos, Position $c1, Position $c2, bool $bail = false, bool $escape = false)
+    public function setJail(string $jail_name, Position $pos, Position $c1, Position $c2, bool $bail = true, bool $visit = true, bool $escape = false)
     {
         $j = $this->data1->getAll();
         $j[$jail_name]["pos"]["x"] = $pos->x;
@@ -531,6 +537,7 @@ class Jail extends PluginBase implements JailAPI
         $j[$jail_name]["c2"]["level"] = $c2->getLevel()->getName();
         $j[$jail_name]["allow-bail"] = $bail;
         $j[$jail_name]["allow-escape-area"] = $escape;
+        $j[$jail_name]["allow-visit"] = $visit;
         $j[$jail_name]["mine"]["isSet"] = false;
         $this->data1->setAll($j);
         $this->data1->save();
