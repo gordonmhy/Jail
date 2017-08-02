@@ -52,17 +52,39 @@ class SetjailCommand extends BaseCommand
                 $issuer->sendMessage(str_replace("%jail%", $args[0], $this->getPlugin()->getMessage("setjail.initialization.start")));
                 $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.2"));
                 $issuer->sendMessage($this->getPlugin()->getMessage("setjail.initialize.3"));
-                if (isset($args[1]) !== false) {
-                    $allowbail = $args[1];
-                    if (is_bool($allowbail) !== true) {
-                        $allowbail = true;
+                $criteria = [];
+                if (count($args) >= 2) {
+                    $criteria = $this->getCriteria($args);
+                }
+                foreach ($criteria as $concern => $bool) {
+                    switch ($concern) {
+                        case "bail":
+                            if ($bool != "false" && $bool != "true") {
+                                $bool = "true";
+                            }
+                            $this->getPlugin()->allowBail_tmp[strtolower($issuer->getName())] = filter_var($bool, FILTER_VALIDATE_BOOLEAN);
+                            $issuer->sendMessage(str_replace("%bail%", filter_var($bool, FILTER_VALIDATE_BOOLEAN) !== false ? "true" : "false", $this->getPlugin()->getMessage("setjail.bail.value")));
+                        //case "escape":
+                        //case "visit":
                     }
-                    $this->getPlugin()->allowBail_tmp[strtolower($issuer->getName())] = $allowbail;
-                    $issuer->sendMessage(str_replace("%bail%", $allowbail !== false ? "true" : "false", $this->getPlugin()->getMessage("setjail.bail.value")));
                 }
                 return true;
                 break;
         }
+        return false;
+    }
+
+    private function getCriteria(array $args): array
+    {
+        unset($args[0]);
+        $criteria = [];
+        foreach ($args as $arg) {
+            $keys = explode("=", $arg);
+            if (count($keys) == 2) {
+                $criteria[$keys[0]] = $keys[1];
+            }
+        }
+        return $criteria;
     }
 
 }

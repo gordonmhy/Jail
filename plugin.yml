@@ -14,7 +14,7 @@ commands:
   setjail:
     description: Sets a jail
     permission: jail.command.setjail
-    usage: /setjail <jail>
+    usage: /setjail <jail> <args...>
     aliases: ["jailset"]
   jails:
     description: Get a list of available jails
