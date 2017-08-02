@@ -46,7 +46,9 @@ class BailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("you.not.jailed"));
                     return true;
                 }
-                if ($this->getPlugin()->getEco() === null || $this->getPlugin()->getConfig()->get("allow-bail") !== true) {
+                $t = $this->getPlugin()->data->getAll();
+                $j = $this->getPlugin()->data1->getAll();
+                if ($this->getPlugin()->getEco() === null || ($this->getPlugin()->getConfig()->get("allow-bail") !== true && filter_var($j[$t[$issuer->getName()]["jail"]]["allow-bail"], FILTER_VALIDATE_BOOLEAN) !== true)) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("bail.feature.disabled"));
                     return true;
                 }
@@ -58,12 +60,15 @@ class BailCommand extends BaseCommand
                     case "EconomyAPI":
                         $eco = new Economyapi($this->getPlugin());
                         $eco->bail($issuer);
+                        break;
                     case "PocketMoney":
                         $eco = new Pocketmoney($this->getPlugin());
                         $eco->bail($issuer);
+                        break;
                     case "EconomyPlus":
                         $eco = new Economyplus($this->getPlugin());
                         $eco->bail($issuer);
+                        break;
                 }
                 return true;
                 break;
