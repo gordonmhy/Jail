@@ -475,7 +475,7 @@ class Jail extends PluginBase implements JailAPI
         if ($this->isJailed(strtolower($player_name)) !== true) {
             return false;
         }
-        return isset($this->prisoner_time[$player_name]) !== true;
+        return isset($this->prisoner_time[strtolower($player_name)]) !== true;
     }
 
     /**
@@ -589,17 +589,17 @@ class Jail extends PluginBase implements JailAPI
         $this->data1->save();
         if (count(array_keys($j)) <= 0) {
             foreach (array_keys($t) as $player) {
-                if ($t[$player]["jailed"] !== false) {
-                    if ($t[$player]["jail"] == $jail_name) {
+                if ($t[strtolower($player)]["jailed"] !== false) {
+                    if ($t[strtolower($player)]["jail"] == $jail_name) {
                         $this->unjail($player);
                     }
                 }
             }
         } else {
             foreach (array_keys($t) as $player) {
-                if ($t[$player]["jailed"] !== false) {
-                    if ($t[$player]["jail"] == $jail_name) {
-                        $t[$player]["jail"] = (string)array_rand(array_keys($j));
+                if ($t[strtolower($player)]["jailed"] !== false) {
+                    if ($t[strtolower($player)]["jail"] == $jail_name) {
+                        $t[strtolower($player)]["jail"] = (string)array_rand(array_keys($j));
                     }
                 }
             }
