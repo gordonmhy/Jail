@@ -270,7 +270,8 @@ class Jail extends PluginBase implements JailAPI
             foreach (array_keys($j) as $jail) {
                 if (isset($j[$jail]["allow-visit"]) !== true) {
                     $j[$jail]["allow-visit"] = $this->getConfig()->get("allow-visit");
-                    $no_update = false;
+                    if ($no_update !== false) $no_update = false;
+                    $this->getLogger()->info($this->colorMessage("Updating " . $jail . "'s data"));
                 }
             }
             $this->data1->setAll($j);
