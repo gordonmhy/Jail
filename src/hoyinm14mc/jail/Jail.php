@@ -278,6 +278,7 @@ class Jail extends PluginBase implements JailAPI
             $this->data1->save();
             foreach (array_keys($t) as $name) {
                 if (isset($t[$name]["voteForJail"]) !== false) {
+                    unset($t[$name]["voteForJail"]);
                     $t[$name]["VoteForJail"]["votes"] = 0;
                     $t[$name]["VoteForJail"]["votedBy"] = [];
                     if ($no_update !== false) $no_update = false;
