@@ -14,6 +14,7 @@ Changelog of Jail
 - Added data compatibility checker and updater, functions at start-up
 - Fixed capitalized player names not recognizable by the timer #34
 - The animated emoji on the timer now shows on both Bail enabled and disabled jails
+- Fixed Votes system malfunction due to data storing issues #30
 
 1.1.5 - 31/JUL/2017
 - Fixed language initialization error of missing file (Critical fix)

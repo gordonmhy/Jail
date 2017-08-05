@@ -39,8 +39,8 @@ class PlayerListener extends BaseListener
         if ($this->getPlugin()->playerProfileExists(strtolower($event->getPlayer()->getName())) !== true) {
             $t[strtolower($event->getPlayer()->getName())]["jailed"] = false;
             $t[strtolower($event->getPlayer()->getName())]["gamemode"] = $this->getPlugin()->getServer()->getGamemode();
-            $t[strtolower($event->getPlayer()->getName())]["voteForJail"]["votes"] = 0;
-            $t[strtolower($event->getPlayer()->getName())]["voteForJail"]["votedBy"] = []; //Players who voted for him
+            $t[strtolower($event->getPlayer()->getName())]["VoteForJail"]["votes"] = 0;
+            $t[strtolower($event->getPlayer()->getName())]["VoteForJail"]["votedBy"] = []; //Players who voted for him
             $t[strtolower($event->getPlayer()->getName())]["uuid"] = $event->getPlayer()->getUniqueId();
             $this->getPlugin()->data->setAll($t);
             $this->getPlugin()->data->save();
