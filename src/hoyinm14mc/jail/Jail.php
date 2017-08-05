@@ -280,6 +280,8 @@ class Jail extends PluginBase implements JailAPI
                 if (isset($t[$name]["voteForJail"]) !== false) {
                     $t[$name]["VoteForJail"]["votes"] = 0;
                     $t[$name]["VoteForJail"]["votedBy"] = [];
+                    if ($no_update !== false) $no_update = false;
+                    $this->getLogger()->info($this->colorMessage("Updating " . $name . "'s data"));
                 }
             }
             $this->data->setAll($t);
