@@ -273,6 +273,10 @@ class Jail extends PluginBase implements JailAPI
                     if ($no_update !== false) $no_update = false;
                     $this->getLogger()->info($this->colorMessage("Updating " . $jail . "'s data"));
                 }
+                if (isset($j[$jail]["allow-escape-area"]) !== false) {
+                    unset($j[$jail]["allow-escape-area"]);
+                    $this->getLogger()->info($this->colorMessage("Updating " . $jail . "'s data"));
+                }
             }
             $this->data1->setAll($j);
             $this->data1->save();
@@ -561,7 +565,7 @@ class Jail extends PluginBase implements JailAPI
      * @param bool $visit
      * @param bool $escape
      */
-    public function setJail(string $jail_name, Position $pos, Position $c1, Position $c2, bool $bail = true, bool $visit = true, bool $escape = false)
+    public function setJail(string $jail_name, Position $pos, Position $c1, Position $c2, bool $bail = true, bool $visit = true)
     {
         $j = $this->data1->getAll();
         $j[$jail_name]["pos"]["x"] = $pos->x;
@@ -577,7 +581,6 @@ class Jail extends PluginBase implements JailAPI
         $j[$jail_name]["c2"]["z"] = $c2->z;
         $j[$jail_name]["c2"]["level"] = $c2->getLevel()->getName();
         $j[$jail_name]["allow-bail"] = $bail;
-        $j[$jail_name]["allow-escape-area"] = $escape;
         $j[$jail_name]["allow-visit"] = $visit;
         $j[$jail_name]["mine"]["isSet"] = false;
         $this->data1->setAll($j);

@@ -1,6 +1,6 @@
 Changelog of Jail
 
-1.2.0 - 01/AUG/2017
+1.2.0 - 11/AUG/2017
 - Update fetcher now shows update changes of the latest version for Poggit or Github
 - Update fetcher now shows download link of the latest version for Poggit or Github
 - Update fetcher now has its ability to show info of both channels simultaneously
@@ -15,6 +15,7 @@ Changelog of Jail
 - Fixed capitalized player names not recognizable by the timer #34
 - The animated emoji on the timer now shows on both Bail enabled and disabled jails
 - Fixed Votes system malfunction due to data storing issues #30
+- Cancelled plans for individual jail's allow-escape-area status, updated version
 
 1.1.5 - 31/JUL/2017
 - Fixed language initialization error of missing file (Critical fix)
