@@ -1,4 +1,4 @@
-# Jail <img src="https://github.com/hoyinm14mc/Jail/blob/master/resources/1651.png" width="75" height="75" align="right">
+# Jail <img src="https://github.com/hoyinm14mc/Jail/blob/master/icon.png" width="75" height="75" align="right">
 
 [![Gitter](https://badges.gitter.im/hoyinm14mc/Jail.svg)](https://gitter.im/hoyinm14mc/Jail?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
