@@ -20,6 +20,7 @@
 namespace hoyinm14mc\jail\listeners\sign;
 
 use hoyinm14mc\jail\base\BaseListener;
+use pocketmine\block\Block;
 use pocketmine\event\block\BlockBreakEvent;
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\player\PlayerInteractEvent;
