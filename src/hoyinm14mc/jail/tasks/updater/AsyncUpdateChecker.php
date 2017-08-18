@@ -75,7 +75,7 @@ class AsyncUpdateChecker extends AsyncTask
             case "poggit":
                 $plugin->getLogger()->info($plugin->colorMessage("&d>>>>> &fChannel: &3Poggit &d<<<<<"));
                 $no_update = true;
-                if (version_compare($this->getResult()["poggit_ver"], $plugin->getDescription()->getVersion(), "!=") !== false) {
+                if (version_compare($this->getResult()["poggit_ver"], $plugin->getDescription()->getVersion(), ">") !== false) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . $this->getResult()["poggit_ver"]));
                     $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["poggit_desc"] . "\nDownload Link: " . $this->getResult()["poggit_dllink"]);
                     $no_update = false;
@@ -88,7 +88,7 @@ class AsyncUpdateChecker extends AsyncTask
             case "github":
                 $plugin->getLogger()->info($plugin->colorMessage("&d>>>>> &fChannel: &3Github &d<<<<<"));
                 $no_update = true;
-                if (version_compare($this->getResult()["github_ver"], $plugin->getDescription()->getVersion(), "!=") !== false) {
+                if (version_compare($this->getResult()["github_ver"], $plugin->getDescription()->getVersion(), ">") !== false) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . $this->getResult()["github_ver"]));
                     $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["github_desc"] . "\nDownload Link: " . $this->getResult()["github_dllink"]);
                     $no_update = false;

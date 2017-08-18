@@ -3,6 +3,7 @@ Changelog of Jail
 1.2.1
 - Fixed Bail sign not destroying automatically upon wrong placement
 - Removed duplicated software icon file in the source code itself
+- Improved accuracy of update fetcher's version comparing techniques
 
 1.2.0 - 11/AUG/2017
 - Update fetcher now shows update changes of the latest version for Poggit or Github
