@@ -39,7 +39,6 @@ class Pocketmoney extends BaseEconomy
             return false;
         }
         $this->getPlugin()->getEco()->setMoney(strtolower($player->getName()), $money - ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1));
-        $player->sendMessage($this->getPlugin()->getMessage("unjail.you.success"));
         $player->sendMessage(str_replace("%deduction%", ($this->getPlugin()->prisoner_time[strtolower($player->getName())] * ($this->getPlugin()->getConfig()->get("bail-per-second")) + 1), str_replace("%remaining%", $this->getPlugin()->getEco()->getMoney(strtolower($player->getName())), $this->getPlugin()->getMessage("bail.money.remaining"))));
         $this->getPlugin()->unjail(strtolower($player->getName()));
     }
