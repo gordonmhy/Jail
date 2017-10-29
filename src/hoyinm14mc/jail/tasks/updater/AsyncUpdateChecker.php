@@ -39,7 +39,7 @@ class AsyncUpdateChecker extends AsyncTask
     {
         $arr = [];
         //Github Channel
-        $git_iden = json_decode(Utils::getURL("https://api.github.com/repos/hoyinm14mc/Jail/releases"), true);
+        $git_iden = json_decode(Utils::getURL("https://api.github.com/repos/gordonmhy/Jail/releases"), true);
         $git_iden_latest = $git_iden[0];
         //Poggit Channel
         $serverApi = \pocketmine\API_VERSION;
@@ -63,7 +63,7 @@ class AsyncUpdateChecker extends AsyncTask
             $key++;
         }
         $arr["poggit_desc"] = $git_iden[$key]["body"];
-        $arr["github_dllink"] = "https://github.com/hoyinm14mc/Jail/releases/tag/" . $git_iden_latest["tag_name"];
+        $arr["github_dllink"] = "https://github.com/gordonmhy/Jail/releases/tag/" . $git_iden_latest["tag_name"];
         $arr["poggit_dllink"] = "https://poggit.pmmp.io/p/Jail/" . $git_iden[$key]["tag_name"];
         $this->setResult($arr);
     }
