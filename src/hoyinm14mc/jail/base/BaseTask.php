@@ -21,8 +21,9 @@ namespace hoyinm14mc\jail\base;
 
 use hoyinm14mc\jail\Jail;
 use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 
-abstract class BaseTask extends PluginTask
+abstract class BaseTask extends Task
 {
 
     private $plugin;
@@ -30,7 +31,6 @@ abstract class BaseTask extends PluginTask
     public function __construct(Jail $plugin)
     {
         $this->plugin = $plugin;
-        parent::__construct($plugin);
     }
 
     public function getPlugin(): Jail

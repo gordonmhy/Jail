@@ -42,8 +42,9 @@ use hoyinm14mc\jail\listeners\sign\ResetmineListener;
 use hoyinm14mc\jail\listeners\sign\SellhandListener;
 use hoyinm14mc\jail\tasks\JailTimingTask;
 use hoyinm14mc\jail\tasks\TimeBroadcastTask;
-use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
-use hoyinm14mc\jail\tasks\updater\AutoUpdateChecker;
+
+//use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
+//use hoyinm14mc\jail\tasks\updater\AutoUpdateChecker;
 use pocketmine\item\Item;
 use pocketmine\level\Position;
 use pocketmine\Player;
@@ -212,8 +213,8 @@ class Jail extends PluginBase implements JailAPI
         $this->getCommand("jailresetmine")->setExecutor(new JailresetmineCommand($this));
         $this->getCommand("jailinfo")->setExecutor(new JailinfoCommand($this));
         $this->getCommand("prisonerinfo")->setExecutor(new PrisonerinfoCommand($this));
-        $this->getServer()->getScheduler()->scheduleRepeatingTask(new JailTimingTask($this), 20);
-        $this->getServer()->getScheduler()->scheduleRepeatingTask(new TimeBroadcastTask($this), 3);
+        $this->getScheduler()->scheduleRepeatingTask(new JailTimingTask($this), 20);
+        $this->getScheduler()->scheduleRepeatingTask(new TimeBroadcastTask($this), 3);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new BlockListener($this), $this);
         $this->getServer()->getPluginManager()->registerEvents(new EntityListener($this), $this);
@@ -225,9 +226,9 @@ class Jail extends PluginBase implements JailAPI
             $this->getLogger()->info($this->colorMessage("All data is compatible to this version!"));
         }
         $this->getLogger()->info($this->colorMessage("&aLoaded Successfully!"));
-        if ($this->getConfig()->get("scheduled-update-checker") !== false) {
+        /*if ($this->getConfig()->get("scheduled-update-checker") !== false) {
             $this->getLogger()->info($this->colorMessage("&eInitialized scheduled update checker"));
-            $this->getServer()->getScheduler()->scheduleRepeatingTask(new AutoUpdateChecker($this), 60 * 20 * (int)$this->getConfig()->get("scheduled-update-checker-interval"));
+            $this->getScheduler()->scheduleRepeatingTask(new AutoUpdateChecker($this), 60 * 20 * (int)$this->getConfig()->get("scheduled-update-checker-interval"));
         } else if ($this->getConfig()->get("updater-startup-fetch") !== false) {
             $this->getLogger()->info($this->colorMessage("&eFetching latest version from repository..."));
             $this->getLogger()->info($this->colorMessage("&eResult will appear when server query is started."));
@@ -235,13 +236,13 @@ class Jail extends PluginBase implements JailAPI
                 $this->getLogger()->info($this->colorMessage("&4Error: Mobile hosted servers are not supported!"));
             } else {
                 if ($this->getConfig()->get("update-checker-channel") == "*") {
-                    $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "poggit"));
-                    $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "github"));
+                    $this->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "poggit"));
+                    $this->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "github"));
                 } else {
-                    $this->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, $this->getConfig()->get("update-checker-channel")));
+                    $this->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, $this->getConfig()->get("update-checker-channel")));
                 }
             }
-        }
+        }*/
     }
 
     public function onDisable()
@@ -266,7 +267,7 @@ class Jail extends PluginBase implements JailAPI
         $no_update = true;
         $t = $this->data->getAll();
         $j = $this->data1->getAll();
-        if (version_compare($oldVersion, "1.2.0", "<") !== false) {
+        if (version_compare($oldVersion, "1.3.0", "<") !== false) {
             foreach (array_keys($j) as $jail) {
                 if (isset($j[$jail]["allow-visit"]) !== true) {
                     $j[$jail]["allow-visit"] = $this->getConfig()->get("allow-visit");
