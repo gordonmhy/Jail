@@ -3,7 +3,6 @@ Changelog of Jail
 1.3.0
 - Removed auto updater and auto update checker support
 - Plugin now supports PocketMine API 3.0.5
-- Fixed items consumable while player is jailed
 
 1.2.1
 - Fixed Bail sign not destroying automatically upon wrong placement
