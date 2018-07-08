@@ -76,9 +76,6 @@ commands:
     usage: /prisonerinfo <player_name>
     
 permission:
-  jail.override.restrictions:
-    default: false
-    description: Injail restrictions can be ignored by these players
   jail.command.setjail:
     default: op
     description: Allows admins to set jails

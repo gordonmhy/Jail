@@ -78,15 +78,15 @@ class PlayerListener extends BaseListener
         $cfg = $this->getPlugin()->getConfig();
         $msg = $event->getMessage();
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false) {
-            if ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== false && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
+            if ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== false) {
                 if ($msg{0} !== "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
                 }
-            } elseif ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
+            } elseif ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== true) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
-            } elseif ($cfg->get("allow-chat") !== false && $cfg->get("allow-command") !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
+            } elseif ($cfg->get("allow-chat") !== false && $cfg->get("allow-command") !== true) {
                 if ($msg{0} == "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.player.command.cancelled"));
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
@@ -234,7 +234,6 @@ class PlayerListener extends BaseListener
     {
         if ($this->getPlugin()->getConfig()->get("allow-item-drop") !== true
             && $this->getPlugin()->isJailed($event->getPlayer()->getName()) !== false
-            //&& $event->getPlayer()->hasPermission("jail.override.restrictions") !== true
         ) {
             $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
             $event->setCancelled(true);
