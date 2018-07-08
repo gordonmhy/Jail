@@ -225,7 +225,7 @@ class PlayerListener extends BaseListener
 
     public function onItemConsume(PlayerItemConsumeEvent $event)
     {
-        if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $event->getItem()->getId() == 274) {
+        if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false && $event->getItem()->getId() != 274) {
             $event->setCancelled(true);
         }
     }
