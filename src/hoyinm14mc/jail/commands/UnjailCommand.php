@@ -38,7 +38,7 @@ class UnjailCommand extends BaseCommand
                     $issuer->sendMessage($this->getPlugin()->getMessage("no.permission"));
                     return true;
                 }
-                $name = $args[0];
+                $name = strtolower($args[0]);
                 if ($this->getPlugin()->isJailed($name) !== true) {
                     $issuer->sendMessage($this->getPlugin()->getMessage("player.not.jailed"));
                     return true;
