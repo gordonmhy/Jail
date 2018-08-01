@@ -1,8 +1,8 @@
 Changelog of Jail
 
 1.3.0
-- Removed auto updater and auto update checker support
-- Plugin now supports PocketMine API 3.0.5
+- Auto Update Checker won't be initiated anymore
+- Plugin now supports PocketMine API 3.1.0
 - Removed permission 'jail.override.restrictions'
 
 1.2.1

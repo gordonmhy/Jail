@@ -12,7 +12,7 @@ Users are advised **not to compile** Jail from its source code, as its stability
 With Jail 1.1, player punishment is more than just commands. Equipped with its extensive compatibility, various economic plugins could be installed to supports its ability for players to bail using money. Mines could be set so players got their work to do in prisons. There is a lot more for you to discover.
 
 ### Advanced. One mode, Four operations.
-Configuring a jail is never been easy before. With its advanced Set-jail mode, users could set up their three-dimensional jails with just one command and few taps. It's no need to use ancient operations just to do simple things.
+Configuring a jail has never been easy before. With its advanced Set-jail mode, users could set up their three-dimensional jails with just one command and few taps. It's no need to use ancient operations just to do simple things.
 [Learn More.](https://youtu.be/HR8XhOizd-c)
 
 ### Powerful. Better than you think.
