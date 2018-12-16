@@ -17,7 +17,7 @@
  * along with Jail. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace hoyinm14mc\jail;
+namespace hoyinm14mc\escape;
 
 use hoyinm14mc\jail\commands\BailCommand;
 use hoyinm14mc\jail\commands\DeljailCommand;
