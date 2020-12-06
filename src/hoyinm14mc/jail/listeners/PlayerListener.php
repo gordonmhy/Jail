@@ -79,7 +79,7 @@ class PlayerListener extends BaseListener
         $msg = $event->getMessage();
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false) {
             if ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== false) {
-                if ($msg{0} !== "/") {
+                if (substr($msg, 0, 1) !== "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
                 }
@@ -87,7 +87,7 @@ class PlayerListener extends BaseListener
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
             } elseif ($cfg->get("allow-chat") !== false && $cfg->get("allow-command") !== true) {
-                if ($msg{0} == "/") {
+                if (substr($msg, 0, 1) == "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.player.command.cancelled"));
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
