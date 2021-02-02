@@ -63,7 +63,7 @@ class PlayerListener extends BaseListener
         }
         if (isset($t[strtolower($event->getPlayer()->getName())]["unjailedSettings"]) !== false
         ) {
-            $event->getPlayer()->teleport($this->getPlugin()->getServer()->getDefaultLevel()->getSpawnLocation());
+            $event->getPlayer()->teleport($this->getPlugin()->getServer()->getLevel()->getFolderName()->getSpawnLocation());
             $event->getPlayer()->getInventory()->clearAll();
             $event->getPlayer()->getInventory()->setContents($t[strtolower($event->getPlayer()->getName())]["unjailedSettings"]["inv"]);
             $event->getPlayer()->setGamemode($t[strtolower($event->getPlayer()->getName())]["unjailedSettings"]["gm"]);
@@ -77,17 +77,18 @@ class PlayerListener extends BaseListener
     {
         $cfg = $this->getPlugin()->getConfig();
         $msg = $event->getMessage();
+        $z = $event->getMessage(0);
         if ($this->getPlugin()->isJailed(strtolower($event->getPlayer()->getName())) !== false) {
-            if ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== false) {
-                if (substr($msg, 0, 1) !== "/") {
+            if ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== false && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
+                if ($z !== "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
                 }
-            } elseif ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== true) {
+            } elseif ($cfg->get("allow-chat") !== true && $cfg->get("allow-command") !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
                 $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                 $event->setCancelled(true);
-            } elseif ($cfg->get("allow-chat") !== false && $cfg->get("allow-command") !== true) {
-                if (substr($msg, 0, 1) == "/") {
+            } elseif ($cfg->get("allow-chat") !== false && $cfg->get("allow-command") !== true && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true) {
+                if ($z == "/") {
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.player.command.cancelled"));
                     $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
                     $event->setCancelled(true);
@@ -234,6 +235,7 @@ class PlayerListener extends BaseListener
     {
         if ($this->getPlugin()->getConfig()->get("allow-item-drop") !== true
             && $this->getPlugin()->isJailed($event->getPlayer()->getName()) !== false
+            && $event->getPlayer()->hasPermission("jail.override.restrictions") !== true
         ) {
             $event->getPlayer()->sendMessage($this->getPlugin()->getMessage("listener.not.allowed.do.this"));
             $event->setCancelled(true);
