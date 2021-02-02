@@ -3,7 +3,7 @@ name: Jail
 main: hoyinm14mc\jail\Jail
 api:
 - 3.17.0
-version: 1.2.1
+version: 3.1.1
 author: hoyinm14mc
 description: An advanced jail punishment system for PocketMine servers
 load: POSTWORLD
