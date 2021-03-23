@@ -19,23 +19,20 @@
 
 namespace hoyinm14mc\jail\base;
 
+use pocketmine\scheduler\Task;
 use hoyinm14mc\jail\Jail;
 use pocketmine\command\CommandExecutor;
-use pocketmine\command\PluginCommand;
-use pocketmine\plugin\Plugin;
 
-abstract class BaseCommand extends PluginCommand implements CommandExecutor
+abstract class BaseCommand implements CommandExecutor
 {
 
     private $plugin;
-
-    public function __construct(Jail $plugin)
-    {
-        $this->plugin = $plugin;
-        parent::__construct("Jail", $plugin);
-    }
-
-    public function getPlugin(): Plugin
+    
+    public function __construct(Jail $plugin) {
+		$this->plugin = $plugin;
+	}
+        
+        public function getPlugin(): Jail
     {
         return $this->plugin;
     }

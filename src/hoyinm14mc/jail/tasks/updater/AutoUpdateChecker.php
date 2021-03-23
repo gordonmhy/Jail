@@ -21,6 +21,8 @@ namespace hoyinm14mc\jail\tasks\updater;
 
 use hoyinm14mc\jail\base\BaseTask;
 use pocketmine\utils\Utils;
+use pocketmine\Server;
+use pocketmine\scheduler\AsyncTask;
 
 class AutoUpdateChecker extends BaseTask
 {
@@ -32,14 +34,12 @@ class AutoUpdateChecker extends BaseTask
             $this->getPlugin()->getLogger()->info($this->getPlugin()->colorMessage("&4Error: Mobile hosted servers are not supported!"));
         }else{
             if ($this->getPlugin()->getConfig()->get("update-checker-channel") == "*") {
-                $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "poggit"));
-                $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "github"));
+               $this->getPlugin()->getServer()->getAsyncPool()->submitTask(new AsyncUpdateChecker(NULL,"poggit"));
+               $this->getPlugin()->getServer()->getAsyncPool()->submitTask(new AsyncUpdateChecker(null, "github"));
             } else {
-                $this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, $this->getPlugin()->getConfig()->get("update-checker-channel")));
+                $this->getPlugin()->getServer()->getAsyncPool()->submitTask(new AsyncUpdateChecker(null, $this->getPlugin()->getConfig()->get("update-checker-channel")));
             }
         }
     }
 
 }
-
-

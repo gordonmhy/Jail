@@ -21,6 +21,7 @@ namespace hoyinm14mc\jail\tasks\updater;
 
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
+use hoyinm14mc\jail\base\BaseTask;
 use pocketmine\utils\Utils;
 use hoyinm14mc\jail\Jail;
 
@@ -29,10 +30,10 @@ class AsyncUpdateChecker extends AsyncTask
 
     private $channel;
 
-    public function __construct($complexData = null, string $channel)
+    public function __construct($complexData = NULL, string $channel)
     {
         $this->channel = $channel;
-        parent::__construct($complexData);
+        $complexData = NULL;
     }
 
     public function onRun()
@@ -42,7 +43,7 @@ class AsyncUpdateChecker extends AsyncTask
         $git_iden = json_decode(Utils::getURL("https://api.github.com/repos/gordonmhy/Jail/releases"), true);
         $git_iden_latest = $git_iden[0];
         //Poggit Channel
-        $serverApi = \pocketmine\API_VERSION;
+        $serverApi = \pocketmine\BASE_VERSION;
         list(, $headerGroups, $httpCode) = Utils::simpleCurl("https://poggit.pmmp.io/get/Jail?api=$serverApi&prerelease", 10, [], [
             CURLOPT_FOLLOWLOCATION => false,
             CURLOPT_NOBODY => true
@@ -75,11 +76,12 @@ class AsyncUpdateChecker extends AsyncTask
             case "poggit":
                 $plugin->getLogger()->info($plugin->colorMessage("&d>>>>> &fChannel: &3Poggit &d<<<<<"));
                 $no_update = true;
-                if (version_compare($this->getResult()["poggit_ver"], $plugin->getDescription()->getVersion(), ">") !== false) {
+                /*if ($this->getResult()["poggit_ver"] > $plugin->getDescription()->getVersion() !== false) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . $this->getResult()["poggit_ver"]));
                     $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["poggit_desc"] . "\nDownload Link: " . $this->getResult()["poggit_dllink"]);
                     $no_update = false;
-                }
+                } 
+                 */
                 if ($no_update !== false) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYou are owning the &clatest &aversion of Jail."));
                 }
@@ -88,11 +90,12 @@ class AsyncUpdateChecker extends AsyncTask
             case "github":
                 $plugin->getLogger()->info($plugin->colorMessage("&d>>>>> &fChannel: &3Github &d<<<<<"));
                 $no_update = true;
-                if (version_compare($this->getResult()["github_ver"], $plugin->getDescription()->getVersion(), ">") !== false) {
+                /*if (!version_compare($this->getResult()["github_ver"], $plugin->getDescription()->getVersion(), ">")) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYour version is &coutdated&a! \n&fLatest version: &e" . $this->getResult()["github_ver"]));
                     $plugin->getLogger()->info("\nUpdate details for v" . $this->getResult()["github_desc"] . "\nDownload Link: " . $this->getResult()["github_dllink"]);
                     $no_update = false;
                 }
+                */
                 if ($no_update !== false) {
                     $plugin->getLogger()->info($plugin->colorMessage("&aYou are owning the &clatest &aversion of Jail."));
                 }
@@ -100,9 +103,8 @@ class AsyncUpdateChecker extends AsyncTask
                 break;
             default:
                 $plugin->getLogger()->info($plugin->colorMessage("&4Unidentifiable channel. Please check your configuration file."));
-                $server->getScheduler()->cancelTask($this->getTaskId());
+                $plugin->getScheduler()->cancelTask($this->getTaskId());
         }
     }
 
 }
-

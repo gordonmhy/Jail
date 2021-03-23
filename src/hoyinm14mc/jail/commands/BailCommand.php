@@ -22,6 +22,7 @@ namespace hoyinm14mc\jail\commands;
 use hoyinm14mc\jail\economy\Economyplus;
 use hoyinm14mc\jail\base\BaseCommand;
 use hoyinm14mc\jail\economy\Economyapi;
+//use onebone\economyapi\EconomyAPI;
 use hoyinm14mc\jail\economy\Pocketmoney;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;

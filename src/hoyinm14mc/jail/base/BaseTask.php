@@ -20,8 +20,9 @@
 namespace hoyinm14mc\jail\base;
 
 use hoyinm14mc\jail\Jail;
-use pocketmine\scheduler\PluginTask;
 use pocketmine\scheduler\Task;
+use pocketmine\command\PluginCommand;
+use hoyinm14mc\jail\base;
 
 abstract class BaseTask extends Task
 {

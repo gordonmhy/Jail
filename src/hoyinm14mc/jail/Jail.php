@@ -42,16 +42,21 @@ use hoyinm14mc\jail\listeners\sign\ResetmineListener;
 use hoyinm14mc\jail\listeners\sign\SellhandListener;
 use hoyinm14mc\jail\tasks\JailTimingTask;
 use hoyinm14mc\jail\tasks\TimeBroadcastTask;
-
-//use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
-//use hoyinm14mc\jail\tasks\updater\AutoUpdateChecker;
+use hoyinm14mc\jail\tasks\updater\AsyncUpdateChecker;
+use hoyinm14mc\jail\tasks\updater\AutoUpdateChecker;
 use pocketmine\item\Item;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
+use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Utils;
+use pocketmine\command\CommandSender;
+use pocketmine\command\ConsoleCommandSender;
+use pocketmine\command\Command;
+use pocketmine\event\Listener;
+use pocketmine\Server;
 
 class Jail extends PluginBase implements JailAPI
 {
@@ -188,9 +193,9 @@ class Jail extends PluginBase implements JailAPI
                 $this->eco = $pl;
             }
         }
-        if ($this->eco !== null) {
-            $this->getLogger()->info($this->colorMessage("Loaded with " . $this->getEco()->getName() . "!"));
-        }
+        //if ($this->eco !== null) {
+        //    $this->getLogger()->info($this->colorMessage("Loaded with " . $this->getEco()->getName() . "!"));
+        //}
         $t = $this->data->getAll();
         foreach ($t as $name => $value) {
             if (isset($t[strtolower($name)]["seconds"]) !== false && $t[strtolower($name)]["jailed"] !== false) {
@@ -226,7 +231,7 @@ class Jail extends PluginBase implements JailAPI
             $this->getLogger()->info($this->colorMessage("All data is compatible to this version!"));
         }
         $this->getLogger()->info($this->colorMessage("&aLoaded Successfully!"));
-        /*if ($this->getConfig()->get("scheduled-update-checker") !== false) {
+        if ($this->getConfig()->get("scheduled-update-checker") !== false) {
             $this->getLogger()->info($this->colorMessage("&eInitialized scheduled update checker"));
             $this->getScheduler()->scheduleRepeatingTask(new AutoUpdateChecker($this), 60 * 20 * (int)$this->getConfig()->get("scheduled-update-checker-interval"));
         } else if ($this->getConfig()->get("updater-startup-fetch") !== false) {
@@ -236,13 +241,13 @@ class Jail extends PluginBase implements JailAPI
                 $this->getLogger()->info($this->colorMessage("&4Error: Mobile hosted servers are not supported!"));
             } else {
                 if ($this->getConfig()->get("update-checker-channel") == "*") {
-                    $this->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "poggit"));
-                    $this->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, "github"));
+                    $this->getScheduler()->getAsyncPool()->submitTask(new AsyncUpdateChecker(null, "poggit"));
+                    $this->getScheduler()->getAsyncPool()->submitTask(new AsyncUpdateChecker(null, "github"));
                 } else {
-                    $this->getScheduler()->scheduleAsyncTask(new AsyncUpdateChecker(null, $this->getConfig()->get("update-checker-channel")));
+                    $this->getScheduler()->getAsyncPool()->submitTask(new AsyncUpdateChecker(null, $this->getConfig()->get("update-checker-channel")));
                 }
             }
-        }*/
+        }
     }
 
     public function onDisable()
@@ -267,7 +272,7 @@ class Jail extends PluginBase implements JailAPI
         $no_update = true;
         $t = $this->data->getAll();
         $j = $this->data1->getAll();
-        if (version_compare($oldVersion, "1.3.0", "<") !== false) {
+        if (version_compare($oldVersion, "1.2.0", "<") !== false) {
             foreach (array_keys($j) as $jail) {
                 if (isset($j[$jail]["allow-visit"]) !== true) {
                     $j[$jail]["allow-visit"] = $this->getConfig()->get("allow-visit");

@@ -1,11 +1,12 @@
+---
 name: Jail
 main: hoyinm14mc\jail\Jail
-api: ["3.1.0"]
-version: 1.3.0
+api:
+- 3.17.0
+version: 3.1.1
 author: hoyinm14mc
 description: An advanced jail punishment system for PocketMine servers
 load: POSTWORLD
-
 commands:
   deljail:
     description: Deletes a jail
@@ -15,12 +16,14 @@ commands:
     description: Sets a jail
     permission: jail.command.setjail
     usage: /setjail <jail> <args...>
-    aliases: ["jailset"]
+    aliases:
+    - jailset
   jails:
     description: Get a list of available jails
     permission: jail.command.jails
     usage: /jails
-    aliases: ["jaillist"]
+    aliases:
+    - jaillist
   jail:
     description: Jails a player
     permission: jail.command.jail
@@ -33,17 +36,21 @@ commands:
     description: Check the list of jailed players
     permission: jail.command.jailed
     usage: /jailed
-    aliases: ["prisoners"]
+    aliases:
+    - prisoners
   switchjail:
     description: Switch a prisoner to another jail
     permission: jail.command.switchjail
     usage: /switchjail <player> <jail>
-    aliases: ["transferjail", "jailswitch"]
+    aliases:
+    - transferjail
+    - jailswitch
   tpjail:
     description: Teleport a player to a jail location
     permission: jail.command.jailtp
     usage: /tpjail <jail> <player>
-    aliases: ["jailtp"]
+    aliases:
+    - jailtp
   bail:
     description: Bails from a jail
     permission: jail.command.bail
@@ -52,7 +59,8 @@ commands:
     description: Vote a player into jail
     permission: jail.command.votejail
     usage: /votejail <player>
-    aliases: ["jailvote"]
+    aliases:
+    - jailvote
   jailmine:
     description: Manage mines of jails
     permission: jail.command.jailmine
@@ -69,13 +77,16 @@ commands:
     description: Provides information about a jail
     permission: jail.command.jailinfo
     usage: /jailinfo <jail>
-    aliases: ["jailcheck"]
+    aliases:
+    - jailcheck
   prisonerinfo:
     description: Provides information about a prisoner
     permission: jail.command.prisonerinfo
     usage: /prisonerinfo <player_name>
-    
 permission:
+  jail.override.restrictions:
+    default: false
+    description: Injail restrictions can be ignored by these players
   jail.command.setjail:
     default: op
     description: Allows admins to set jails
@@ -142,3 +153,4 @@ permission:
   jail.visit.bypass:
     default: op
     description: Allows admins to visit any jails
+...
